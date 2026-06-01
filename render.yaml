@@ -20,7 +20,7 @@ services:
       - key: PORT
         value: 3000
       - key: M3_REPO_PATH
-        value: /app/m3                 # matches the Dockerfile
+        value: /app                    # matches the Dockerfile — orchestrator lives at repo root
 
       # ─── Secrets — paste these in the Render dashboard, NOT in this file ───
       - key: DATABASE_URL              # Neon pooler URL, with ?sslmode=require

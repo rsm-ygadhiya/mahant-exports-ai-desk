@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>✦ Pramukh Gems · Orchestrator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --bg: #fbfaf6;
+    --ink: #1a2238;
+    --muted: #6b7488;
+    --gold: #b08e3a;
+    --gold-soft: #f3eddc;
+    --line: #e6e2d5;
+    --ok: #1f7a4d;
+    --ok-soft: #e0f1e7;
+    --warn: #a06820;
+    --warn-soft: #fbecd0;
+    --err: #a8312b;
+    --err-soft: #fbe2e0;
+    --card: #ffffff;
+  }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 24px 56px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; margin: 0 0 4px; font-size: 30px; }
+  h1 .glyph { color: var(--gold); margin-right: 6px; }
+  .sub { color: var(--muted); font-size: 14px; max-width: 820px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+  .ctrl { display: flex; flex-direction: column; gap: 4px; }
+  .ctrl label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .ctrl input, .ctrl select {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 13px;
+    background: #fff;
+    color: var(--ink);
+    min-width: 140px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 9px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .btn-primary { background: var(--gold); color: #fff; }
+  .btn-primary:hover { background: #957733; }
+  .btn-primary:disabled { background: #c7b888; cursor: not-allowed; }
+  .btn-outline { background: #fff; color: var(--ink); border-color: var(--line); }
+  .btn-outline:hover { background: #f2efe6; }
+
+  /* progress strip */
+  .strip { display: flex; align-items: center; gap: 8px; padding: 14px 0; }
+  .dot {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #f3f1e8; border: 1px solid var(--line);
+    color: var(--muted); font-size: 16px;
+    transition: all 0.2s ease;
+  }
+  .dot.running {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+    color: var(--ink);
+    animation: pulse 1s ease-in-out infinite;
+  }
+  .dot.done { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+  .dot.err  { background: var(--err-soft); border-color: var(--err); color: var(--err); }
+  .step-label { font-size: 11px; color: var(--muted); text-align: center; margin-top: 4px; }
+  .step-cell { display: flex; flex-direction: column; align-items: center; min-width: 110px; }
+  .step-cell .duration { font-size: 10px; color: var(--muted); margin-top: 2px; height: 12px; }
+  .strip-line { height: 2px; background: var(--line); flex: 1; transition: background 0.3s ease; }
+  .strip-line.done { background: var(--ok); }
+  @keyframes pulse { 50% { transform: scale(1.07); } }
+
+  /* per-step results */
+  .step-card { margin: 16px 0; padding: 0; overflow: hidden; }
+  .step-card-head { padding: 12px 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .step-card-head h2 { margin: 0; font-size: 16px; }
+  .pill { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 500; }
+  .pill-ok    { background: var(--ok-soft);   color: var(--ok); }
+  .pill-warn  { background: var(--warn-soft); color: var(--warn); }
+  .pill-err   { background: var(--err-soft);  color: var(--err); }
+  .pill-brand { background: var(--gold-soft); color: var(--warn); }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip { font-size: 11px; padding: 2px 8px; background: #f3f1e8; border-radius: 99px; color: var(--ink); }
+  .chip b { font-weight: 600; }
+  .step-card-body { padding: 12px 16px; }
+  details { font-size: 12px; }
+  details summary { cursor: pointer; color: var(--muted); }
+  details pre { background: #f3f1e8; border-radius: 4px; padding: 8px; font-size: 11px; line-height: 1.4; overflow-x: auto; max-height: 280px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--line); }
+  th { background: #f7f4eb; font-weight: 500; color: var(--muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.06em; }
+  td.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+  .table-wrap { max-height: 360px; overflow: auto; border: 1px solid var(--line); border-radius: 4px; margin-top: 8px; }
+
+  .banner { padding: 10px 14px; border-radius: 6px; font-size: 13px; margin: 12px 0; }
+  .banner-err { background: var(--err-soft); color: var(--err); border: 1px solid var(--err); }
+  .banner-ok  { background: var(--ok-soft);  color: var(--ok); }
+  .banner-info { background: var(--gold-soft); color: var(--warn); }
+
+  .muted { color: var(--muted); font-size: 12px; }
+  .empty { color: var(--muted); font-size: 13px; padding: 24px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1><span class="glyph">✦</span>Pramukh Gems · Orchestrator</h1>
+  <p class="sub">
+    Runs the four chained Milestone-03 automations
+    (<b>triage&nbsp;→&nbsp;repricing&nbsp;→&nbsp;CLV&nbsp;→&nbsp;memo</b>)
+    end-to-end. Each step lights up as the Python subprocess finishes
+    and renders its envelope plus the top rows of its
+    <code>data/working/*_decisions.csv</code> artifact.
+  </p>
+
+  <div class="card">
+    <div class="row">
+      <div class="ctrl">
+        <label>Today (pin date)</label>
+        <input id="today" type="date" value="">
+      </div>
+      <div class="ctrl">
+        <label>Threshold A — repricing |% change|</label>
+        <input id="threshold" type="number" min="0" max="20" step="0.5" value="7">
+      </div>
+      <div class="ctrl">
+        <label>Threshold B — memo opp ceiling</label>
+        <input id="opp" type="number" min="0" max="100" step="5" value="70">
+      </div>
+      <div class="ctrl">
+        <label>Auto-approve tiers</label>
+        <input id="autotiers" type="text" value="Top,High" size="14">
+      </div>
+      <div style="flex: 1"></div>
+      <button id="reset" class="btn btn-outline">🔄 Reset data</button>
+      <button id="run" class="btn btn-primary">▶ Run workflow</button>
+    </div>
+  </div>
+
+  <div id="strip" class="strip" style="display:none"></div>
+
+  <div id="banner-area"></div>
+
+  <div id="results"></div>
+
+  <p class="muted" style="margin-top: 28px">
+    M03 deliverable §4. Source: <code>scripts/orchestrator.py</code> +
+    <code>scripts/orchestrator_ui.html</code>. The polished
+    production-style version lives in the bundled Mahant app at
+    <code>mahant/web/src/app/admin/scintilla</code>.
+  </p>
+</div>
+
+<script>
+const STEPS = [
+  { id: 'triage-inventory',  emoji: '⏳', label: 'Triage'  },
+  { id: 'propose-repricing', emoji: '💎', label: 'Repricing' },
+  { id: 'rank-customer-clv', emoji: '👑', label: 'CLV'    },
+  { id: 'decide-memo',       emoji: '📝', label: 'Memo'   },
+];
+
+// ─── Today default = real today ────────────────────────────────────────────
+document.getElementById('today').value = new Date().toISOString().slice(0, 10);
+
+// ─── Build the progress strip ─────────────────────────────────────────────
+function renderStrip(statuses, durations) {
+  const strip = document.getElementById('strip');
+  strip.innerHTML = '';
+  STEPS.forEach((step, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'step-cell';
+    const status = statuses[step.id] || 'pending';
+    cell.innerHTML = `
+      <div class="dot ${status}" id="dot-${step.id}">
+        ${status === 'done' ? '✓' : status === 'err' ? '✗' : step.emoji}
+      </div>
+      <div class="step-label">${step.label}</div>
+      <div class="duration">${durations[step.id] != null ? (durations[step.id]/1000).toFixed(1) + 's' : (status === 'running' ? '…' : '')}</div>
+    `;
+    strip.appendChild(cell);
+    if (i < STEPS.length - 1) {
+      const line = document.createElement('div');
+      line.className = 'strip-line' + ((statuses[step.id] === 'done') ? ' done' : '');
+      strip.appendChild(line);
+    }
+  });
+  strip.style.display = 'flex';
+}
+
+// ─── Per-step result card ─────────────────────────────────────────────────
+function tagPill(tag) {
+  return tag === 'CLEAR'    ? '<span class="pill pill-err">CLEAR</span>'
+       : tag === 'DISCOUNT' ? '<span class="pill pill-warn">DISCOUNT</span>'
+       : tag === 'WATCH'    ? '<span class="pill pill-brand">WATCH</span>'
+       : tag === 'HOLD'     ? '<span class="pill pill-ok">HOLD</span>'
+       : `<span class="pill pill-brand">${escapeHtml(tag || '—')}</span>`;
+}
+function queuePill(q) {
+  return (q === 'auto' || q === 'auto_approve') ? `<span class="pill pill-ok">${q}</span>`
+       : (q === 'auto_reject')                  ? `<span class="pill pill-err">${q}</span>`
+       : (q === 'review' || q === 'needs_review') ? `<span class="pill pill-warn">${q}</span>`
+       : `<span class="pill pill-brand">${escapeHtml(q || '—')}</span>`;
+}
+function tierPill(t) {
+  return t === 'Top'  ? `<span class="pill pill-brand">Top</span>`
+       : t === 'High' ? `<span class="pill pill-ok">High</span>`
+       : t === 'Mid'  ? `<span class="pill pill-brand">Mid</span>`
+       : t === 'Low'  ? `<span class="pill pill-err">Low</span>`
+       : `<span class="pill pill-brand">${escapeHtml(t || '—')}</span>`;
+}
+function dollars(v) {
+  const n = parseFloat(v);
+  if (!isFinite(n)) return v || '—';
+  return '$' + n.toLocaleString(undefined, { maximumFractionDigits: 0 });
+}
+function pctSigned(v) {
+  const n = parseFloat(v);
+  if (!isFinite(n)) return v || '—';
+  return (n > 0 ? '▲ ' : n < 0 ? '▼ ' : '= ') + Math.abs(n).toFixed(1) + '%';
+}
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+}
+
+function chipsFor(stepId, outputs) {
+  const chips = [];
+  if (typeof outputs.stones_tagged === 'number')
+    chips.push(`<span class="chip"><b>stones:</b> ${outputs.stones_tagged}</span>`);
+  if (outputs.by_tag) {
+    for (const [k, v] of Object.entries(outputs.by_tag)) {
+      chips.push(`<span class="chip"><b>${k}:</b> ${v}</span>`);
+    }
+  }
+  if (typeof outputs.auto_count === 'number')
+    chips.push(`<span class="chip"><b>auto:</b> ${outputs.auto_count}</span>`);
+  if (typeof outputs.review_count === 'number')
+    chips.push(`<span class="chip"><b>review:</b> ${outputs.review_count}</span>`);
+  if (typeof outputs.auto_approved === 'number')
+    chips.push(`<span class="chip"><b>auto-approve:</b> ${outputs.auto_approved}</span>`);
+  if (typeof outputs.auto_rejected === 'number')
+    chips.push(`<span class="chip"><b>auto-reject:</b> ${outputs.auto_rejected}</span>`);
+  if (typeof outputs.needs_review === 'number')
+    chips.push(`<span class="chip"><b>needs review:</b> ${outputs.needs_review}</span>`);
+  if (typeof outputs.entities_ranked === 'number')
+    chips.push(`<span class="chip"><b>entities:</b> ${outputs.entities_ranked}</span>`);
+  if (outputs.tier_counts) {
+    for (const [k, v] of Object.entries(outputs.tier_counts)) {
+      chips.push(`<span class="chip"><b>${k}:</b> ${v}</span>`);
+    }
+  }
+  return chips.join(' ');
+}
+
+function tableFor(stepId, rows) {
+  if (!rows || rows.length === 0) return '<div class="muted">No rows.</div>';
+  const top = rows.slice(0, 10);
+  let columns;
+  if (stepId === 'triage-inventory') {
+    columns = [
+      { key: 'stock_id',          h: 'Stone' },
+      { key: 'action_tag',        h: 'Tag',     fmt: tagPill },
+      { key: 'age_in_stock_days', h: 'Age (d)' },
+      { key: 'reason',            h: 'Reason' },
+    ];
+  } else if (stepId === 'propose-repricing') {
+    columns = [
+      { key: 'stock_id',       h: 'Stone' },
+      { key: 'queue',          h: 'Queue',  fmt: queuePill },
+      { key: 'old_price',      h: 'Old $',  fmt: dollars },
+      { key: 'proposed_price', h: 'New $',  fmt: dollars },
+      { key: 'pct_change',     h: 'Δ',      fmt: pctSigned },
+      { key: 'primary_driver', h: 'Driver' },
+    ];
+  } else if (stepId === 'rank-customer-clv') {
+    columns = [
+      { key: 'entity_id',     h: 'ID' },
+      { key: 'entity_name',   h: 'Name' },
+      { key: 'tier',          h: 'Tier', fmt: tierPill },
+      { key: 'clv',           h: 'CLV',  fmt: dollars },
+      { key: 'transactions',  h: 'Txns' },
+    ];
+  } else {
+    columns = [
+      { key: 'memo_id',     h: 'Memo' },
+      { key: 'queue',       h: 'Queue',    fmt: queuePill },
+      { key: 'decision',    h: 'Decision' },
+      { key: 'tier',        h: 'Tier',     fmt: tierPill },
+      { key: 'triage_tag',  h: 'Triage',   fmt: tagPill },
+      { key: 'route_reason', h: 'Why' },
+    ];
+  }
+  const head = '<thead><tr>' + columns.map(c => `<th>${c.h}</th>`).join('') + '</tr></thead>';
+  const body = '<tbody>' + top.map(r =>
+    '<tr>' + columns.map(c => {
+      const raw = r[c.key];
+      const html = c.fmt ? c.fmt(raw) : escapeHtml(raw || '');
+      return `<td${c.key === 'stock_id' || c.key === 'memo_id' || c.key === 'entity_id' ? ' class="mono"' : ''}>${html}</td>`;
+    }).join('') + '</tr>'
+  ).join('') + '</tbody>';
+  return `<div class="table-wrap"><table>${head}${body}</table></div><div class="muted" style="margin-top:6px">Showing first ${top.length} of ${rows.length}.</div>`;
+}
+
+function renderStepCard(stepId, envelope, decisions) {
+  const step = STEPS.find(s => s.id === stepId);
+  const outputs = envelope.outputs || {};
+  const ok = envelope.status === 'ok';
+  const review = !!envelope.review_required;
+  const pill = !ok ? '<span class="pill pill-err">✗ error</span>'
+             : review ? '<span class="pill pill-warn">⚠ review</span>'
+             : '<span class="pill pill-ok">✓ ok</span>';
+
+  const card = document.createElement('div');
+  card.className = 'card step-card';
+  card.id = `card-${stepId}`;
+  card.innerHTML = `
+    <div class="step-card-head">
+      <h2>${step.emoji} ${step.label} <span style="color: var(--muted); font-weight: normal; font-size: 13px">— ${escapeHtml(stepId)}</span></h2>
+      <div style="display: flex; gap: 8px; align-items: center">${pill}</div>
+    </div>
+    <div class="step-card-body">
+      <div class="chips">${chipsFor(stepId, outputs)}</div>
+      <div style="margin-top: 12px">
+        ${tableFor(stepId, decisions)}
+      </div>
+      <details style="margin-top: 12px">
+        <summary>Raw envelope JSON</summary>
+        <pre>${escapeHtml(JSON.stringify(envelope, null, 2))}</pre>
+      </details>
+    </div>
+  `;
+  document.getElementById('results').appendChild(card);
+}
+
+// ─── Run flow ─────────────────────────────────────────────────────────────
+async function runWorkflow() {
+  // Reset UI
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('banner-area').innerHTML = '';
+
+  const statuses = {}, durations = {};
+  STEPS.forEach(s => { statuses[s.id] = 'pending'; });
+  renderStrip(statuses, durations);
+
+  const config = {
+    today:        document.getElementById('today').value || null,
+    thresholdPct: parseFloat(document.getElementById('threshold').value),
+    oppCeiling:   parseInt(document.getElementById('opp').value, 10),
+    autoTiers:    document.getElementById('autotiers').value,
+  };
+
+  document.getElementById('run').disabled = true;
+  document.getElementById('reset').disabled = true;
+
+  let anyReview = false;
+  let hadError = false;
+
+  for (const step of STEPS) {
+    statuses[step.id] = 'running';
+    renderStrip(statuses, durations);
+    const t0 = performance.now();
+    try {
+      const res = await fetch('/api/run-step?step=' + step.id, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(config),
+      });
+      const data = await res.json();
+      const dt = performance.now() - t0;
+      durations[step.id] = dt;
+      if (!res.ok || !data.envelope || data.envelope.status !== 'ok') {
+        statuses[step.id] = 'err';
+        renderStrip(statuses, durations);
+        showBanner('err', `Step "${step.id}" failed: ${data.error || JSON.stringify(data.envelope?.error || {})}`);
+        renderStepCard(step.id, data.envelope || {status:'error', error: data.error}, []);
+        hadError = true;
+        break;
+      }
+      statuses[step.id] = 'done';
+      if (data.envelope.review_required) anyReview = true;
+      renderStrip(statuses, durations);
+      renderStepCard(step.id, data.envelope, data.decisions || []);
+    } catch (e) {
+      statuses[step.id] = 'err';
+      renderStrip(statuses, durations);
+      showBanner('err', `Step "${step.id}" failed: ${e.message}`);
+      hadError = true;
+      break;
+    }
+  }
+
+  if (!hadError) {
+    showBanner(anyReview ? 'info' : 'ok',
+      anyReview
+        ? '⚠ Workflow finished — some rows need human review. See data/working/*_decisions.csv where queue=needs_review or review.'
+        : '✓ Workflow finished — no human review required.');
+  }
+  document.getElementById('run').disabled = false;
+  document.getElementById('reset').disabled = false;
+}
+
+async function resetData() {
+  if (!confirm('Reset all simulated data back to the frozen baseline?')) return;
+  document.getElementById('reset').disabled = true;
+  try {
+    const res = await fetch('/api/reset', { method: 'POST' });
+    const data = await res.json();
+    if (!res.ok) {
+      showBanner('err', `Reset failed: ${data.error || res.status}`);
+    } else {
+      showBanner('ok', `🔄 ${data.action || 'reset'} — ${data.message || ''}`);
+      document.getElementById('results').innerHTML = '';
+      document.getElementById('strip').style.display = 'none';
+    }
+  } catch (e) {
+    showBanner('err', `Reset failed: ${e.message}`);
+  } finally {
+    document.getElementById('reset').disabled = false;
+  }
+}
+
+function showBanner(kind, msg) {
+  const area = document.getElementById('banner-area');
+  const cls = kind === 'err' ? 'banner-err' : kind === 'ok' ? 'banner-ok' : 'banner-info';
+  area.innerHTML = `<div class="banner ${cls}">${escapeHtml(msg)}</div>`;
+}
+
+document.getElementById('run').addEventListener('click', runWorkflow);
+document.getElementById('reset').addEventListener('click', resetData);
+</script>
+
+</body>
+</html>

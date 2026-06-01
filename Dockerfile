@@ -1,13 +1,12 @@
 # ─────────────────────────────────────────────────────────────────────────
 # Mahant Exports — single-image deploy for Render / Fly / any Docker host.
 #
-# Bundles BOTH halves of the stack in one container:
-#   • Next.js admin + storefront (this repo)               → /app/web
-#   • mgt449-milestone03 Python orchestrator + skills      → /app/m3
+# This repo bundles BOTH halves of the stack:
+#   • Next.js admin + storefront           → ui/web/
+#   • Python orchestrator + skills (m3)    → scripts/, automations/, data/
 #
-# The Scintilla autopilot spawns `uv run python …` against /app/m3 from
-# inside the Next.js process, so Node and Python must coexist in the
-# runtime image.
+# At runtime the Next.js process spawns `uv run python scripts/orchestrator.py`
+# against /app (the repo root), so Node + Python both live in one image.
 #
 # Build & run locally:
 #   docker build -t mahant .
@@ -19,9 +18,8 @@ FROM node:20-bookworm-slim AS web-builder
 
 WORKDIR /app/web
 
-# Install OpenSSL (Prisma needs it for query engine binaries) + git.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        openssl ca-certificates git \
+        openssl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Node deps first (cached layer).
@@ -40,7 +38,7 @@ FROM node:20-bookworm-slim AS runtime
 ENV NODE_ENV=production \
     PORT=3000 \
     PYTHONUNBUFFERED=1 \
-    M3_REPO_PATH=/app/m3
+    M3_REPO_PATH=/app
 
 # Python 3 + git + OpenSSL + curl (for uv installer & healthchecks).
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -48,33 +46,41 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         openssl ca-certificates git curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install uv (the same Python package manager the m3 repo uses locally).
+# Install uv (same Python package manager used locally).
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && mv /root/.local/bin/uv /usr/local/bin/uv \
     && uv --version
 
-# ---- Clone & install the Python orchestrator ----
-# Cloning at build time keeps the deploy artifact self-contained; the m3
-# repo is public so no secrets are needed. To pin a specific commit, set
-# M3_GIT_REF as a build arg.
-ARG M3_GIT_REF=main
-RUN git clone --depth 1 --branch ${M3_GIT_REF} \
-    https://github.com/rsm-genai-2026/mgt449-milestone03-Group-10.git \
-    /app/m3
+WORKDIR /app
 
-WORKDIR /app/m3
+# Copy the m3 half of the repo — orchestrator + skills + seed data + python deps.
+# Listed file-by-file so we don't drag the entire ui/web tree into /app and
+# blow up the image with duplicate node_modules.
+COPY automations ./automations
+COPY scripts ./scripts
+COPY data ./data
+COPY utils ./utils
+COPY skills ./skills
+COPY rag ./rag
+COPY mcp ./mcp
+COPY tests ./tests
+COPY pyproject.toml uv.lock conftest.py ./
+
+# Install Python dependencies for the orchestrator.
 RUN uv sync --frozen --no-dev
 
-# ---- Copy the built Next.js app from stage 1 ----
-WORKDIR /app/web
-COPY --from=web-builder /app/web/.next ./.next
-COPY --from=web-builder /app/web/public ./public
-COPY --from=web-builder /app/web/package*.json ./
-COPY --from=web-builder /app/web/node_modules ./node_modules
-COPY --from=web-builder /app/web/prisma ./prisma
-COPY --from=web-builder /app/web/next.config.* ./
+# Copy the built Next.js app from stage 1 into /app/web.
+COPY --from=web-builder /app/web/.next        ./web/.next
+COPY --from=web-builder /app/web/public       ./web/public
+COPY --from=web-builder /app/web/package*.json ./web/
+COPY --from=web-builder /app/web/node_modules ./web/node_modules
+COPY --from=web-builder /app/web/prisma       ./web/prisma
+COPY --from=web-builder /app/web/next.config.* ./web/
 
 EXPOSE 3000
 
 # Render injects $PORT — use it if set, otherwise default to 3000.
+# Working dir is /app/web so Next.js finds its build output, but
+# M3_REPO_PATH=/app tells Scintilla where to spawn `uv run python …`.
+WORKDIR /app/web
 CMD ["sh", "-c", "npx next start -p ${PORT:-3000}"]
