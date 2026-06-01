@@ -106,7 +106,27 @@ For each lead, return ONE JSON object on its own line with these fields:
   company         official company name
   region          one of: North America | Europe | India | Middle East | Asia-Pacific
   segment         one of: Big-box retail | Specialty jeweler | Online marketplace | Department store | Bridal chain | Luxury house
-  portal_url      public supplier/vendor portal URL if you can infer it confidently; omit field otherwise
+  portal_url      REQUIRED. Best-effort public supplier/vendor/partner portal URL for the
+                  company. Use the company's primary domain. Examples of real patterns:
+                    https://corporate.walmart.com/suppliers
+                    https://www.signetjewelers.com/suppliers
+                    https://www.bluenile.com/diamond-suppliers
+                    https://www.titancompany.in/suppliers
+                  If no dedicated supplier page exists, fall back to the company's main
+                  corporate / "about" / "contact-us" URL on its primary domain.
+                  Never use placeholder text — always emit a real URL.
+  contact_email   REQUIRED. Best-effort role-based business email at the company's
+                  primary domain (NOT a personal address, NOT @example.com). Prefer
+                  patterns like:
+                    suppliers@<domain>
+                    sourcing@<domain>
+                    partnerships@<domain>
+                    vendors@<domain>
+                    procurement@<domain>
+                  Pick the pattern most likely to be monitored for B2B inbound at this
+                  company's segment (e.g. big-box retail tends to use "suppliers@",
+                  marketplaces use "partnerships@" or "merchant@"). Lowercase only.
+                  Never emit example.com, test addresses, or made-up TLDs.
   reported_demand 1 sentence quoting/paraphrasing what the headline says they are sourcing
   fit_summary     1-2 sentences on WHY they fit Mahant Exports
   contact_role    likely decision-maker title (e.g. "Director of Sourcing — Jewelry")
@@ -117,7 +137,10 @@ Rules:
   - Only include companies that the HEADLINES support — do NOT invent leads.
   - Skip headlines that are pure consumer marketing or trend pieces with no named buyer.
   - One JSON object per line. No array brackets, no markdown fences, no commentary.
-  - Up to 12 leads total. If fewer headlines are buyer-related, return fewer.`;
+  - Up to 12 leads total. If fewer headlines are buyer-related, return fewer.
+  - portal_url and contact_email are REQUIRED and must be real-looking values at the
+    company's actual primary domain. If you genuinely cannot infer a domain, drop
+    that lead entirely rather than emitting a placeholder.`;
 
 type ParsedLead = {
   id: string;
@@ -125,6 +148,7 @@ type ParsedLead = {
   region: Region;
   segment: EnrichedOpportunity['segment'];
   portal_url?: string;
+  contact_email?: string;
   reported_demand: string;
   fit_summary: string;
   contact_role: string;
@@ -140,12 +164,18 @@ function parseLeads(text: string): ParsedLead[] {
     try {
       const j = JSON.parse(line);
       if (!j.id || !j.company || !j.region) continue;
+      const email = j.contact_email ? String(j.contact_email).trim().toLowerCase() : undefined;
+      // Defensive: drop the email if Claude slipped a placeholder through.
+      const safeEmail = email && !/example\.com|placeholder|test\.|@your|@domain/i.test(email)
+        ? email
+        : undefined;
       out.push({
         id: String(j.id),
         company: String(j.company),
         region: j.region as Region,
         segment: (j.segment ?? 'Specialty jeweler') as EnrichedOpportunity['segment'],
         portal_url: j.portal_url ? String(j.portal_url) : undefined,
+        contact_email: safeEmail,
         reported_demand: String(j.reported_demand ?? ''),
         fit_summary: String(j.fit_summary ?? ''),
         contact_role: String(j.contact_role ?? 'Sourcing Lead'),

@@ -411,8 +411,34 @@ function OpportunityCard({
         </div>
       </div>
       <p className="text-xs text-brand-700/90 line-clamp-3">{opp.fit_summary}</p>
-      <div className="text-[11px] text-brand-700/70">
-        Contact: <span className="italic">{opp.contact_role}</span>
+      <div className="text-[11px] text-brand-700/70 space-y-0.5">
+        <div>Contact: <span className="italic">{opp.contact_role}</span></div>
+        {opp.contact_email && (
+          <div className="truncate">
+            ✉{' '}
+            <a
+              href={`mailto:${opp.contact_email}?subject=${encodeURIComponent('Lab-grown diamond supply for ' + opp.company)}`}
+              className="text-brand-900 hover:text-gold-600 underline"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {opp.contact_email}
+            </a>
+          </div>
+        )}
+        {opp.portal_url && (
+          <div className="truncate">
+            🔗{' '}
+            <a
+              href={opp.portal_url}
+              target="_blank"
+              rel="noreferrer"
+              className="text-brand-900 hover:text-gold-600 underline"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {opp.portal_url.replace(/^https?:\/\//, '')}
+            </a>
+          </div>
+        )}
       </div>
       <div className="flex gap-2 mt-1">
         {(opp.status === 'new' || opp.status === 'draft') ? (

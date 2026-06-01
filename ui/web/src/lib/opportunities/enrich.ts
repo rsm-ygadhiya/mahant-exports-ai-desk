@@ -21,6 +21,15 @@ which we use internally to keep allocation fair and prices fresh.`;
 // ─────────────────────────────────────────────────────────────────────────────
 //  Email drafting + portal-form prefill
 
+/** Last-resort domain guess from a company name if Claude didn't provide one. */
+function slugDomain(company: string): string {
+  return company
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '')
+    .slice(0, 30) + '.com';
+}
+
 const EMAIL_SYSTEM = `You write B2B outreach emails for Mahant Exports, a
 lab-grown diamond wholesaler in Surat, India.
 
@@ -43,7 +52,12 @@ export async function draftEmail(
   inventorySnapshot: string,
 ): Promise<EmailDraft> {
   const to_role = opp.contact_role || 'Sourcing Lead';
-  const to = `${opp.id}-sourcing@example.com`; // placeholder address; the user replaces before sending
+  // Prefer the Claude-inferred role-based business email. Only fall back to a
+  // visible "FILL-IN" marker if Claude couldn't infer one — so the user
+  // notices before sending instead of mailing example.com.
+  const to = opp.contact_email && opp.contact_email.includes('@')
+    ? opp.contact_email
+    : `[fill-in]@${slugDomain(opp.company)}`;
 
   if (!TRITON_AVAILABLE()) {
     return {

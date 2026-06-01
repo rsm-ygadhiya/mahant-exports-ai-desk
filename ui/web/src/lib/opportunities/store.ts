@@ -20,6 +20,7 @@ export type EnrichedOpportunity = {
   // LLM-enriched
   fit_summary: string;
   contact_role: string;
+  contact_email?: string;     // best-effort role-based address inferred by Claude
   confidence: number;        // 0-100
   // Workflow state
   status: 'new' | 'draft' | 'pursuing' | 'sent' | 'discarded';
