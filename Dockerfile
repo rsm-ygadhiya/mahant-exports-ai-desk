@@ -71,7 +71,6 @@ RUN uv sync --frozen --no-dev
 
 # Copy the built Next.js app from stage 1 into /app/web.
 COPY --from=web-builder /app/web/.next        ./web/.next
-COPY --from=web-builder /app/web/public       ./web/public
 COPY --from=web-builder /app/web/package*.json ./web/
 COPY --from=web-builder /app/web/node_modules ./web/node_modules
 COPY --from=web-builder /app/web/prisma       ./web/prisma
