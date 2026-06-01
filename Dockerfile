@@ -79,7 +79,12 @@ COPY --from=web-builder /app/web/next.config.* ./web/
 EXPOSE 3000
 
 # Render injects $PORT — use it if set, otherwise default to 3000.
-# Working dir is /app/web so Next.js finds its build output, but
-# M3_REPO_PATH=/app tells Scintilla where to spawn `uv run python …`.
-WORKDIR /app/web
-CMD ["sh", "-c", "npx next start -p ${PORT:-3000}"]
+# Boot sequence:
+#   1. From /app, fire Scintilla in the background so data/working/*.csv
+#      exists by the time anyone visits /admin/evals. Render's free tier
+#      filesystem is ephemeral — every cold start wipes these CSVs, so we
+#      regenerate them on boot. The orchestrator takes ~30s; Next.js
+#      doesn't wait for it (the &), so the site comes up fast.
+#   2. From /app/web, start Next.js on $PORT.
+WORKDIR /app
+CMD ["sh", "-c", "(cd /app && uv run python scripts/orchestrator.py --today $(date +%Y-%m-%d) > /tmp/scintilla-boot.log 2>&1 &) ; cd /app/web && npx next start -p ${PORT:-3000}"]
