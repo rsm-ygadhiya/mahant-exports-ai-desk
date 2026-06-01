@@ -22,13 +22,17 @@ export type EnrichedOpportunity = {
   contact_role: string;
   confidence: number;        // 0-100
   // Workflow state
-  status: 'new' | 'pursuing' | 'sent' | 'discarded';
+  status: 'new' | 'draft' | 'pursuing' | 'sent' | 'discarded';
+  // Set every time the lead is surfaced by a Find run. Helps drafts show "last seen".
+  run_at?: string;
   // Filled when pursued
   portal_form?: PortalForm;
   email_draft?: EmailDraft;
   sent_at?: string;
   discarded_at?: string;
   notes?: string;
+  // Source article URL when the lead came from a scraped news headline
+  source_url?: string;
 };
 
 export type PortalForm = {
@@ -100,4 +104,22 @@ export async function update(id: string, patch: Partial<EnrichedOpportunity>): P
 
 export async function clear(): Promise<void> {
   await save({ opportunities: {} });
+}
+
+/**
+ * Move all currently-`new` leads to `draft`. Called at the start of each
+ * Find run so the previous batch is preserved as historical drafts and the
+ * fresh scrape can claim the `new` slot on its own.
+ */
+export async function archiveCurrentNewToDrafts(): Promise<number> {
+  const s = await load();
+  let moved = 0;
+  for (const id of Object.keys(s.opportunities)) {
+    if (s.opportunities[id].status === 'new') {
+      s.opportunities[id] = { ...s.opportunities[id], status: 'draft' };
+      moved++;
+    }
+  }
+  if (moved > 0) await save(s);
+  return moved;
 }

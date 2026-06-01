@@ -2,15 +2,15 @@
  * POST /api/admin/opportunities/find
  *   body: { regions: Region[] }
  *
- * Filters the seed list to the chosen regions, enriches via Claude
- * (fit_summary, contact_role, confidence), persists, and returns the list.
+ * Live-scrapes B2B lab-grown diamond buyers in the chosen regions via
+ * OpenAI's web search tool, persists them, and returns the list.
+ * No seed fallback — if the scrape fails, returns 502.
  */
 
 import { NextResponse } from 'next/server';
 import { requireLoggedInAdmin } from '@/lib/adminGuard';
 import { hasPermission } from '@/lib/permissions';
-import { SEED, ALL_REGIONS, type Region } from '@/lib/opportunities/seed';
-import { enrichBatch } from '@/lib/opportunities/enrich';
+import { scrapeOpportunities, ALL_REGIONS, type Region } from '@/lib/opportunities/scrape';
 import { getAll, upsertMany } from '@/lib/opportunities/store';
 
 export async function POST(req: Request) {
@@ -21,27 +21,33 @@ export async function POST(req: Request) {
   }
 
   let body: { regions?: Region[] } = {};
-  try { body = await req.json(); } catch { /* ignore — fall back to all */ }
+  try { body = await req.json(); } catch { /* fall back to all */ }
   const regions = (body.regions && body.regions.length > 0)
     ? body.regions.filter(r => ALL_REGIONS.includes(r))
     : ALL_REGIONS;
 
-  const seeds = SEED.filter(s => regions.includes(s.region));
-
-  // Preserve any in-flight opportunities for these IDs (don't clobber
-  // emails the user has already drafted). Only re-enrich `new` ones.
+  // Preserve any in-flight opportunities — keep pursued/sent records, only
+  // overwrite `new` ones with fresh scrape data.
   const existing = await getAll();
   const byId = new Map(existing.map(o => [o.id, o]));
-  const toEnrich = seeds.filter(s => {
+
+  let scraped: Awaited<ReturnType<typeof scrapeOpportunities>>;
+  try {
+    scraped = await scrapeOpportunities(regions);
+  } catch (e: any) {
+    return NextResponse.json(
+      { error: e?.message ?? 'web search failed' },
+      { status: 502 },
+    );
+  }
+
+  const toUpsert = scraped.filter(s => {
     const cur = byId.get(s.id);
     return !cur || cur.status === 'new';
   });
+  await upsertMany(toUpsert);
 
-  const enriched = await enrichBatch(toEnrich);
-  await upsertMany(enriched);
-
-  const merged = seeds.map(s => byId.get(s.id) ?? enriched.find(e => e.id === s.id)!);
-  // Sort by confidence desc so the best leads float to the top
+  const merged = scraped.map(s => byId.get(s.id) ?? s);
   merged.sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0));
 
   return NextResponse.json({

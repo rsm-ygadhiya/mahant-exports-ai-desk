@@ -1,7 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ALL_REGIONS, type Region } from '@/lib/opportunities/seed';
+import { ALL_REGIONS, type Region, type ProgressEvent } from '@/lib/opportunities/scrape';
 import type { EnrichedOpportunity, EmailDraft, PortalForm } from '@/lib/opportunities/store';
+
+type LogLine = { id: number; icon: string; text: string };
 
 export default function OpportunitiesPage() {
   const [regions, setRegions] = useState<Region[]>(ALL_REGIONS);
@@ -10,6 +12,25 @@ export default function OpportunitiesPage() {
   const [pursuing, setPursuing] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<EnrichedOpportunity | null>(null);
+  const [progress, setProgress] = useState<LogLine[]>([]);
+
+  function pushLog(icon: string, text: string) {
+    setProgress(prev => [...prev, { id: prev.length + 1, icon, text }]);
+  }
+  function eventToLog(e: ProgressEvent): { icon: string; text: string } | null {
+    switch (e.type) {
+      case 'start':         return { icon: '🚀', text: `Starting scrape across ${e.regions.length} region${e.regions.length === 1 ? '' : 's'}…` };
+      case 'archived':      return { icon: '📁', text: `Moved ${e.count} previous lead${e.count === 1 ? '' : 's'} to drafts` };
+      case 'fetch_begin':   return { icon: '🌐', text: `Checking Google News for ${e.region}…` };
+      case 'fetch_done':    return { icon: '📰', text: `Got ${e.count} headline${e.count === 1 ? '' : 's'} from ${e.region} (${e.ms} ms)` };
+      case 'fetch_fail':    return { icon: '⚠️', text: `${e.region}: ${e.error}` };
+      case 'collected':     return { icon: '📦', text: `Collected ${e.totalHeadlines} headlines total` };
+      case 'extract_begin': return { icon: '🤖', text: `Sending ${e.headlineCount} headlines to ${e.sentTo} for extraction…` };
+      case 'extract_done':  return { icon: '✨', text: `Claude returned ${e.leadCount} lead${e.leadCount === 1 ? '' : 's'} (${e.ms} ms)` };
+      case 'done':          return { icon: '✅', text: `Done — ${e.leadCount} unique lead${e.leadCount === 1 ? '' : 's'}.` };
+      default:              return null;
+    }
+  }
 
   // Load any previously-persisted opportunities on mount.
   useEffect(() => {
@@ -29,19 +50,74 @@ export default function OpportunitiesPage() {
   async function find() {
     setLoading(true);
     setError(null);
+    setProgress([]);
     try {
-      const r = await fetch('/api/admin/opportunities/find', {
+      const r = await fetch('/api/admin/opportunities/find-stream', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ regions }),
       });
-      const data = await r.json();
-      if (!r.ok) throw new Error(data?.error ?? 'find failed');
-      setOpps(data.opportunities ?? []);
+      if (!r.ok || !r.body) {
+        const data = await r.json().catch(() => ({}));
+        throw new Error(data?.error ?? `find failed (${r.status})`);
+      }
+
+      const reader = r.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = '';
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+        // NDJSON: process complete lines, keep partial in buf
+        let nl: number;
+        while ((nl = buf.indexOf('\n')) >= 0) {
+          const line = buf.slice(0, nl).trim();
+          buf = buf.slice(nl + 1);
+          if (!line) continue;
+          let msg: any;
+          try { msg = JSON.parse(line); } catch { continue; }
+          if (msg.type === 'progress') {
+            const ln = eventToLog(msg.event as ProgressEvent);
+            if (ln) pushLog(ln.icon, ln.text);
+          } else if (msg.type === 'result') {
+            // The stream returns just the fresh run. Re-fetch the full list so
+            // previous-run drafts (archived just before scrape) show up too.
+            try {
+              const r2 = await fetch('/api/admin/opportunities/list');
+              const d2 = await r2.json();
+              setOpps(Array.isArray(d2.opportunities) ? d2.opportunities : (msg.opportunities ?? []));
+            } catch {
+              setOpps(msg.opportunities ?? []);
+            }
+          } else if (msg.type === 'error') {
+            setError(msg.error ?? 'find failed');
+            pushLog('❌', msg.error ?? 'find failed');
+          }
+        }
+      }
     } catch (e: any) {
       setError(e?.message ?? 'find failed');
+      pushLog('❌', e?.message ?? 'find failed');
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function reset() {
+    if (!confirm('Wipe all opportunities (new + drafts + pursued)? This cannot be undone.')) return;
+    try {
+      const r = await fetch('/api/admin/opportunities/reset', { method: 'POST' });
+      if (!r.ok) {
+        const data = await r.json().catch(() => ({}));
+        throw new Error(data?.error ?? `reset failed (${r.status})`);
+      }
+      setOpps([]);
+      setProgress([]);
+      setError(null);
+      setSelected(null);
+    } catch (e: any) {
+      setError(e?.message ?? 'reset failed');
     }
   }
 
@@ -98,6 +174,14 @@ export default function OpportunitiesPage() {
               Clear
             </button>
             <button
+              onClick={reset}
+              disabled={loading || opps.length === 0}
+              className="text-xs px-2.5 py-1 rounded border border-rose-200 text-rose-700 hover:bg-rose-50 disabled:opacity-40"
+              title="Wipe all leads (new + drafts + pursued)"
+            >
+              ⟲ Reset
+            </button>
+            <button
               onClick={find}
               disabled={loading || regions.length === 0}
               className="px-4 py-1.5 rounded bg-brand-900 text-white text-sm font-medium hover:bg-brand-700 disabled:opacity-50"
@@ -124,26 +208,62 @@ export default function OpportunitiesPage() {
         </div>
       </div>
 
+      {(loading || progress.length > 0) && (
+        <div className="card p-4 bg-brand-50/40">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="text-sm font-medium text-brand-900">
+              {loading ? 'Live activity' : 'Last run'}
+            </div>
+            {loading && (
+              <div className="flex gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-900 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-900 animate-pulse" style={{ animationDelay: '150ms' }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-900 animate-pulse" style={{ animationDelay: '300ms' }} />
+              </div>
+            )}
+          </div>
+          <ul className="space-y-1 text-sm font-mono text-brand-800 max-h-56 overflow-y-auto">
+            {progress.map(line => (
+              <li key={line.id} className="flex gap-2 items-start">
+                <span className="shrink-0">{line.icon}</span>
+                <span>{line.text}</span>
+              </li>
+            ))}
+            {loading && progress.length === 0 && (
+              <li className="text-brand-500 italic">Warming up…</li>
+            )}
+          </ul>
+        </div>
+      )}
+
       {error && (
         <div className="text-sm text-rose-700 bg-rose-50 border border-rose-200 rounded px-3 py-2">
           {error}
         </div>
       )}
 
-      {/* Results grid */}
-      {opps.length > 0 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {opps.map(o => (
-            <OpportunityCard
-              key={o.id}
-              opp={o}
-              isPursuing={pursuing === o.id}
-              onPursue={() => pursue(o)}
-              onOpen={() => setSelected(o)}
-            />
-          ))}
-        </div>
-      )}
+      {/* Two sections: New (current run) and Drafts (everything from before) */}
+      <Section
+        title="✨ New"
+        opps={opps.filter(o => o.status !== 'draft' && o.status !== 'discarded')}
+        loading={loading}
+        emptyHint="No new opportunities yet — click Find opportunities, or check Drafts below."
+        loadingHint="Scraping… new leads will appear here when the run finishes."
+        pursuingId={pursuing}
+        onPursue={pursue}
+        onOpen={setSelected}
+      />
+      <Section
+        title="📁 Drafts"
+        opps={opps.filter(o => o.status === 'draft')}
+        loading={false}
+        emptyHint="No drafts yet. Older runs will land here after the next Find."
+        loadingHint=""
+        pursuingId={pursuing}
+        onPursue={pursue}
+        onOpen={setSelected}
+        defaultOpen={false}
+      />
 
       {/* Detail drawer */}
       {selected && (
@@ -155,6 +275,102 @@ export default function OpportunitiesPage() {
             setSelected(o);
           }}
         />
+      )}
+    </div>
+  );
+}
+
+function Section({
+  title, opps, loading, emptyHint, loadingHint, pursuingId, onPursue, onOpen, defaultOpen,
+}: {
+  title: string;
+  opps: EnrichedOpportunity[];
+  loading: boolean;
+  emptyHint: string;
+  loadingHint: string;
+  pursuingId: string | null;
+  onPursue: (o: EnrichedOpportunity) => void;
+  onOpen: (o: EnrichedOpportunity) => void;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen ?? true);
+
+  // Region filter local to this section.
+  const regionsPresent = Array.from(new Set(opps.map(o => o.region))) as Region[];
+  const [regionFilter, setRegionFilter] = useState<Region | 'All'>('All');
+  useEffect(() => {
+    if (regionFilter !== 'All' && !regionsPresent.includes(regionFilter)) {
+      setRegionFilter('All');
+    }
+  }, [regionsPresent, regionFilter]);
+
+  const filtered = regionFilter === 'All' ? opps : opps.filter(o => o.region === regionFilter);
+
+  return (
+    <div className="space-y-3">
+      {/* Collapsible header */}
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <button
+          type="button"
+          onClick={() => setOpen(v => !v)}
+          className="flex items-center gap-2 text-sm font-medium text-brand-900 hover:text-brand-700"
+        >
+          <span className="inline-block w-3 text-xs">{open ? '▼' : '▶'}</span>
+          {title} <span className="text-brand-700 font-normal">({opps.length})</span>
+        </button>
+        {open && regionsPresent.length > 1 && (
+          <div className="flex flex-wrap gap-1.5 text-xs">
+            <button
+              type="button"
+              onClick={() => setRegionFilter('All')}
+              className={`px-2.5 py-1 rounded-full border transition ${
+                regionFilter === 'All'
+                  ? 'bg-brand-900 text-white border-brand-900'
+                  : 'bg-white text-brand-700 border-brand-200 hover:bg-brand-50'
+              }`}
+            >
+              All
+            </button>
+            {regionsPresent.map(r => (
+              <button
+                type="button"
+                key={r}
+                onClick={() => setRegionFilter(r)}
+                className={`px-2.5 py-1 rounded-full border transition ${
+                  regionFilter === r
+                    ? 'bg-brand-900 text-white border-brand-900'
+                    : 'bg-white text-brand-700 border-brand-200 hover:bg-brand-50'
+                }`}
+              >
+                {r} ({opps.filter(o => o.region === r).length})
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {open && (
+        loading ? (
+          <div className="card p-6 text-center text-sm text-brand-700 bg-brand-50/40 italic">
+            {loadingHint}
+          </div>
+        ) : filtered.length === 0 ? (
+          <div className="card p-6 text-center text-sm text-brand-700 bg-brand-50/40">
+            {opps.length === 0 ? emptyHint : `No ${regionFilter} leads in this section.`}
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map(o => (
+              <OpportunityCard
+                key={o.id}
+                opp={o}
+                isPursuing={pursuingId === o.id}
+                onPursue={() => onPursue(o)}
+                onOpen={() => onOpen(o)}
+              />
+            ))}
+          </div>
+        )
       )}
     </div>
   );
@@ -176,6 +392,8 @@ function OpportunityCard({
     ? <span className="text-[10px] uppercase tracking-wider bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">Drafted</span>
     : opp.status === 'discarded'
     ? <span className="text-[10px] uppercase tracking-wider bg-brand-100 text-brand-700 px-1.5 py-0.5 rounded">Discarded</span>
+    : opp.status === 'draft'
+    ? <span className="text-[10px] uppercase tracking-wider bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">Draft</span>
     : null;
 
   return (
@@ -197,7 +415,7 @@ function OpportunityCard({
         Contact: <span className="italic">{opp.contact_role}</span>
       </div>
       <div className="flex gap-2 mt-1">
-        {opp.status === 'new' ? (
+        {(opp.status === 'new' || opp.status === 'draft') ? (
           <button
             onClick={onPursue}
             disabled={isPursuing}
