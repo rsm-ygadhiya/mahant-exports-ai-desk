@@ -1,0 +1,69 @@
+# Skill 6 — Weekly Repricing
+
+A Claude Code **skill**. Tells Claude to reprice every Available stone in inventory each week, applying Rap market movement, demand signals, velocity, triage tags, and age adjustments. Claude runs the script and reports the recommended price changes.
+
+## Layout
+
+```
+skills/weekly-repricing/
+├── SKILL.md                  # skill — frontmatter + instructions Claude reads
+├── scripts/
+│   └── repricing_skill.py    # repricing engine + CLI
+├── install.sh                # copies skill into .claude/skills/ to activate
+└── README.qmd                # this file
+```
+
+## Activate it
+
+```bash
+bash skills/weekly-repricing/install.sh
+```
+
+Restart Claude Code (or open a new session) to activate.
+
+## Using it through Claude
+
+> "Run this week's repricing."
+> "Show me the weekly price changes for available inventory."
+> "Which stones need a price cut after this week's Rap movement?"
+
+## Running the script directly
+
+```bash
+source .venv/bin/activate
+
+# Full weekly reprice
+uv run python skills/weekly-repricing/scripts/repricing_skill.py
+
+# Only stones with margin flags
+uv run python skills/weekly-repricing/scripts/repricing_skill.py --flag margin_floor
+
+# JSON output (pipe into other tools)
+uv run python skills/weekly-repricing/scripts/repricing_skill.py --json
+
+# With LLM narrative summary
+uv run python skills/weekly-repricing/scripts/repricing_skill.py --model api-llama-4-scout
+```
+
+## Decision logic
+
+Every stone in `inventory_seed.csv` with `status = Available` is repriced. Price starts from last week's `p_pcs`, adjusted by:
+
+| Factor | Effect |
+|---|---|
+| Rap wow_change_pct | Baseline market move ± |
+| Triage tag (CLEAR/DISCOUNT/HOLD/WATCH) | −8% / −4% / +3% / 0 |
+| Age (≥365d / 180d / 90d / fresh) | −8% / −4% / −1% / +1% |
+| Velocity (0 / low / med / high) | −3% / −1% / +1% / +3% |
+| Demand score | ±3% scaled |
+| Listing depth (rank position) | −2% to +2% |
+
+Stones on an active memo are frozen — price is not changed.
+
+## Tests
+
+```bash
+uv run pytest tests/skills/test_repricing_skill.py -v
+```
+
+27 tests covering `price_stone`, `compute_repricing`, `batch_summary`, `format_table`, and CLI.

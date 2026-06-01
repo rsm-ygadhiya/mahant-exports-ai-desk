@@ -1,0 +1,41 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# When you connect this repo on Render, it reads this file and provisions
+# the service automatically. You'll still need to paste the secrets in the
+# Render dashboard (env vars marked `sync: false` below).
+
+services:
+  - type: web
+    name: mahant-exports
+    runtime: docker
+    plan: free                         # 512 MB RAM, sleeps after 15 min idle
+    region: oregon                     # closest to your Neon US-East-1; pick another if you prefer
+    branch: main
+    healthCheckPath: /                 # Render pings this to confirm the container is alive
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: M3_REPO_PATH
+        value: /app/m3                 # matches the Dockerfile
+
+      # ─── Secrets — paste these in the Render dashboard, NOT in this file ───
+      - key: DATABASE_URL              # Neon pooler URL, with ?sslmode=require
+        sync: false
+      - key: JWT_SECRET                # any long random string (openssl rand -hex 32)
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+      - key: SCINTILLA_APPROVE_PASSWORD
+        sync: false
+      - key: TRITONAI_API_KEY          # your UCSD Claude proxy key
+        sync: false
+      - key: OPENAI_API_KEY            # optional — leave blank in Render if unused
+        sync: false
+      - key: MAHANT_WHATSAPP_NUMBER
+        sync: false
+      - key: ADMIN_NOTIFY_EMAIL
+        sync: false

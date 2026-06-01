@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "milestone03-example": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "mcp_servers.example_server"]
+    }
+  }
+}

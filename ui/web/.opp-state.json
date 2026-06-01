@@ -1,0 +1,248 @@
+{
+  "opportunities": {
+    "walmart": {
+      "id": "walmart",
+      "company": "Walmart",
+      "region": "North America",
+      "segment": "Big-box retail",
+      "portal_url": "https://corporate.walmart.com/suppliers",
+      "reported_demand": "LG bridal under $1,500 retail; expanding fine-jewelry shop-in-shop",
+      "fit_summary": "Walmart's expanding fine-jewelry shop-in-shop and focus on LG bridal under $1,500 retail aligns directly with Mahant's ability to supply VVS+ certified rounds and ovals in the 0.30–1.00ct range at direct-from-cutter margins. Mahant's weekly Rap-pegged repricing engine enables Walmart buyers to hit sharp retail price points consistently without margin erosion.",
+      "contact_role": "Senior Director of Sourcing — Fine Jewelry & Lab-Grown Diamonds",
+      "confidence": 78,
+      "status": "sent",
+      "email_draft": {
+        "to": "walmart-sourcing@example.com",
+        "to_role": "Senior Director of Sourcing — Fine Jewelry & Lab-Grown Diamonds",
+        "subject": "Lab-Grown Bridal Supply for Walmart's Fine-Jewelry Shop-in-Shop Expansion",
+        "body": "We noticed Walmart is actively building out its fine-jewelry shop-in-shop program with a clear focus on lab-grown bridal under the $1,500 retail threshold. That price-point discipline is exactly where Mahant Exports operates most effectively, and we wanted to reach out directly to your sourcing team.\n\nMahant is a Surat-based LG diamond wholesaler carrying IGI- and GIA-certified rounds, ovals, and princess cuts from 0.30ct upward, with VVS+ clarity across our bridal range. Our 168 available rounds and 38 ovals sit well within the 0.30–1.00ct window that supports your sub-$1,500 retail targets. Weekly Rap-pegged repricing means your buyers receive fresh quotes every Monday, protecting margin without requiring renegotiation cycles. Direct-from-cutter positioning removes an additional layer of cost that typically compresses retail headroom at volume.\n\nWe would welcome a 20-minute call with your fine-jewelry sourcing team to walk through current inventory and discuss how allocation could be structured for your program. Please let us know a time that works.\n\nMahant Exports — Wholesale Desk"
+      },
+      "portal_form": {
+        "company_name": "Mahant Exports Pvt. Ltd.",
+        "founded": "2014",
+        "hq": "Surat, Gujarat, India",
+        "certifications": "IGI, GIA, SGL — every stone certified before despatch",
+        "inventory_summary": "Available stones: 375 total. Top shapes by count: Round (168), Princess (52), Oval (38), Emerald (36), Pear (34). Carat range 0.27-5.00 ct (avg 2.64 ct). IGI / GIA certified.",
+        "unique_value": "Direct-from-cutter pricing, weekly 15-factor Rap-pegged repricing, FIFO memo allocation for transparent customer ranking.",
+        "contact_name": "Yug Gadhiya",
+        "contact_email": "ygadhiya@mahant.test",
+        "contact_phone": "+91 99999 99999"
+      },
+      "sent_at": "2026-05-30T21:50:21.092Z"
+    },
+    "costco": {
+      "id": "costco",
+      "company": "Costco Wholesale",
+      "region": "North America",
+      "segment": "Big-box retail",
+      "portal_url": "https://www.costco.com/supplier-resources",
+      "reported_demand": "LG solitaires 1-3ct, GIA-certified, sharp price points",
+      "fit_summary": "Costco's reported demand for GIA-certified LG solitaires in the 1–3ct range maps directly onto Mahant's GIA-certified inventory and Rap-pegged weekly repricing, which supports the sharp, transparent price points Costco requires for its membership model. Mahant's direct-from-cutter margins give Costco the cost efficiency it needs to move high-ticket solitaires at volume.",
+      "contact_role": "VP Merchandising, Fine Jewelry & Diamonds",
+      "confidence": 82,
+      "status": "new"
+    },
+    "signet": {
+      "id": "signet",
+      "company": "Signet Jewelers",
+      "region": "North America",
+      "segment": "Bridal chain",
+      "portal_url": "https://www.signetjewelers.com/suppliers",
+      "reported_demand": "LG bridal & fashion across Kay, Zales, Jared banners",
+      "fit_summary": "Signet's multi-banner LG bridal and fashion demand across Kay, Zales, and Jared represents one of the largest LG diamond procurement programs in North America, and Mahant's VVS+ bridal range, FIFO memo allocation, and customer-tier-aware quoting are purpose-built for a tiered multi-banner supplier relationship. Weekly Rap-pegged repricing also aligns with Signet's need for consistent, auditable cost benchmarks across banners.",
+      "contact_role": "Director of Diamond Sourcing, Lab-Grown",
+      "confidence": 88,
+      "status": "new"
+    },
+    "macys": {
+      "id": "macys",
+      "company": "Macy's",
+      "region": "North America",
+      "segment": "Department store",
+      "reported_demand": "Mid-tier LG fashion jewelry, gift-priced ($500-$2,500)",
+      "fit_summary": "Macy's mid-tier LG fashion jewelry demand in the $500–$2,500 gift price range aligns with Mahant's smaller-carat, fancy-shape inventory where direct-from-cutter margins give Macy's buyers room to hit department-store keystone targets. Mahant's weekly repricing engine helps Macy's stay competitive during key gifting seasons without long-term price lock-in risk.",
+      "contact_role": "Divisional Merchandise Manager — Fine & Fashion Jewelry",
+      "confidence": 65,
+      "status": "pursuing",
+      "email_draft": {
+        "to": "macys-sourcing@example.com",
+        "to_role": "Divisional Merchandise Manager — Fine & Fashion Jewelry",
+        "subject": "Lab-Grown Diamond Supply for Macy's Fashion Jewelry Range",
+        "body": "We noticed Macy's has been expanding its lab-grown fashion jewelry assortment in the $500–$2,500 gift tier, and we think there is a direct fit with what Mahant Exports supplies. Your buyers need room to hit department-store keystone targets, and our direct-from-cutter margins are structured precisely to create that space without asking you to absorb inflated midstream costs.\n\nMahant carries 375 IGI- and GIA-certified stones right now, with strong counts in rounds, princess cuts, and pears — shapes that move well in fashion and gifting settings. Our carat range starts at 0.30ct, which maps cleanly to your price window. Pricing is pegged to weekly Rap updates through our repricing engine, so your merchants can stay sharp during Valentine's, Mother's Day, and holiday peaks without locking into stale price agreements months in advance.\n\nWe would welcome a 20-minute call with your divisional team or, if you prefer, we can put together a sample parcel for review. Please let us know which works better.\n\nMahant Exports — Wholesale Desk"
+      },
+      "portal_form": {
+        "company_name": "Mahant Exports Pvt. Ltd.",
+        "founded": "2014",
+        "hq": "Surat, Gujarat, India",
+        "certifications": "IGI, GIA, SGL — every stone certified before despatch",
+        "inventory_summary": "Available stones: 375 total. Top shapes by count: Round (168), Princess (52), Oval (38), Emerald (36), Pear (34). Carat range 0.27-5.00 ct (avg 2.64 ct). IGI / GIA certified.",
+        "unique_value": "Direct-from-cutter pricing, weekly 15-factor Rap-pegged repricing, FIFO memo allocation for transparent customer ranking.",
+        "contact_name": "Yug Gadhiya",
+        "contact_email": "ygadhiya@mahant.test",
+        "contact_phone": "+91 99999 99999"
+      }
+    },
+    "bluenile": {
+      "id": "bluenile",
+      "company": "Blue Nile",
+      "region": "North America",
+      "segment": "Online marketplace",
+      "reported_demand": "Inventory drop-ship: LG rounds, ovals, princess; IGI or GIA",
+      "fit_summary": "Blue Nile's drop-ship model for LG rounds, ovals, and princess cuts with IGI or GIA certification is a near-perfect match for Mahant's certified inventory breadth and memo allocation capability. Mahant's weekly Rap-pegged pricing feeds can integrate directly into Blue Nile's dynamic online pricing infrastructure.",
+      "contact_role": "Director of Diamond Merchandising & Supplier Relations",
+      "confidence": 90,
+      "status": "pursuing",
+      "email_draft": {
+        "to": "bluenile-sourcing@example.com",
+        "to_role": "Director of Diamond Merchandising & Supplier Relations",
+        "subject": "LG Drop-Ship Supply for Blue Nile's Round, Oval & Princess Categories — Mahant Exports",
+        "body": "We noticed Blue Nile's drop-ship program for lab-grown diamonds leans heavily on rounds, ovals, and princess cuts with IGI or GIA certification — exactly the three shapes where Mahant Exports carries its deepest certified inventory. That alignment is what prompted us to reach out directly to your merchandising team.\n\nWe currently have 375 IGI- and GIA-certified stones available, led by 168 rounds, 52 princess, and 38 ovals, spanning 0.27 ct to 5.00 ct with an average of 2.64 ct. Pricing is pegged to weekly Rap movements through our 15-factor repricing engine, so the feeds you receive reflect real market shifts rather than stale list prices. Our FIFO memo allocation model is structured specifically for drop-ship partners who need reliable, conflict-free inventory commits.\n\nWe would welcome a 20-minute call to walk through how our pricing feeds and allocation process could slot into Blue Nile's existing supplier infrastructure. Please let us know a time that suits your team.\n\nMahant Exports — Wholesale Desk"
+      },
+      "portal_form": {
+        "company_name": "Mahant Exports Pvt. Ltd.",
+        "founded": "2014",
+        "hq": "Surat, Gujarat, India",
+        "certifications": "IGI, GIA, SGL — every stone certified before despatch",
+        "inventory_summary": "Available stones: 375 total. Top shapes by count: Round (168), Princess (52), Oval (38), Emerald (36), Pear (34). Carat range 0.27-5.00 ct (avg 2.64 ct). IGI / GIA certified.",
+        "unique_value": "Direct-from-cutter pricing, weekly 15-factor Rap-pegged repricing, FIFO memo allocation for transparent customer ranking.",
+        "contact_name": "Yug Gadhiya",
+        "contact_email": "ygadhiya@mahant.test",
+        "contact_phone": "+91 99999 99999"
+      }
+    },
+    "helzberg": {
+      "id": "helzberg",
+      "company": "Helzberg Diamonds",
+      "region": "North America",
+      "segment": "Specialty jeweler",
+      "reported_demand": "LG centers for engagement; private-label collections",
+      "fit_summary": "Helzberg's focus on LG center stones for engagement and private-label collections aligns tightly with Mahant's VVS+ bridal inventory across rounds, ovals, and emeralds in the 0.30–5.00ct window. Mahant's memo allocation model and tier-aware quoting support the kind of curated, private-label program Helzberg is building without requiring Helzberg to carry excess inventory risk.",
+      "contact_role": "Director of Sourcing, Bridal & Engagement",
+      "confidence": 78,
+      "status": "new"
+    },
+    "tanishq": {
+      "id": "tanishq",
+      "company": "Tanishq (Titan)",
+      "region": "India",
+      "segment": "Specialty jeweler",
+      "portal_url": "https://www.titancompany.in/suppliers",
+      "reported_demand": "LG line launched 2024; sourcing certified LG bridal & studs",
+      "fit_summary": "Tanishq's 2024 LG line launch and active sourcing of certified LG bridal and stud inventory makes this a timely outreach opportunity, and Mahant's Surat base offers logistical and regulatory advantages for a domestic Indian supply relationship. IGI certification alignment and VVS+ bridal stock directly address Tanishq's stated product requirements.",
+      "contact_role": "Senior Manager, Diamond Sourcing & Procurement",
+      "confidence": 85,
+      "status": "new"
+    },
+    "kalyan": {
+      "id": "kalyan",
+      "company": "Kalyan Jewellers",
+      "region": "India",
+      "segment": "Bridal chain",
+      "reported_demand": "LG line expansion across Tier-1 & Tier-2 stores",
+      "fit_summary": "Kalyan's LG line expansion across Tier-1 and Tier-2 stores implies a need for scalable, consistently priced certified LG supply across multiple size and shape categories — exactly what Mahant's FIFO memo allocation and weekly repricing engine are designed to support at scale. Proximity as a Surat-based supplier also reduces lead time and import complexity.",
+      "contact_role": "VP Merchandising & Sourcing, Lab-Grown Diamonds",
+      "confidence": 83,
+      "status": "new"
+    },
+    "reliance": {
+      "id": "reliance",
+      "company": "Reliance Jewels",
+      "region": "India",
+      "segment": "Bridal chain",
+      "reported_demand": "Building LG capability for Reliance Retail jewelry vertical",
+      "fit_summary": "Reliance Jewels is in active capability-building mode for its LG vertical, representing an early-stage but high-potential opportunity where Mahant could establish a preferred-supplier position before the program matures. Mahant's domestic Surat base, IGI/GIA certification, and tier-aware quoting make it well-suited to support a retailer designing its LG sourcing infrastructure from the ground up.",
+      "contact_role": "Head of Gemstone & Diamond Sourcing, Jewelry Vertical",
+      "confidence": 80,
+      "status": "new"
+    },
+    "caratlane": {
+      "id": "caratlane",
+      "company": "CaratLane",
+      "region": "India",
+      "segment": "Online marketplace",
+      "reported_demand": "LG fashion under ₹1L; rapid SKU turnover model",
+      "fit_summary": "CaratLane's rapid SKU turnover model and sub-₹1L LG fashion focus align with Mahant's ability to supply smaller certified stones (0.30ct+) at Rap-pegged weekly prices, enabling CaratLane to reprice its online listings in near-real-time. Mahant's FIFO memo allocation also suits an online marketplace that needs flexible inventory without long-term stock commitment.",
+      "contact_role": "Category Head, Lab-Grown Diamonds",
+      "confidence": 86,
+      "status": "new"
+    },
+    "pandora": {
+      "id": "pandora",
+      "company": "Pandora",
+      "region": "Europe",
+      "segment": "Bridal chain",
+      "portal_url": "https://pandoragroup.com/suppliers",
+      "reported_demand": "LG fashion jewelry — already 100% lab-grown for their LG line",
+      "fit_summary": "Pandora's fully committed lab-grown fashion line creates consistent, high-volume demand for certified LG stones, and Mahant's weekly repricing engine and direct-from-cutter margins can support the fast-moving, price-sensitive SKU cadence Pandora's fashion model requires. IGI certification coverage and fancy shape availability further match Pandora's varied design assortment.",
+      "contact_role": "Head of Diamond & Gemstone Procurement",
+      "confidence": 75,
+      "status": "new"
+    },
+    "harrods": {
+      "id": "harrods",
+      "company": "Harrods",
+      "region": "Europe",
+      "segment": "Department store",
+      "reported_demand": "Premium LG fashion + bespoke commissions for in-store atelier",
+      "fit_summary": "Harrods' demand for premium LG fashion and bespoke atelier commissions suits Mahant's ability to supply IGI/GIA-certified stones across a wide shape and size range, including larger fancy cuts that bespoke work demands. However, Harrods' ultra-luxury positioning and low volume per SKU tempers confidence, as Mahant's strengths are more volume-oriented.",
+      "contact_role": "Buying Manager, Fine Jewellery & Watches",
+      "confidence": 52,
+      "status": "new"
+    },
+    "goldsmiths": {
+      "id": "goldsmiths",
+      "company": "Goldsmiths (UK)",
+      "region": "Europe",
+      "segment": "Specialty jeweler",
+      "reported_demand": "LG bridal, growing share of engagement assortment",
+      "fit_summary": "Goldsmiths UK is actively growing its LG engagement assortment, making it a natural fit for Mahant's IGI-certified bridal range and memo allocation program that reduces upfront inventory commitment for a specialty retailer. Mahant's weekly Rap-pegged pricing gives Goldsmiths a defensible margin story as LG price transparency increases in the UK market.",
+      "contact_role": "Head of Buying, Diamond Jewellery",
+      "confidence": 72,
+      "status": "new"
+    },
+    "damas": {
+      "id": "damas",
+      "company": "Damas Jewellery",
+      "region": "Middle East",
+      "segment": "Specialty jeweler",
+      "reported_demand": "LG bridal pilot programs; UAE consumer acceptance growing",
+      "fit_summary": "Damas's growing LG bridal pilot programs in the UAE represent an early but accelerating demand signal, and Mahant's IGI/GIA-certified VVS+ bridal range is well-positioned to supply pilot assortments as UAE consumer acceptance builds. Confidence is moderated by the pilot-stage nature of the program and limited public sourcing precedent.",
+      "contact_role": "Head of Buying & Merchandising, Diamond Jewellery",
+      "confidence": 62,
+      "status": "new"
+    },
+    "malabar": {
+      "id": "malabar",
+      "company": "Malabar Gold",
+      "region": "Middle East",
+      "segment": "Bridal chain",
+      "reported_demand": "LG diversification across GCC stores; 0.5-2ct centers",
+      "fit_summary": "Malabar Gold's LG diversification across GCC stores with a 0.5–2ct center stone focus maps precisely onto Mahant's core inventory range and IGI/GIA certification mix. Mahant's Surat base and direct-from-cutter margins give Malabar a cost-competitive supply option as it scales LG across a large multi-country retail footprint.",
+      "contact_role": "Director of Sourcing, Diamond & Lab-Grown Category",
+      "confidence": 81,
+      "status": "new"
+    },
+    "chowtaifook": {
+      "id": "chowtaifook",
+      "company": "Chow Tai Fook",
+      "region": "Asia-Pacific",
+      "segment": "Bridal chain",
+      "reported_demand": "LG bridal pilot in mainland China & HK; price-tier strategy",
+      "fit_summary": "Chow Tai Fook's LG bridal pilot across mainland China and HK with a defined price-tier strategy requires a supplier with both IGI/GIA certification credibility and the repricing agility to support a tiered retail model — both Mahant strengths. Scale and pilot-stage caution temper confidence, as CTF typically works with large established supply chains.",
+      "contact_role": "Senior Sourcing Manager, Lab-Grown Diamonds",
+      "confidence": 65,
+      "status": "new"
+    },
+    "michhill": {
+      "id": "michhill",
+      "company": "Michael Hill (AU)",
+      "region": "Asia-Pacific",
+      "segment": "Specialty jeweler",
+      "reported_demand": "LG engagement assortment; 6-month inventory plan",
+      "fit_summary": "Michael Hill's 6-month LG engagement inventory plan signals a structured, forward-looking procurement approach that suits Mahant's FIFO memo allocation and weekly Rap-pegged pricing, allowing Michael Hill to plan inventory costs with greater predictability. Mahant's IGI-certified bridal range across rounds and ovals directly addresses the engagement assortment Michael Hill is building out.",
+      "contact_role": "Head of Merchandise Planning, Diamonds & Engagement",
+      "confidence": 74,
+      "status": "new"
+    }
+  }
+}

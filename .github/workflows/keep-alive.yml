@@ -1,0 +1,30 @@
+# Pings the deployed Render service every 10 minutes so the free-tier
+# container never goes to sleep. Without this, any visitor who hits the
+# URL after 15 min of idle waits ~30s for the container to wake up.
+#
+# Set the RENDER_URL secret in GitHub:
+#   Repo → Settings → Secrets and variables → Actions → New repository secret
+#     Name: RENDER_URL
+#     Value: https://mahant-exports.onrender.com   (your real Render URL)
+
+name: keep-alive
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # every 10 minutes
+  workflow_dispatch:          # also runnable manually from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the site
+        run: |
+          if [ -z "${{ secrets.RENDER_URL }}" ]; then
+            echo "::warning::RENDER_URL secret not set — skipping ping."
+            exit 0
+          fi
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 "${{ secrets.RENDER_URL }}")
+          echo "Got HTTP $code from ${{ secrets.RENDER_URL }}"
+          # Any 2xx / 3xx is fine — even a login redirect proves the container is awake.
+          [ "$code" -lt 500 ] || exit 1

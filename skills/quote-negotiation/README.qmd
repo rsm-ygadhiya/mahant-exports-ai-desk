@@ -1,0 +1,80 @@
+# Skill 2 — Quote / Negotiation Response
+
+A Claude Code **skill**. When a customer counter-offers on a diamond quote, recommends ACCEPT / COUNTER / HOLD / WALK_AWAY / ESCALATE and optionally drafts the reply message. Uses CLV tier, demand signals, and churn risk to calibrate discount headroom.
+
+## Layout
+
+```
+skills/quote-negotiation/
+├── SKILL.md                      # skill — frontmatter + instructions Claude reads
+├── scripts/
+│   └── quote_negotiation.py      # negotiation engine + CLI
+├── install.sh                    # copies skill into .claude/skills/ to activate
+└── README.qmd                    # this file
+```
+
+## Activate it
+
+```bash
+bash skills/quote-negotiation/install.sh
+```
+
+Restart Claude Code (or open a new session) to activate.
+
+## Using it through Claude
+
+> "How should we respond to CUST0013's counter-offer on QTE00042?"
+> "Review all our negotiating quotes."
+> "Should we accept $1,190 for this stone?"
+> "Draft a reply to the customer's counter-offer."
+
+## Running the script directly
+
+```bash
+source .venv/bin/activate
+
+# Single quote
+uv run python skills/quote-negotiation/scripts/quote_negotiation.py --quote QTE00001
+
+# All negotiating quotes
+uv run python skills/quote-negotiation/scripts/quote_negotiation.py --all-negotiating
+
+# With LLM-drafted customer reply
+uv run python skills/quote-negotiation/scripts/quote_negotiation.py \
+    --all-negotiating --model api-llama-4-scout
+
+# JSON output
+uv run python skills/quote-negotiation/scripts/quote_negotiation.py --all-negotiating --json
+```
+
+## Decision rules
+
+| Situation | Decision |
+|---|---|
+| Deal value > $50,000 | **ESCALATE** to senior manager |
+| No customer counter yet | **HOLD** at current offer |
+| Customer offer ≥ our ask | **ACCEPT** |
+| Customer offer ≥ max concession (within CLV headroom) | **ACCEPT** |
+| Customer offer ≥ floor price | **COUNTER** at max concession |
+| Customer offer < floor price | **WALK_AWAY** |
+
+### Discount headroom by CLV tier
+
+| Tier | Headroom off current offer |
+|---|---|
+| Diamond | 5.0% |
+| Gold | 3.0% |
+| Silver | 1.5% |
+| New | 0.5% |
+
+Adjusted by: −1% for high-demand category, +1% for low-demand, +0.5% for high churn risk.
+
+Floor price = `cost_basis × 1.08` (8% minimum margin).
+
+## Tests
+
+```bash
+uv run pytest tests/skills/test_quote_negotiation.py -v
+```
+
+26 tests covering `assess_quote`, `evaluate_negotiation`, `batch_negotiating`, `format_decision`, `format_batch`, and CLI.

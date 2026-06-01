@@ -1,0 +1,74 @@
+# Skill 4 — Collection & Payment Reminder
+
+A Claude Code **skill**. Watches every open and partial invoice, buckets it by days-past-due, and drafts tone-appropriate reminder messages. Designed to run daily.
+
+## Layout
+
+```
+skills/collection-reminder/
+├── SKILL.md                      # skill — frontmatter + instructions Claude reads
+├── scripts/
+│   └── collection_reminder.py    # bucketing engine + CLI
+├── install.sh                    # copies skill into .claude/skills/ to activate
+└── README.qmd                    # this file
+```
+
+## Activate it
+
+```bash
+bash skills/collection-reminder/install.sh
+```
+
+Restart Claude Code (or open a new session) to activate.
+
+## Using it through Claude
+
+> "Run today's collection reminders."
+> "Who owes us money?"
+> "Show all critical invoices."
+> "Draft a reminder for invoice INV00042."
+> "How much is outstanding from CUST0013?"
+
+## Running the script directly
+
+```bash
+source .venv/bin/activate
+
+# Daily report (all buckets)
+uv run python skills/collection-reminder/scripts/collection_reminder.py
+
+# Only critical invoices (60+ days past due)
+uv run python skills/collection-reminder/scripts/collection_reminder.py --bucket critical
+
+# All invoices for one customer
+uv run python skills/collection-reminder/scripts/collection_reminder.py --customer CUST0013
+
+# Single invoice drill-down
+uv run python skills/collection-reminder/scripts/collection_reminder.py --invoice INV00042
+
+# Draft LLM reminders for top 3 most urgent
+uv run python skills/collection-reminder/scripts/collection_reminder.py --model api-llama-4-scout
+
+# JSON output
+uv run python skills/collection-reminder/scripts/collection_reminder.py --json
+```
+
+## Bucket definitions
+
+| Bucket | Days past due | Tone |
+|---|---|---|
+| Upcoming | −5 to 0 | Friendly heads-up |
+| Just Due | 1–7 | Polite nudge |
+| Aging | 8–30 | Firm reminder |
+| Overdue | 31–60 | Escalation |
+| Critical | 60+ | Urgent — flag for management |
+
+Invoices more than 5 days before due are silently excluded (too early to remind).
+
+## Tests
+
+```bash
+uv run pytest tests/skills/test_collection_reminder.py -v
+```
+
+22 tests covering `classify_invoice`, `bucket_invoices`, `daily_report`, `header_line`, `format_table`, and CLI.

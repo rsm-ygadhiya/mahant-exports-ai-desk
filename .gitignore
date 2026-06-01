@@ -1,0 +1,49 @@
+.DS_Store
+.vscode
+__pycache__
+*.pyc
+
+# Project-local Claude state (keep settings.json + hooks/ tracked)
+.claude/.last-test-time
+.claude/settings.local.json
+.claude/usage-log/.github-user
+.claude/bin/
+
+# Python / uv
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets
+.env
+
+# Quarto
+*_files/
+*.html
+# but DO track the orchestrator's source HTML template (rendered at request time)
+!scripts/orchestrator_ui.html
+
+# Others
+Makefile
+justfile
+config.yaml
+DEPLOY.md
+vnijs-session-*
+
+# files to exclude
+main.py
+justfile
+DEPLOY.md
+config.yaml
+__pycache__/
+
+# extra
+docs/
+slides/
+AGENTS.md
+.codex/
+.agents/
+slides/
+config.yaml
+justfile
+DEPLOY.md

@@ -1,0 +1,625 @@
+// Mahant Exports — data model
+// Covers: customers (with admin approval + per-customer pricing), diamonds (full
+// gemological + commercial fields per spec section 3), enquiries/cart, admins,
+// stock-upload audit, and push tokens.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─────────────── USERS ───────────────
+
+enum CustomerStatus {
+  PENDING   // signed up, awaiting admin approval — sees no prices
+  APPROVED
+  REJECTED
+  SUSPENDED
+}
+
+/// KYC document review state. Independent of `CustomerStatus` (account-level).
+/// In practice an APPROVED customer will also have kycStatus=APPROVED, but the
+/// states evolve separately during onboarding.
+enum KycStatus {
+  NOT_SUBMITTED      // default — buyer hasn't uploaded anything yet
+  SUBMITTED          // docs uploaded, awaiting admin review
+  MORE_DOCS_NEEDED   // admin asked for more uploads
+  APPROVED           // unique customer ID issued, full access
+  REJECTED           // rejected — buyer can re-submit if appropriate
+}
+
+/// Categories of KYC documents we expect from a buyer. India-specific minimum:
+/// GST + PAN. Others are configurable per request.
+enum DocumentKind {
+  GST              // GST Registration Certificate
+  PAN              // PAN Card
+  COMPANY_PROOF    // Certificate of Incorporation / Trade License
+  ADDRESS_PROOF    // Utility bill / Lease agreement
+  BANK_DETAILS     // Cancelled cheque / Bank letter
+  OTHER            // free-form
+}
+
+model Customer {
+  id            String         @id @default(cuid())
+  /// Human-readable business identifier issued on KYC approval.
+  /// Format: CUST-YYYY-NNNNN (e.g. CUST-2026-00012). Null until approved.
+  uniqueCode    String?        @unique
+  mobile        String         @unique
+  email         String?        @unique
+  passwordHash  String?        // optional — OTP-only customers may have none
+  companyName   String
+  contactPerson String
+  country       String?
+  city          String?
+  status        CustomerStatus @default(PENDING)
+
+  /// KYC review fields. `status` is the account-level state, `kycStatus` is the
+  /// document-review state — both must be APPROVED for the buyer to be fully live.
+  kycStatus     KycStatus      @default(NOT_SUBMITTED)
+  kycSubmittedAt DateTime?
+  kycReviewedAt  DateTime?
+  kycReviewedBy  String?       // Admin.id of the reviewer
+  kycRejectionReason String?   // last reason given (Reject or Request-more-docs)
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  pricingRule   PricingRule?
+  enquiries     Enquiry[]
+  cartItems     CartItem[]
+  pushTokens    PushToken[]
+  otps          Otp[]
+  documents     CustomerDocument[]
+  orders        Order[]
+}
+
+/// KYC document uploaded by a buyer (or by admin on their behalf).
+/// Storage: bytes stored in Postgres for now (simple, audit-friendly). Production
+/// should swap to Cloudflare R2 — the storage interface in `lib/docStorage.ts`
+/// hides this detail so callers don't change.
+model CustomerDocument {
+  id          String       @id @default(cuid())
+  customerId  String
+  customer    Customer     @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  kind        DocumentKind
+  label       String       // display name shown to admin (e.g. "GST Certificate")
+  filename    String
+  mimeType    String
+  sizeBytes   Int
+  fileBytes   Bytes        // raw file content; cap enforced at upload-time
+  uploadedAt  DateTime     @default(now())
+
+  @@index([customerId])
+  @@index([kind])
+}
+
+/// Generic atomic counter — used for sequential IDs like customer codes.
+/// One row per logical key (e.g. "customer_2026"). `increment` is race-safe.
+model Counter {
+  key       String   @id
+  value     Int      @default(0)
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+enum AdminRole {
+  OWNER       // legacy system role; full access regardless of permissions JSON
+  SALES       // legacy default — inventory, enquiries, memo, customer interaction
+  ACCOUNTS    // legacy default — payments, invoices, cash approval, financial reports
+}
+
+/// Custom role / permission template. The Owner can create any number of these
+/// (e.g. "Sales Manager", "Junior Sales", "Bookkeeper") and assign them to admins.
+/// Built-in OWNER / SALES / ACCOUNTS are seeded with `isSystem=true` and can't
+/// be deleted (but can have their permissions tweaked).
+model Role {
+  id          String   @id @default(cuid())
+  name        String   @unique           // display name, e.g. "Sales Manager"
+  slug        String   @unique           // machine name; system roles use 'owner' / 'sales' / 'accounts'
+  /// Whether this role grants Owner-level access (full bypass of the permission map).
+  /// Only the seeded 'owner' role has this set; custom roles cannot.
+  isOwnerLike Boolean  @default(false)
+  isSystem    Boolean  @default(false)   // built-in roles are protected from deletion
+  permissions Json     @default("{}")    // shape documented in lib/permissions.ts
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+
+  admins      Admin[]
+}
+
+model Admin {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+
+  /// Legacy enum role — kept for backward compat and for the OWNER bypass path.
+  /// New admins should use `roleId` going forward.
+  role         AdminRole @default(OWNER)
+
+  /// FK to the new flexible Role table. Nullable so legacy admins still load
+  /// during the transition; the seeder backfills this.
+  roleId       String?
+  customRole   Role?     @relation(fields: [roleId], references: [id])
+
+  /// Per-admin permission OVERRIDES that win over the role's defaults.
+  /// Empty {} means "use the role's permissions unchanged".
+  permissions  Json      @default("{}")
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now()) @updatedAt
+
+  auditEntries AuditLog[] @relation("AuditActor")
+
+  @@index([roleId])
+}
+
+/// Append-only audit trail for permission changes, role flips, KYC approvals,
+/// cash approvals, anything that needs accountability. Owner can read all;
+/// other roles can only read entries they themselves created.
+model AuditLog {
+  id          String   @id @default(cuid())
+  actorId     String
+  actor       Admin    @relation("AuditActor", fields: [actorId], references: [id])
+  action      String   // e.g. "permission.grant", "kyc.approve", "cash.approve"
+  targetType  String?  // e.g. "Admin", "Customer", "Order"
+  targetId    String?
+  oldValue    Json?
+  newValue    Json?
+  notes       String?
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  @@index([actorId])
+  @@index([targetType, targetId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+model Otp {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  mobile     String
+  code       String
+  expiresAt  DateTime
+  consumed   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([mobile, code])
+}
+
+// ─────────────── DIAMONDS ───────────────
+
+enum DiamondStatus {
+  AVAILABLE   // "Live" — visible to approved buyers
+  HOLD        // "Memo" — reserved
+  SOLD        // sold (history)
+  NOT_LIVE    // new arrival awaiting price approval; HIDDEN from buyers
+}
+
+enum GrowthMethod {
+  CVD
+  HPHT
+  UNKNOWN
+}
+
+model Diamond {
+  id              String        @id @default(cuid())
+  stoneId         String        @unique
+  certificateNo   String?       @unique
+  lab             String?
+  certificateUrl  String?
+  videoUrl        String?
+  imageUrl        String?
+
+  shape           String
+  carat           Decimal       @db.Decimal(6, 2)
+  color           String
+  clarity         String
+  cut             String?
+  polish          String?
+  symmetry        String?
+  fluorescence    String?
+  measurements    String?
+  length          Decimal?      @db.Decimal(6, 2)
+  width           Decimal?      @db.Decimal(6, 2)
+  depth           Decimal?      @db.Decimal(6, 2)
+  tablePct        Decimal?      @db.Decimal(5, 2)
+  depthPct        Decimal?      @db.Decimal(5, 2)
+  ratio           Decimal?      @db.Decimal(5, 3)
+
+  growthMethod    GrowthMethod  @default(UNKNOWN)
+  growthType      String?
+  shade           String?
+  milky           String?
+  eyeClean        String?
+  luster          String?
+
+  rapPrice        Decimal?      @db.Decimal(12, 2)
+  discountPct     Decimal?      @db.Decimal(6, 2)
+  pricePerCarat   Decimal       @db.Decimal(12, 2)
+  totalPrice      Decimal       @db.Decimal(14, 2)
+  currency        String        @default("USD")
+  location        String?
+  remarks         String?
+
+  status          DiamondStatus @default(AVAILABLE)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  cartItems         CartItem[]
+  enquiryItems      EnquiryItem[]
+  pricingProposals  PricingProposal[]
+  orderItems        OrderItem[]
+
+  @@index([status])
+  @@index([shape, color, clarity])
+  @@index([carat])
+  @@index([pricePerCarat])
+}
+
+// ─────────────── PRICING ───────────────
+
+enum PricingMode {
+  BASE
+  ADJUST_PCT
+  HIDDEN
+}
+
+model PricingRule {
+  id          String      @id @default(cuid())
+  customerId  String      @unique
+  customer    Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  mode        PricingMode @default(BASE)
+  adjustPct   Decimal?    @db.Decimal(6, 2)
+  notes       String?
+  updatedAt   DateTime    @updatedAt
+}
+
+// ─────────────── CART + ENQUIRY ───────────────
+
+model CartItem {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  diamondId  String
+  diamond    Diamond  @relation(fields: [diamondId], references: [id], onDelete: Cascade)
+  addedAt    DateTime @default(now())
+
+  @@unique([customerId, diamondId])
+}
+
+enum EnquiryStatus {
+  NEW                 // freshly received, no action yet
+  CONTACTED           // admin has reached out
+  APPROVED_MEMO       // stones placed on memo for this customer
+  APPROVED_SALE       // converted to a confirmed Order
+  CANCELLED           // declined / unfulfillable
+  CLOSED              // legacy catch-all (kept for back-compat)
+}
+
+model Enquiry {
+  id            String        @id @default(cuid())
+  customerId    String
+  customer      Customer      @relation(fields: [customerId], references: [id])
+  status        EnquiryStatus @default(NEW)
+  channel       String        @default("app")
+  message       String?
+
+  /// Memo pickup details captured at "Approve → Memo" time (spec §7.3).
+  memoLocation  String?
+  memoPickupAt  DateTime?
+
+  /// If the enquiry converted to a sale, this is the Order it created.
+  orderId       String?       @unique
+  order         Order?        @relation(fields: [orderId], references: [id])
+
+  /// Reason recorded when an admin cancels the enquiry.
+  cancellationReason String?
+
+  createdAt     DateTime      @default(now())
+  decidedAt     DateTime?     // when the admin took the approve/cancel action
+  decidedBy     String?       // Admin.id
+
+  items         EnquiryItem[]
+}
+
+model EnquiryItem {
+  id            String   @id @default(cuid())
+  enquiryId     String
+  enquiry       Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  diamondId     String
+  diamond       Diamond  @relation(fields: [diamondId], references: [id])
+  pricePerCarat Decimal  @db.Decimal(12, 2)
+  totalPrice    Decimal  @db.Decimal(14, 2)
+}
+
+// ─────────────── OPS ───────────────
+
+model StockUpload {
+  id          String   @id @default(cuid())
+  filename    String
+  rowsTotal   Int
+  rowsCreated Int
+  rowsUpdated Int
+  rowsFailed  Int
+  errorsJson  Json?
+  uploadedBy  String
+  createdAt   DateTime @default(now())
+}
+
+model PushToken {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  token      String   @unique
+  platform   String
+  createdAt  DateTime @default(now())
+}
+
+model Notification {
+  id        String    @id @default(cuid())
+  title     String
+  body      String
+  audience  String    @default("all")
+  sentAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+// ─────────────── PRICING WORKFLOW ───────────────
+// Weekly Rap-based repricing has a draft/review/apply lifecycle so the admin
+// can audit every change before it touches live stock.
+
+model RapRate {
+  id         String   @id @default(cuid())
+  sheetDate  DateTime                            // the Rap sheet's effective date
+  shape      String
+  color      String
+  clarity    String
+  caratMin   Decimal  @db.Decimal(6, 2)          // inclusive lower bound
+  caratMax   Decimal  @db.Decimal(6, 2)          // exclusive upper bound
+  ratePerCt  Decimal  @db.Decimal(12, 2)
+  filename   String
+  uploadedBy String                              // Admin.id
+  uploadedAt DateTime @default(now())
+
+  @@unique([sheetDate, shape, color, clarity, caratMin, caratMax])
+  @@index([shape, color, clarity])
+  @@index([sheetDate])
+}
+
+enum PricingRunStatus {
+  DRAFT      // proposals generated, not yet applied
+  APPLIED    // approved proposals pushed to live stock
+  DISCARDED  // run abandoned without applying
+}
+
+model PricingRun {
+  id         String           @id @default(cuid())
+  createdBy  String                                  // Admin.id
+  status     PricingRunStatus @default(DRAFT)
+  mode       String                                  // 'ai' | 'heuristic'
+  rapDate    DateTime?                               // which Rap sheet was used
+  notes      String?
+  summary    String?                                 // engine-generated summary
+  createdAt  DateTime         @default(now())
+  appliedAt  DateTime?
+
+  proposals  PricingProposal[]
+
+  @@index([status])
+}
+
+enum ProposalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  APPLIED
+}
+
+model PricingProposal {
+  id           String         @id @default(cuid())
+  runId        String
+  run          PricingRun     @relation(fields: [runId], references: [id], onDelete: Cascade)
+  diamondId    String
+  diamond      Diamond        @relation(fields: [diamondId], references: [id], onDelete: Cascade)
+  oldPpc       Decimal        @db.Decimal(12, 2)
+  proposedPpc  Decimal        @db.Decimal(12, 2)
+  rapPrice     Decimal?       @db.Decimal(12, 2)    // looked-up Rap rate per ct
+  changePct    Decimal        @db.Decimal(6, 2)
+  reasoning    String
+  status       ProposalStatus @default(PENDING)
+  decidedBy    String?
+  decidedAt    DateTime?
+
+  @@index([runId])
+  @@index([status])
+  @@unique([runId, diamondId])
+}
+
+// ─────────────── ORDERS & PAYMENTS (P4) ───────────────
+
+enum OrderStatus {
+  DRAFT       // being prepared, not yet confirmed (no stone-status changes)
+  CONFIRMED   // sale closed; stones flipped to SOLD; payment tracking active
+  CANCELLED   // reverted; stones returned to AVAILABLE
+}
+
+enum PaymentMethod {
+  BANK_TRANSFER
+  CASH
+  CHEQUE
+  UPI
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING_CASH_APPROVAL    // cash payment recorded, awaiting Accounts confirmation
+  CONFIRMED                // counted toward order balance
+  REJECTED                 // never counted; reason kept for audit
+}
+
+/// Order — one or more stones sold to one customer in a single deal.
+/// `totalAmount` snapshots the agreed price at confirmation time; future
+/// price changes to the underlying Diamond rows don't rewrite history.
+model Order {
+  id            String       @id @default(cuid())
+  /// Human-readable business identifier issued on creation. Format ORD-YYYY-NNNNN.
+  orderCode     String       @unique
+  customerId    String
+  customer      Customer     @relation(fields: [customerId], references: [id])
+  status        OrderStatus  @default(DRAFT)
+  totalAmount   Decimal      @db.Decimal(14, 2)      // sum of OrderItem.totalPrice at confirm time
+  currency      String       @default("USD")
+  dueDate       DateTime?                            // for payment reminders / overdue calc
+  notes         String?
+  remindersEnabled Boolean   @default(true)
+  createdBy     String                               // Admin.id of creator
+  createdAt     DateTime     @default(now())
+  confirmedAt   DateTime?                            // set when status moves to CONFIRMED
+  cancelledAt   DateTime?
+
+  items         OrderItem[]
+  payments      Payment[]
+  reminders     PaymentReminder[]
+  /// Back-relation for enquiries converted into this order (1:1).
+  enquiry       Enquiry?
+
+  @@index([customerId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id            String   @id @default(cuid())
+  orderId       String
+  order         Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  diamondId     String
+  diamond       Diamond  @relation(fields: [diamondId], references: [id])
+  pricePerCarat Decimal  @db.Decimal(12, 2)   // snapshot
+  totalPrice    Decimal  @db.Decimal(14, 2)   // snapshot
+
+  @@index([orderId])
+  @@index([diamondId])
+}
+
+model Payment {
+  id              String        @id @default(cuid())
+  orderId         String
+  order           Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  amount          Decimal       @db.Decimal(14, 2)
+  method          PaymentMethod
+  status          PaymentStatus
+  transactionRef  String?                            // bank txn id, cheque no, UPI ref
+  notes           String?
+  /// Bcrypt hash of the one-time approval token, set for cash payments only.
+  /// Plain token returned to the recorder once and never re-issued.
+  approvalHash    String?
+  rejectionReason String?
+  recordedBy      String                             // Admin.id
+  recordedAt      DateTime      @default(now())
+  confirmedBy     String?                            // Admin.id of Accounts user who confirmed
+  confirmedAt     DateTime?
+
+  @@index([orderId])
+  @@index([status])
+}
+
+enum ReminderStatus {
+  PENDING
+  SENT
+  FAILED
+  CANCELLED
+}
+
+/// Pre-scheduled payment reminder. The dispatcher (later, P10 or earlier) runs
+/// through PENDING rows whose scheduledFor <= now and fires SMS/email via the
+/// notify lib. For P4 we just persist the schedule and expose a manual
+/// "Send now" button.
+model PaymentReminder {
+  id            String         @id @default(cuid())
+  orderId       String
+  order         Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  scheduledFor  DateTime
+  status        ReminderStatus @default(PENDING)
+  channel       String         @default("sms")     // sms | email
+  message       String?                             // rendered body (templated)
+  sentAt        DateTime?
+  response      String?
+
+  @@index([orderId])
+  @@index([scheduledFor, status])
+}
+
+// ─────────────── MESSAGE TEMPLATES (P5/P6) ───────────────
+//
+// One row per logical template. The `key` is the stable slug used in code
+// (e.g. "enquiry.memo_approved"), while `name` is the human-readable label
+// shown in the Owner-facing editor. Body uses {{placeholder}} substitution
+// (see lib/templates.ts) — placeholders depend on the call site.
+//
+// System templates are seeded with isSystem=true and can be edited but not
+// deleted. Owner can add custom templates if needed.
+
+enum TemplateChannel {
+  SMS
+  EMAIL
+  BOTH
+}
+
+model MessageTemplate {
+  id          String          @id @default(cuid())
+  key         String          @unique           // e.g. "enquiry.memo_approved"
+  name        String                            // display name
+  description String?
+  subject     String?                           // for email channel
+  body        String                            // template with {{var}} placeholders
+  channel     TemplateChannel @default(BOTH)
+  isSystem    Boolean         @default(false)   // seeded built-ins
+  updatedBy   String?                           // Admin.id of last editor
+  updatedAt   DateTime        @default(now()) @updatedAt
+  createdAt   DateTime        @default(now())
+}
+
+// ─────────────── PRICING SCHEDULER (P7) ───────────────
+//
+// Singleton row that defines the automated repricing schedule. On each tick,
+// if `enabled && nextRunAt <= now`, the cron handler kicks off a new
+// PricingRun with the configured mode / discount and updates lastRunAt /
+// nextRunAt. Admin reviews the resulting proposals on /admin/pricing.
+
+enum ScheduleFrequency {
+  DAILY
+  WEEKLY
+  CUSTOM   // future: free-form cron expression
+}
+
+model PricingSchedule {
+  /// Always 'default' — there is only one schedule per deployment.
+  id              String   @id @default("default")
+  enabled         Boolean  @default(false)
+  frequency       ScheduleFrequency @default(DAILY)
+  /// Time of day to fire, server-local. 24-hour "HH:MM".
+  timeOfDay       String   @default("02:00")
+  /// For WEEKLY: 0=Sun .. 6=Sat. Ignored otherwise.
+  dayOfWeek       Int      @default(1)
+  /// For CUSTOM: 5-field cron expression. Ignored otherwise.
+  customCron      String?
+  mode            String   @default("heuristic")    // 'ai' | 'heuristic'
+  rapDiscountPct  Decimal  @default(95) @db.Decimal(5, 2)
+  /// Skip a tick if a DRAFT run was created in the last N hours.
+  skipIfRecentHrs Int      @default(20)
+  lastRunAt       DateTime?
+  lastRunId       String?
+  lastRunStatus   String?                       // 'ok' | 'skipped' | 'error'
+  lastError       String?
+  nextRunAt       DateTime?
+  updatedBy       String?
+  updatedAt       DateTime @default(now()) @updatedAt
+  createdAt       DateTime @default(now())
+}

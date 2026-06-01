@@ -1,0 +1,136 @@
+# Demand Forecast & Sourcing Advisor
+
+A Claude Code **skill** for a lab-grown diamond wholesaler. Compares current available inventory against forecast demand to find **sourcing gaps** — categories where stock is too thin to meet projected market demand. Answers the key business question: _"What should we be sourcing more of?"_
+
+## Layout
+
+```
+skills/demand-forecast/
+├── SKILL.md                       # skill frontmatter + Claude instructions
+├── scripts/
+│   └── demand_forecast.py         # forecasting engine + CLI
+├── install.sh                     # copies skill into .claude/skills/ to activate
+└── README.qmd                     # this file
+```
+
+## Activate
+
+```bash
+bash skills/demand-forecast/install.sh
+```
+
+Restart Claude Code (or open a new session) to load the skill.
+
+## Using it through Claude
+
+> "What should we be sourcing more of?"
+> "Show me our sourcing gaps."
+> "What categories are understocked right now?"
+> "Run the demand forecast for rounds."
+
+## Run examples
+
+From the repo root:
+
+```bash
+# Standard sourcing gap report (top 15 by priority)
+uv run python skills/demand-forecast/scripts/demand_forecast.py
+
+# Filter to a specific shape
+uv run python skills/demand-forecast/scripts/demand_forecast.py \
+    --category-contains "Round"
+
+# Top 10 gaps, high-confidence forecasts only
+uv run python skills/demand-forecast/scripts/demand_forecast.py \
+    --top 10 --min-confidence 0.70
+
+# Add LLM sourcing recommendations
+uv run python skills/demand-forecast/scripts/demand_forecast.py \
+    --model api-llama-4-scout
+
+# Save charts to files
+uv run python skills/demand-forecast/scripts/demand_forecast.py \
+    --chart-out /tmp/forecast_chart
+
+# JSON output (pipe into other tools)
+uv run python skills/demand-forecast/scripts/demand_forecast.py --json
+
+# Reproduce a past run
+uv run python skills/demand-forecast/scripts/demand_forecast.py \
+    --today 2026-05-02
+```
+
+## Test command
+
+```bash
+uv run pytest tests/skills/test_demand_forecast.py -v
+```
+
+## CLI flags
+
+| Flag | Default | Description |
+|---|---|---|
+| `--top N` | 15 | Number of gap categories to show |
+| `--min-confidence FLOAT` | 0.0 | Minimum forecast confidence score |
+| `--model MODEL` | _(none)_ | LLM model for sourcing narration |
+| `--chart-out PATH` | _(none)_ | Base path for chart files |
+| `--today YYYY-MM-DD` | today | Override date for reproducible runs |
+| `--data-dir PATH` | `data/Milestone_2` | Folder containing seed CSVs |
+| `--json` | off | Output as JSON instead of table |
+| `--category-contains STR` | _(none)_ | Filter by substring in category name |
+
+## Core logic
+
+### Coverage computation
+
+For each category with a forecast, the script:
+
+1. Counts stones with `status == "Available"` per `category_simple`
+2. Joins with the latest `forecast_outputs_seed.csv` entry per category
+3. Computes `coverage_ratio = available / recommended_sourcing_qty`
+4. Computes `gap = max(0, recommended_sourcing_qty - available)`
+
+### Gap scoring
+
+1. Averages `demand_score` from `demand_signals_seed.csv` over the last 60 days
+2. Scores each gap: `priority_score = gap × demand_score`
+3. Joins in `growth_rate_pct` and `confidence_score` from the forecast
+4. Sorts by `priority_score` descending
+
+## Analytics
+
+Two chart files are saved when `--chart-out` is provided:
+
+### `{base}_coverage.png`
+
+**Horizontal bar chart** — top 15 categories by gap.
+
+- Blue bars: available count
+- Red dashed outline bars: recommended sourcing quantity
+- y-axis: category (ordered by gap descending)
+- x-axis: stone count
+- Title: "Inventory Coverage vs Forecast Demand"
+
+Use this to quickly see which categories have the largest absolute shortfall.
+
+### `{base}_demand.png`
+
+**Scatter plot** — coverage ratio vs demand score.
+
+- x-axis: coverage ratio (0 = none in stock, 1 = fully covered, >1 = surplus)
+- y-axis: demand score averaged over last 60 days
+- Point size: proportional to gap (bigger = more stones needed)
+- Color: growth rate bucket (shrinking / flat / growing)
+- Title: "Coverage vs Demand Score by Category"
+
+Use this to identify the quadrant with low coverage AND high demand — these are the most urgent sourcing targets.
+
+## Data sources
+
+All CSVs are read from `data/Milestone_2/`:
+
+| File | Key columns used |
+|---|---|
+| `inventory_seed.csv` | `stock_id`, `status`, `category_simple`, `p_pcs`, `cost_basis` |
+| `forecast_outputs_seed.csv` | `forecast_date`, `category_simple`, `recommended_sourcing_qty`, `growth_rate_pct`, `confidence_score` |
+| `demand_signals_seed.csv` | `signal_date`, `category_simple`, `demand_score` |

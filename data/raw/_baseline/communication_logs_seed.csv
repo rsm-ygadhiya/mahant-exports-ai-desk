@@ -1,0 +1,601 @@
+message_id,message_date,thread_id,customer_id,stock_id,counterparty_name,counterparty_type,channel,direction,category_simple,quoted_price,negotiated_price,quantity_requested,negotiation_status,notes
+MSG00001,2025-12-19T19:17:00Z,THRD00029,CUST0010,LGSTK00883,Partner-1,Broker,In-App,Outbound,Round | 2.00-2.99 | DEF | VS,520.94,474.19,3,Open,Requested certificate details.
+MSG00002,2026-04-04T17:01:00Z,THRD00060,CUST0043,LGSTK00975,Partner-2,Dealer,Email,Outbound,Oval | 3.00+ | IJK | SI,1846.85,1791.69,1,Open,Interested in matching pair availability.
+MSG00003,2026-03-10T12:09:00Z,THRD00109,CUST0037,LGSTK00411,Partner-3,Dealer,WhatsApp,Outbound,Radiant | 3.00+ | DEF | VS,1956.04,1780.43,,Open,Buyer comparing with another supplier.
+MSG00004,2025-12-26T19:29:00Z,THRD00068,CUST0031,LGSTK00328,Partner-4,Jeweler,In-App,Outbound,Round | 3.00+ | GH | VS,2438.17,2286.65,3,Open,Buyer requested better discount.
+MSG00005,2026-04-07T09:54:00Z,THRD00059,,,Partner-5,Jeweler,Email,Outbound,,432.3,401.09,9,Open,Asked for repeat order pricing.
+MSG00006,2026-04-29T19:15:00Z,THRD00044,CUST0089,,Partner-6,Wholesaler,Call,Inbound,,1072.75,1071.63,2,Open,Buyer asked for video and image.
+MSG00007,2026-02-14T09:13:00Z,THRD00103,CUST0040,LGSTK00845,Partner-7,Jeweler,Email,Outbound,Oval | 2.00-2.99 | GH | VVS+,,,15,Open,Interested in matching pair availability.
+MSG00008,2026-01-19T11:47:00Z,THRD00068,CUST0031,LGSTK00328,Partner-8,Dealer,Call,Inbound,Round | 3.00+ | GH | VS,804.31,770.9,,Open,Interested in matching pair availability.
+MSG00009,2026-04-20T09:48:00Z,THRD00131,CUST0050,,Partner-9,Dealer,In-App,Inbound,,452.19,435.34,20,Open,Counterparty asked for bulk deal terms.
+MSG00010,2026-04-15T16:55:00Z,THRD00136,CUST0057,LGSTK00374,Partner-10,Broker,In-App,Outbound,Emerald | 3.00+ | DEF | VS,,,,Closed-Won,Buyer asked for video and image.
+MSG00011,2026-02-26T14:10:00Z,THRD00029,CUST0010,LGSTK00883,Partner-11,Jeweler,In-App,Inbound,Round | 2.00-2.99 | DEF | VS,2393.78,2364.06,4,Open,Negotiation paused pending approval.
+MSG00012,2026-03-12T10:23:00Z,THRD00130,CUST0045,,Partner-12,Broker,In-App,Outbound,,,,4,Open,Buyer asked for video and image.
+MSG00013,2026-04-06T08:15:00Z,THRD00079,CUST0096,,Partner-13,Broker,WhatsApp,Outbound,,,,,Open,Discussion on repeat order potential.
+MSG00014,2026-04-21T18:30:00Z,THRD00033,,LGSTK00556,Partner-14,Wholesaler,Call,Outbound,Round | 3.00+ | DEF | VVS+,,,,Open,Discussion on repeat order potential.
+MSG00015,2026-04-12T12:25:00Z,THRD00052,CUST0034,LGSTK00611,Partner-15,Jeweler,Platform Chat,Outbound,Round | 3.00+ | GH | VS,,,8,Stale,Asked for repeat order pricing.
+MSG00016,2025-12-06T17:35:00Z,THRD00087,CUST0034,LGSTK00902,Partner-16,Broker,Email,Inbound,Radiant | 3.00+ | IJK | VS,706.5,640.87,,Open,Buyer asked for video and image.
+MSG00017,2026-05-02T11:17:00Z,THRD00019,CUST0001,LGSTK00501,Partner-17,Dealer,Email,Outbound,Radiant | 0.25-0.49 | DEF | SI,692.74,632.63,,Closed-Won,Requested certificate details.
+MSG00018,2026-03-04T18:27:00Z,THRD00025,,LGSTK00244,Partner-18,Broker,WhatsApp,Inbound,Emerald | 0.50-0.99 | DEF | VVS+,1145.54,1129.94,11,Closed-Lost,Asked for repeat order pricing.
+MSG00019,2026-04-13T11:34:00Z,THRD00064,CUST0007,LGSTK00940,Partner-19,Wholesaler,WhatsApp,Outbound,Round | 1.00-1.49 | GH | VVS+,1170.33,1085.9,,Stale,Discussion on repeat order potential.
+MSG00020,2026-01-07T18:34:00Z,THRD00026,,LGSTK00249,Partner-20,Broker,Email,Inbound,Pear | 1.50-1.99 | GH | VVS+,,,16,Closed-Won,Requested certificate details.
+MSG00021,2025-12-23T10:24:00Z,THRD00103,CUST0040,LGSTK00845,Partner-21,Dealer,Call,Outbound,Oval | 2.00-2.99 | GH | VVS+,1097.97,1089.9,18,Open,Counterparty asked for bulk deal terms.
+MSG00022,2026-04-12T12:13:00Z,THRD00040,CUST0071,LGSTK00680,Partner-22,Broker,Call,Inbound,Oval | 1.00-1.49 | DEF | VS,,,16,Closed-Won,Discussion on repeat order potential.
+MSG00023,2026-04-09T08:32:00Z,THRD00136,CUST0057,LGSTK00374,Partner-23,Wholesaler,Platform Chat,Inbound,Emerald | 3.00+ | DEF | VS,627.4,601.99,,Closed-Won,Buyer comparing with another supplier.
+MSG00024,2026-04-03T17:05:00Z,THRD00064,CUST0007,LGSTK00940,Partner-24,Jeweler,Email,Outbound,Round | 1.00-1.49 | GH | VVS+,1542.45,1468.84,13,Stale,Interested in matching pair availability.
+MSG00025,2026-04-27T13:59:00Z,THRD00077,CUST0084,LGSTK00032,Partner-25,Broker,WhatsApp,Outbound,Round | 3.00+ | GH | SI,,,19,Closed-Won,Asked for repeat order pricing.
+MSG00026,2026-05-02T11:32:00Z,THRD00019,CUST0001,LGSTK00501,Partner-26,Wholesaler,Call,Outbound,Radiant | 0.25-0.49 | DEF | SI,2346.5,2318.54,18,Closed-Won,Negotiation paused pending approval.
+MSG00027,2026-03-30T18:52:00Z,THRD00136,CUST0057,LGSTK00374,Partner-27,Wholesaler,Call,Inbound,Emerald | 3.00+ | DEF | VS,2343.04,2133.01,,Closed-Won,Discussion on repeat order potential.
+MSG00028,2026-04-14T12:38:00Z,THRD00040,CUST0071,LGSTK00680,Partner-28,Jeweler,In-App,Outbound,Oval | 1.00-1.49 | DEF | VS,988.62,957.73,2,Closed-Won,Asked for repeat order pricing.
+MSG00029,2026-02-21T08:00:00Z,THRD00109,CUST0037,LGSTK00411,Partner-29,Wholesaler,Platform Chat,Outbound,Radiant | 3.00+ | DEF | VS,500.89,499.88,4,Open,Asked for repeat order pricing.
+MSG00030,2026-03-22T08:53:00Z,THRD00039,CUST0057,,Partner-0,Broker,Call,Outbound,,1470.81,1386.94,,Open,Buyer requested better discount.
+MSG00031,2026-01-25T18:15:00Z,THRD00092,CUST0095,LGSTK00742,Partner-1,Dealer,In-App,Inbound,Oval | 0.50-0.99 | DEF | SI,1013.46,968.86,,Closed-Won,Requested certificate details.
+MSG00032,2026-05-01T20:11:00Z,THRD00042,,LGSTK00258,Partner-2,Broker,Email,Outbound,Round | 3.00+ | DEF | VVS+,,,,Closed-Won,Requested stone in similar category.
+MSG00033,2026-04-18T10:50:00Z,THRD00064,CUST0007,LGSTK00940,Partner-3,Dealer,WhatsApp,Outbound,Round | 1.00-1.49 | GH | VVS+,,,15,Stale,Buyer asked for video and image.
+MSG00034,2026-04-05T11:01:00Z,THRD00079,CUST0096,,Partner-4,Broker,Call,Outbound,,1116.47,1035.93,13,Open,Discussion on repeat order potential.
+MSG00035,2026-04-30T08:07:00Z,THRD00085,CUST0094,LGSTK00331,Partner-5,Jeweler,Email,Outbound,Round | 1.50-1.99 | IJK | SI,,,20,Closed-Won,Requested stone in similar category.
+MSG00036,2026-04-22T20:20:00Z,THRD00089,CUST0003,LGSTK00227,Partner-6,Wholesaler,Call,Inbound,Round | 2.00-2.99 | DEF | VVS+,2463.74,2245.86,,Closed-Won,Buyer requested better discount.
+MSG00037,2026-04-27T16:43:00Z,THRD00134,CUST0078,,Partner-7,Wholesaler,Call,Outbound,,,,11,Open,Buyer comparing with another supplier.
+MSG00038,2026-03-01T19:57:00Z,THRD00081,CUST0032,LGSTK00792,Partner-8,Dealer,Call,Inbound,Princess | 1.00-1.49 | DEF | VVS+,911.35,857.43,13,Open,Interested in matching pair availability.
+MSG00039,2026-03-30T14:35:00Z,THRD00146,CUST0063,LGSTK00962,Partner-9,Jeweler,Call,Inbound,Princess | 2.00-2.99 | DEF | VVS+,,,19,Open,Buyer comparing with another supplier.
+MSG00040,2026-04-19T15:28:00Z,THRD00083,CUST0054,,Partner-10,Wholesaler,WhatsApp,Outbound,,1375.7,1347.32,20,Closed-Won,Buyer asked for video and image.
+MSG00041,2026-01-21T18:19:00Z,THRD00024,CUST0029,LGSTK00725,Partner-11,Wholesaler,Platform Chat,Inbound,Round | 1.00-1.49 | DEF | VS,658.0,593.81,19,Open,Requested certificate details.
+MSG00042,2026-04-28T14:15:00Z,THRD00099,CUST0098,LGSTK00217,Partner-12,Broker,Platform Chat,Inbound,Round | 3.00+ | DEF | VVS+,1781.53,1762.41,17,Stale,Counterparty asked for bulk deal terms.
+MSG00043,2026-05-02T11:58:00Z,THRD00013,,LGSTK00225,Partner-13,Dealer,Email,Outbound,Radiant | 3.00+ | GH | VVS+,,,18,Open,Buyer comparing with another supplier.
+MSG00044,2026-03-07T17:52:00Z,THRD00082,CUST0006,LGSTK00439,Partner-14,Dealer,In-App,Outbound,Round | 1.50-1.99 | DEF | SI,,,,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00045,2026-03-26T20:15:00Z,THRD00116,CUST0018,,Partner-15,Jeweler,In-App,Outbound,,,,9,Open,Counterparty asked for bulk deal terms.
+MSG00046,2026-04-21T11:17:00Z,THRD00020,CUST0008,LGSTK00581,Partner-16,Wholesaler,Email,Outbound,Round | 3.00+ | DEF | VVS+,2253.96,2046.73,7,Closed-Won,Asked for repeat order pricing.
+MSG00047,2026-04-13T13:34:00Z,THRD00107,CUST0061,LGSTK00453,Partner-17,Dealer,In-App,Inbound,Emerald | 0.50-0.99 | IJK | SI,343.21,337.47,,Open,Buyer comparing with another supplier.
+MSG00048,2026-03-15T08:22:00Z,THRD00098,CUST0057,LGSTK00603,Partner-18,Dealer,In-App,Inbound,Radiant | 3.00+ | IJK | SI,1096.97,1085.08,9,Closed-Won,Requested stone in similar category.
+MSG00049,2026-04-09T14:21:00Z,THRD00125,,,Partner-19,Dealer,Email,Inbound,,2035.73,1979.58,,Closed-Won,Buyer comparing with another supplier.
+MSG00050,2026-04-09T08:05:00Z,THRD00145,,LGSTK00554,Partner-20,Broker,Call,Outbound,Round | 1.50-1.99 | GH | VVS+,512.11,484.54,15,Open,Buyer asked for video and image.
+MSG00051,2026-03-08T12:48:00Z,THRD00087,CUST0034,LGSTK00902,Partner-21,Dealer,Call,Inbound,Radiant | 3.00+ | IJK | VS,,,18,Open,Buyer requested better discount.
+MSG00052,2026-02-08T18:04:00Z,THRD00090,CUST0071,LGSTK00436,Partner-22,Broker,WhatsApp,Inbound,Round | 1.50-1.99 | GH | SI,,,1,Closed-Won,Buyer comparing with another supplier.
+MSG00053,2026-04-13T10:30:00Z,THRD00040,CUST0071,LGSTK00680,Partner-23,Jeweler,Call,Inbound,Oval | 1.00-1.49 | DEF | VS,1497.13,1380.05,4,Closed-Won,Interested in matching pair availability.
+MSG00054,2026-02-08T17:01:00Z,THRD00080,,LGSTK00930,Partner-24,Dealer,Platform Chat,Inbound,Princess | 3.00+ | GH | VVS+,,,8,Open,Asked for repeat order pricing.
+MSG00055,2026-04-21T18:38:00Z,THRD00078,CUST0015,LGSTK00224,Partner-25,Broker,Call,Outbound,Emerald | 2.00-2.99 | DEF | VVS+,,,3,Open,Discussion on repeat order potential.
+MSG00056,2025-12-29T14:52:00Z,THRD00088,CUST0031,,Partner-26,Dealer,Email,Outbound,,1197.1,1120.75,17,Open,Negotiation paused pending approval.
+MSG00057,2026-04-18T15:27:00Z,THRD00138,,,Partner-27,Jeweler,Call,Inbound,,,,,Open,Asked for repeat order pricing.
+MSG00058,2026-05-02T11:48:00Z,THRD00072,CUST0029,LGSTK00498,Partner-28,Broker,Platform Chat,Outbound,Round | 2.00-2.99 | DEF | VVS+,1603.76,1504.16,7,Closed-Won,Buyer asked for video and image.
+MSG00059,2026-02-10T12:56:00Z,THRD00067,CUST0099,,Partner-29,Wholesaler,WhatsApp,Inbound,,2224.25,2125.45,,Open,Counterparty asked for bulk deal terms.
+MSG00060,2026-04-27T11:44:00Z,THRD00143,,LGSTK00419,Partner-0,Broker,WhatsApp,Outbound,Princess | 2.00-2.99 | IJK | VS,1837.24,1735.86,8,Closed-Won,Negotiation paused pending approval.
+MSG00061,2026-03-13T15:35:00Z,THRD00149,CUST0043,LGSTK00129,Partner-1,Jeweler,Call,Outbound,Oval | 2.00-2.99 | IJK | VS,1178.66,1148.71,9,Open,Requested certificate details.
+MSG00062,2026-04-25T11:20:00Z,THRD00031,,LGSTK00003,Partner-2,Wholesaler,Email,Inbound,Round | 3.00+ | DEF | VVS+,1432.49,1398.42,,Closed-Won,Negotiation paused pending approval.
+MSG00063,2026-04-15T09:53:00Z,THRD00135,CUST0099,LGSTK00859,Partner-3,Broker,In-App,Inbound,Round | 1.50-1.99 | DEF | VS,723.21,663.87,2,Open,Discussion on repeat order potential.
+MSG00064,2026-04-24T10:40:00Z,THRD00075,CUST0042,LGSTK00901,Partner-4,Dealer,WhatsApp,Inbound,Round | 2.00-2.99 | GH | VVS+,,,16,Open,Counterparty asked for bulk deal terms.
+MSG00065,2026-05-01T10:03:00Z,THRD00113,CUST0091,LGSTK00565,Partner-5,Broker,Platform Chat,Outbound,Princess | 3.00+ | DEF | VVS+,2181.96,1988.66,2,Closed-Won,Interested in matching pair availability.
+MSG00066,2026-03-27T12:05:00Z,THRD00039,CUST0057,,Partner-6,Broker,In-App,Outbound,,,,20,Open,Requested certificate details.
+MSG00067,2026-03-31T15:58:00Z,THRD00134,CUST0078,,Partner-7,Jeweler,In-App,Inbound,,2178.38,2176.21,4,Open,Requested certificate details.
+MSG00068,2026-04-17T18:05:00Z,THRD00055,CUST0043,LGSTK00680,Partner-8,Broker,Platform Chat,Outbound,Oval | 1.00-1.49 | DEF | VS,599.77,544.3,16,Open,Negotiation paused pending approval.
+MSG00069,2026-03-15T12:45:00Z,THRD00009,CUST0078,LGSTK00547,Partner-9,Wholesaler,Call,Inbound,Round | 3.00+ | IJK | VVS+,2177.1,1974.89,18,Closed-Lost,Requested certificate details.
+MSG00070,2026-01-10T10:04:00Z,THRD00039,CUST0057,,Partner-10,Jeweler,Platform Chat,Inbound,,2023.05,1941.13,10,Open,Requested stone in similar category.
+MSG00071,2026-05-01T16:31:00Z,THRD00070,CUST0099,LGSTK00713,Partner-11,Jeweler,In-App,Outbound,Round | 0.50-0.99 | DEF | VVS+,1575.48,1558.06,8,Open,Buyer comparing with another supplier.
+MSG00072,2026-04-26T12:36:00Z,THRD00006,CUST0080,,Partner-12,Dealer,Call,Inbound,,1939.42,1836.73,,Open,Requested stone in similar category.
+MSG00073,2026-04-26T15:22:00Z,THRD00126,CUST0022,LGSTK00926,Partner-13,Wholesaler,Call,Outbound,Round | 3.00+ | DEF | VVS+,938.43,854.4,10,Closed-Won,Requested stone in similar category.
+MSG00074,2026-01-31T15:05:00Z,THRD00141,CUST0075,LGSTK00654,Partner-14,Dealer,In-App,Inbound,Emerald | 3.00+ | IJK | SI,943.53,940.72,18,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00075,2025-11-24T11:33:00Z,THRD00106,,,Partner-15,Broker,Email,Outbound,,1939.82,1867.16,10,Open,Counterparty asked for bulk deal terms.
+MSG00076,2026-04-12T08:40:00Z,THRD00125,,,Partner-16,Broker,In-App,Outbound,,750.38,687.23,4,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00077,2026-04-15T10:31:00Z,THRD00031,,LGSTK00003,Partner-17,Jeweler,In-App,Outbound,Round | 3.00+ | DEF | VVS+,,,16,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00078,2026-04-19T16:09:00Z,THRD00063,,,Partner-18,Wholesaler,WhatsApp,Outbound,,2320.3,2206.2,,Closed-Won,Requested stone in similar category.
+MSG00079,2026-04-26T20:32:00Z,THRD00088,CUST0031,,Partner-19,Dealer,Email,Outbound,,205.9,200.26,12,Open,Buyer asked for video and image.
+MSG00080,2026-04-24T16:24:00Z,THRD00142,,LGSTK00625,Partner-20,Wholesaler,In-App,Outbound,Round | 1.50-1.99 | GH | VVS+,940.09,863.82,14,Closed-Won,Buyer requested better discount.
+MSG00081,2026-03-15T19:58:00Z,THRD00082,CUST0006,LGSTK00439,Partner-21,Dealer,Email,Outbound,Round | 1.50-1.99 | DEF | SI,,,,Closed-Won,Interested in matching pair availability.
+MSG00082,2026-03-19T13:55:00Z,THRD00129,CUST0086,LGSTK00824,Partner-22,Dealer,WhatsApp,Inbound,Round | 3.00+ | DEF | VVS+,2143.59,1950.61,5,Closed-Won,Asked for repeat order pricing.
+MSG00083,2026-04-20T12:21:00Z,THRD00121,CUST0013,,Partner-23,Jeweler,In-App,Outbound,,1114.21,1011.74,,Open,Counterparty asked for bulk deal terms.
+MSG00084,2025-11-19T17:04:00Z,THRD00139,CUST0097,,Partner-24,Wholesaler,WhatsApp,Outbound,,1774.12,1647.69,,Open,Asked for repeat order pricing.
+MSG00085,2026-02-06T19:19:00Z,THRD00114,CUST0016,LGSTK00158,Partner-25,Broker,Call,Inbound,Round | 3.00+ | GH | VVS+,,,12,Closed-Won,Requested stone in similar category.
+MSG00086,2026-03-05T16:26:00Z,THRD00038,CUST0028,LGSTK00136,Partner-26,Broker,In-App,Outbound,Emerald | 1.50-1.99 | DEF | VS,2022.79,1854.9,8,Stale,Counterparty asked for bulk deal terms.
+MSG00087,2026-03-13T11:29:00Z,THRD00150,CUST0028,,Partner-27,Dealer,Call,Inbound,,1257.01,1215.13,12,Closed-Won,Buyer comparing with another supplier.
+MSG00088,2026-04-23T19:16:00Z,THRD00077,CUST0084,LGSTK00032,Partner-28,Dealer,WhatsApp,Inbound,Round | 3.00+ | GH | SI,894.88,894.82,12,Closed-Won,Buyer comparing with another supplier.
+MSG00089,2026-04-30T12:01:00Z,THRD00076,CUST0003,,Partner-29,Dealer,Call,Inbound,,,,2,Open,Buyer comparing with another supplier.
+MSG00090,2026-03-09T20:51:00Z,THRD00128,CUST0049,LGSTK00247,Partner-0,Wholesaler,In-App,Outbound,Round | 3.00+ | GH | VVS+,2044.44,1884.77,5,Open,Asked for repeat order pricing.
+MSG00091,2026-03-22T20:28:00Z,THRD00011,CUST0073,,Partner-1,Jeweler,Call,Outbound,,1039.18,948.92,5,Open,Discussion on repeat order potential.
+MSG00092,2026-04-04T16:58:00Z,THRD00094,CUST0090,,Partner-2,Dealer,Call,Outbound,,578.45,573.48,,Stale,Counterparty asked for bulk deal terms.
+MSG00093,2026-04-16T20:14:00Z,THRD00020,CUST0008,LGSTK00581,Partner-3,Dealer,In-App,Outbound,Round | 3.00+ | DEF | VVS+,,,13,Closed-Won,Buyer requested better discount.
+MSG00094,2026-05-01T09:29:00Z,THRD00068,CUST0031,LGSTK00328,Partner-4,Dealer,Call,Inbound,Round | 3.00+ | GH | VS,1922.73,1780.86,16,Open,Buyer requested better discount.
+MSG00095,2026-03-09T17:14:00Z,THRD00144,,LGSTK00241,Partner-5,Jeweler,Platform Chat,Inbound,Round | 1.50-1.99 | DEF | VS,1661.43,1572.42,2,Open,Negotiation paused pending approval.
+MSG00096,2026-01-31T09:15:00Z,THRD00127,CUST0056,LGSTK00544,Partner-6,Wholesaler,Platform Chat,Outbound,Round | 3.00+ | DEF | VS,,,18,Open,Requested stone in similar category.
+MSG00097,2026-04-19T18:06:00Z,THRD00040,CUST0071,LGSTK00680,Partner-7,Dealer,Call,Inbound,Oval | 1.00-1.49 | DEF | VS,,,7,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00098,2026-02-24T13:06:00Z,THRD00114,CUST0016,LGSTK00158,Partner-8,Jeweler,In-App,Outbound,Round | 3.00+ | GH | VVS+,,,9,Closed-Won,Requested certificate details.
+MSG00099,2026-04-06T09:42:00Z,THRD00032,CUST0094,,Partner-9,Broker,Call,Inbound,,1670.83,1666.0,,Open,Buyer comparing with another supplier.
+MSG00100,2026-03-19T20:35:00Z,THRD00053,CUST0050,,Partner-10,Jeweler,Email,Inbound,,696.69,687.61,5,Closed-Won,Interested in matching pair availability.
+MSG00101,2026-01-13T20:11:00Z,THRD00139,CUST0097,,Partner-11,Jeweler,Email,Outbound,,2192.83,2002.45,9,Open,Buyer requested better discount.
+MSG00102,2026-04-30T16:07:00Z,THRD00033,,LGSTK00556,Partner-12,Dealer,Platform Chat,Outbound,Round | 3.00+ | DEF | VVS+,,,4,Open,Counterparty asked for bulk deal terms.
+MSG00103,2026-01-31T17:02:00Z,THRD00129,CUST0086,LGSTK00824,Partner-13,Jeweler,Platform Chat,Inbound,Round | 3.00+ | DEF | VVS+,,,16,Closed-Won,Requested stone in similar category.
+MSG00104,2026-05-02T15:45:00Z,THRD00110,,LGSTK00527,Partner-14,Broker,WhatsApp,Outbound,Round | 3.00+ | DEF | VVS+,,,3,Open,Interested in matching pair availability.
+MSG00105,2026-04-04T18:37:00Z,THRD00071,,LGSTK00400,Partner-15,Jeweler,Platform Chat,Outbound,Radiant | 2.00-2.99 | IJK | VS,947.93,947.42,4,Open,Discussion on repeat order potential.
+MSG00106,2026-04-10T15:56:00Z,THRD00056,CUST0090,LGSTK00131,Partner-16,Dealer,WhatsApp,Outbound,Round | 2.00-2.99 | DEF | VS,979.54,926.01,9,Closed-Won,Buyer asked for video and image.
+MSG00107,2026-04-27T15:04:00Z,THRD00040,CUST0071,LGSTK00680,Partner-17,Jeweler,Email,Inbound,Oval | 1.00-1.49 | DEF | VS,396.34,373.82,18,Closed-Won,Discussion on repeat order potential.
+MSG00108,2026-04-12T09:26:00Z,THRD00085,CUST0094,LGSTK00331,Partner-18,Broker,Call,Outbound,Round | 1.50-1.99 | IJK | SI,1730.28,1687.07,19,Closed-Won,Discussion on repeat order potential.
+MSG00109,2026-04-10T18:30:00Z,THRD00055,CUST0043,LGSTK00680,Partner-19,Jeweler,WhatsApp,Outbound,Oval | 1.00-1.49 | DEF | VS,448.9,441.96,14,Open,Discussion on repeat order potential.
+MSG00110,2026-04-03T17:59:00Z,THRD00143,,LGSTK00419,Partner-20,Jeweler,Call,Outbound,Princess | 2.00-2.99 | IJK | VS,1794.98,1620.68,6,Closed-Won,Interested in matching pair availability.
+MSG00111,2026-04-09T14:04:00Z,THRD00145,,LGSTK00554,Partner-21,Wholesaler,Platform Chat,Outbound,Round | 1.50-1.99 | GH | VVS+,1656.3,1495.75,6,Open,Buyer asked for video and image.
+MSG00112,2026-04-28T13:49:00Z,THRD00080,,LGSTK00930,Partner-22,Broker,WhatsApp,Inbound,Princess | 3.00+ | GH | VVS+,,,20,Open,Buyer requested better discount.
+MSG00113,2026-02-20T15:42:00Z,THRD00021,CUST0017,LGSTK00487,Partner-23,Wholesaler,In-App,Inbound,Pear | 3.00+ | DEF | VVS+,1596.27,1502.76,4,Stale,Negotiation paused pending approval.
+MSG00114,2026-04-25T18:19:00Z,THRD00125,,,Partner-24,Broker,Email,Outbound,,1109.11,1064.67,,Closed-Won,Interested in matching pair availability.
+MSG00115,2026-02-07T13:07:00Z,THRD00066,,LGSTK00163,Partner-25,Dealer,In-App,Inbound,Round | 3.00+ | IJK | VVS+,1918.13,1760.02,12,Open,Asked for repeat order pricing.
+MSG00116,2026-03-27T14:01:00Z,THRD00102,CUST0015,LGSTK00664,Partner-26,Dealer,In-App,Outbound,Emerald | 1.00-1.49 | GH | VVS+,379.08,353.04,,Closed-Won,Requested stone in similar category.
+MSG00117,2026-02-08T14:01:00Z,THRD00075,CUST0042,LGSTK00901,Partner-27,Wholesaler,In-App,Outbound,Round | 2.00-2.99 | GH | VVS+,,,,Open,Buyer asked for video and image.
+MSG00118,2026-04-02T09:15:00Z,THRD00023,CUST0067,LGSTK00254,Partner-28,Jeweler,Call,Inbound,Oval | 1.00-1.49 | IJK | VVS+,1121.03,1017.74,6,Closed-Won,Asked for repeat order pricing.
+MSG00119,2026-04-25T09:33:00Z,THRD00131,CUST0050,,Partner-29,Wholesaler,Email,Inbound,,2283.62,2135.04,7,Open,Interested in matching pair availability.
+MSG00120,2026-04-30T20:41:00Z,THRD00040,CUST0071,LGSTK00680,Partner-0,Dealer,In-App,Outbound,Oval | 1.00-1.49 | DEF | VS,2387.97,2299.13,19,Closed-Won,Buyer comparing with another supplier.
+MSG00121,2026-05-02T18:20:00Z,THRD00083,CUST0054,,Partner-1,Jeweler,Call,Inbound,,357.06,337.14,3,Closed-Won,Negotiation paused pending approval.
+MSG00122,2026-03-15T08:03:00Z,THRD00119,CUST0074,LGSTK00877,Partner-2,Broker,In-App,Outbound,Round | 1.00-1.49 | GH | VS,860.28,829.71,18,Open,Buyer requested better discount.
+MSG00123,2026-03-17T13:38:00Z,THRD00116,CUST0018,,Partner-3,Broker,Call,Inbound,,546.98,495.67,6,Open,Buyer requested better discount.
+MSG00124,2026-04-29T15:33:00Z,THRD00064,CUST0007,LGSTK00940,Partner-4,Jeweler,Platform Chat,Outbound,Round | 1.00-1.49 | GH | VVS+,565.12,529.68,,Stale,Buyer comparing with another supplier.
+MSG00125,2026-04-25T18:41:00Z,THRD00014,CUST0021,,Partner-5,Dealer,Call,Outbound,,958.29,915.93,,Closed-Won,Buyer comparing with another supplier.
+MSG00126,2026-01-27T09:37:00Z,THRD00039,CUST0057,,Partner-6,Dealer,Email,Inbound,,2308.52,2149.29,13,Open,Buyer asked for video and image.
+MSG00127,2026-04-19T18:42:00Z,THRD00033,,LGSTK00556,Partner-7,Wholesaler,Email,Outbound,Round | 3.00+ | DEF | VVS+,1032.2,966.41,,Open,Counterparty asked for bulk deal terms.
+MSG00128,2026-03-07T10:09:00Z,THRD00050,CUST0004,LGSTK00409,Partner-8,Broker,Call,Inbound,Round | 1.00-1.49 | DEF | VS,2142.19,1949.64,5,Closed-Won,Interested in matching pair availability.
+MSG00129,2026-05-02T19:49:00Z,THRD00047,CUST0023,,Partner-9,Broker,Platform Chat,Outbound,,2276.11,2212.65,8,Open,Counterparty asked for bulk deal terms.
+MSG00130,2026-04-28T11:34:00Z,THRD00073,CUST0022,,Partner-10,Wholesaler,Call,Outbound,,2420.87,2368.67,10,Closed-Won,Requested stone in similar category.
+MSG00131,2026-03-11T14:10:00Z,THRD00129,CUST0086,LGSTK00824,Partner-11,Wholesaler,Call,Inbound,Round | 3.00+ | DEF | VVS+,,,12,Closed-Won,Discussion on repeat order potential.
+MSG00132,2026-04-30T16:54:00Z,THRD00027,CUST0053,LGSTK00747,Partner-12,Dealer,In-App,Inbound,Pear | 3.00+ | IJK | VS,392.91,359.92,,Closed-Won,Asked for repeat order pricing.
+MSG00133,2026-05-02T13:59:00Z,THRD00057,CUST0073,LGSTK00562,Partner-13,Wholesaler,Platform Chat,Inbound,Radiant | 1.50-1.99 | IJK | VS,322.49,306.43,1,Closed-Won,Buyer asked for video and image.
+MSG00134,2026-04-18T19:41:00Z,THRD00026,,LGSTK00249,Partner-14,Dealer,Email,Outbound,Pear | 1.50-1.99 | GH | VVS+,535.91,484.37,1,Closed-Won,Asked for repeat order pricing.
+MSG00135,2026-02-19T11:53:00Z,THRD00005,CUST0006,,Partner-15,Dealer,WhatsApp,Outbound,,2362.52,2270.12,4,Open,Buyer requested better discount.
+MSG00136,2026-03-14T18:50:00Z,THRD00062,CUST0092,LGSTK00507,Partner-16,Dealer,In-App,Inbound,Oval | 2.00-2.99 | DEF | VS,344.46,338.83,19,Closed-Won,Requested certificate details.
+MSG00137,2026-04-23T14:00:00Z,THRD00037,CUST0083,LGSTK00324,Partner-17,Broker,In-App,Outbound,Oval | 0.25-0.49 | DEF | VS,753.3,709.35,17,Open,Discussion on repeat order potential.
+MSG00138,2026-04-20T16:01:00Z,THRD00130,CUST0045,,Partner-18,Jeweler,Call,Inbound,,1281.31,1234.63,3,Open,Buyer asked for video and image.
+MSG00139,2026-04-23T18:40:00Z,THRD00062,CUST0092,LGSTK00507,Partner-19,Wholesaler,WhatsApp,Outbound,Oval | 2.00-2.99 | DEF | VS,1538.38,1500.95,6,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00140,2026-04-21T10:51:00Z,THRD00123,CUST0011,,Partner-20,Broker,Call,Inbound,,1846.9,1836.48,7,Closed-Won,Buyer requested better discount.
+MSG00141,2026-03-25T16:25:00Z,THRD00081,CUST0032,LGSTK00792,Partner-21,Dealer,Call,Inbound,Princess | 1.00-1.49 | DEF | VVS+,,,,Open,Requested certificate details.
+MSG00142,2026-02-18T20:03:00Z,THRD00074,CUST0011,LGSTK00139,Partner-22,Jeweler,Call,Inbound,Pear | 0.50-0.99 | IJK | VVS+,,,,Open,Requested stone in similar category.
+MSG00143,2026-03-30T14:21:00Z,THRD00103,CUST0040,LGSTK00845,Partner-23,Dealer,Platform Chat,Outbound,Oval | 2.00-2.99 | GH | VVS+,,,,Open,Discussion on repeat order potential.
+MSG00144,2026-04-30T09:46:00Z,THRD00069,CUST0091,LGSTK00425,Partner-24,Wholesaler,In-App,Outbound,Round | 1.50-1.99 | DEF | VS,1190.4,1189.82,3,Open,Buyer asked for video and image.
+MSG00145,2026-04-23T15:38:00Z,THRD00076,CUST0003,,Partner-25,Wholesaler,Platform Chat,Outbound,,,,12,Open,Buyer comparing with another supplier.
+MSG00146,2026-02-02T18:50:00Z,THRD00112,,LGSTK00716,Partner-26,Broker,Platform Chat,Outbound,Pear | 1.00-1.49 | IJK | VVS+,,,6,Open,Buyer requested better discount.
+MSG00147,2026-04-28T08:08:00Z,THRD00037,CUST0083,LGSTK00324,Partner-27,Dealer,In-App,Inbound,Oval | 0.25-0.49 | DEF | VS,1990.59,1864.45,15,Open,Buyer asked for video and image.
+MSG00148,2026-04-26T20:04:00Z,THRD00096,CUST0010,LGSTK00703,Partner-28,Jeweler,Email,Inbound,Round | 2.00-2.99 | IJK | VVS+,1417.76,1332.42,6,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00149,2026-03-07T16:07:00Z,THRD00133,CUST0096,,Partner-29,Jeweler,Platform Chat,Inbound,,798.67,754.45,3,Open,Counterparty asked for bulk deal terms.
+MSG00150,2026-04-29T09:51:00Z,THRD00045,CUST0040,LGSTK00956,Partner-0,Jeweler,WhatsApp,Outbound,Round | 3.00+ | IJK | VS,2144.7,1998.77,,Open,Interested in matching pair availability.
+MSG00151,2026-04-27T16:14:00Z,THRD00045,CUST0040,LGSTK00956,Partner-1,Dealer,WhatsApp,Outbound,Round | 3.00+ | IJK | VS,662.25,605.22,12,Open,Counterparty asked for bulk deal terms.
+MSG00152,2026-03-15T17:56:00Z,THRD00142,,LGSTK00625,Partner-2,Dealer,In-App,Outbound,Round | 1.50-1.99 | GH | VVS+,911.37,911.33,,Closed-Won,Buyer comparing with another supplier.
+MSG00153,2026-04-29T13:41:00Z,THRD00019,CUST0001,LGSTK00501,Partner-3,Wholesaler,In-App,Inbound,Radiant | 0.25-0.49 | DEF | SI,1271.42,1210.06,,Closed-Won,Interested in matching pair availability.
+MSG00154,2026-03-31T08:53:00Z,THRD00111,CUST0080,,Partner-4,Jeweler,Email,Outbound,,551.94,505.83,,Open,Discussion on repeat order potential.
+MSG00155,2026-04-05T12:12:00Z,THRD00073,CUST0022,,Partner-5,Jeweler,In-App,Inbound,,1466.94,1338.61,6,Closed-Won,Buyer comparing with another supplier.
+MSG00156,2026-01-17T10:42:00Z,THRD00149,CUST0043,LGSTK00129,Partner-6,Broker,WhatsApp,Inbound,Oval | 2.00-2.99 | IJK | VS,2274.6,2123.93,19,Open,Negotiation paused pending approval.
+MSG00157,2026-04-07T14:39:00Z,THRD00054,CUST0069,LGSTK00963,Partner-7,Jeweler,Call,Outbound,Princess | 2.00-2.99 | IJK | VVS+,1345.49,1295.33,13,Open,Negotiation paused pending approval.
+MSG00158,2025-12-21T19:03:00Z,THRD00117,CUST0001,LGSTK00306,Partner-8,Jeweler,In-App,Inbound,Round | 2.00-2.99 | DEF | SI,1155.93,1094.02,11,Closed-Lost,Buyer asked for video and image.
+MSG00159,2026-01-10T20:23:00Z,THRD00103,CUST0040,LGSTK00845,Partner-9,Broker,Call,Outbound,Oval | 2.00-2.99 | GH | VVS+,444.22,410.54,4,Open,Buyer requested better discount.
+MSG00160,2026-03-15T17:26:00Z,THRD00075,CUST0042,LGSTK00901,Partner-10,Jeweler,In-App,Outbound,Round | 2.00-2.99 | GH | VVS+,2190.21,2006.17,6,Open,Counterparty asked for bulk deal terms.
+MSG00161,2026-03-14T15:56:00Z,THRD00132,CUST0090,LGSTK00850,Partner-11,Dealer,Email,Inbound,Round | 3.00+ | GH | SI,253.31,251.92,2,Open,Buyer requested better discount.
+MSG00162,2026-05-01T17:56:00Z,THRD00073,CUST0022,,Partner-12,Dealer,Call,Inbound,,,,,Closed-Won,Requested stone in similar category.
+MSG00163,2026-02-13T19:23:00Z,THRD00035,,LGSTK00965,Partner-13,Jeweler,WhatsApp,Outbound,Oval | 3.00+ | IJK | SI,,,18,Open,Requested certificate details.
+MSG00164,2026-05-01T09:24:00Z,THRD00093,CUST0030,LGSTK00310,Partner-14,Broker,Email,Inbound,Princess | 1.00-1.49 | IJK | VS,1958.13,1817.09,11,Open,Discussion on repeat order potential.
+MSG00165,2025-12-26T11:38:00Z,THRD00094,CUST0090,,Partner-15,Wholesaler,Call,Outbound,,1350.18,1221.28,5,Stale,Buyer comparing with another supplier.
+MSG00166,2025-12-20T13:59:00Z,THRD00132,CUST0090,LGSTK00850,Partner-16,Jeweler,In-App,Outbound,Round | 3.00+ | GH | SI,573.75,573.21,17,Open,Discussion on repeat order potential.
+MSG00167,2026-04-29T15:52:00Z,THRD00126,CUST0022,LGSTK00926,Partner-17,Dealer,In-App,Outbound,Round | 3.00+ | DEF | VVS+,961.85,876.21,,Closed-Won,Buyer requested better discount.
+MSG00168,2026-04-21T18:50:00Z,THRD00122,CUST0084,,Partner-18,Wholesaler,WhatsApp,Outbound,,,,20,Closed-Won,Requested stone in similar category.
+MSG00169,2026-04-30T11:02:00Z,THRD00038,CUST0028,LGSTK00136,Partner-19,Dealer,Call,Outbound,Emerald | 1.50-1.99 | DEF | VS,1811.2,1664.63,7,Stale,Requested stone in similar category.
+MSG00170,2026-04-12T17:58:00Z,THRD00129,CUST0086,LGSTK00824,Partner-20,Wholesaler,In-App,Inbound,Round | 3.00+ | DEF | VVS+,2151.27,2092.63,16,Closed-Won,Discussion on repeat order potential.
+MSG00171,2026-02-25T10:29:00Z,THRD00097,CUST0032,LGSTK00783,Partner-21,Jeweler,In-App,Outbound,Radiant | 0.25-0.49 | DEF | VVS+,,,9,Open,Buyer comparing with another supplier.
+MSG00172,2026-04-26T11:17:00Z,THRD00124,,LGSTK00555,Partner-22,Jeweler,Call,Inbound,Princess | 2.00-2.99 | DEF | VVS+,717.19,715.25,16,Closed-Won,Buyer asked for video and image.
+MSG00173,2026-02-08T16:59:00Z,THRD00123,CUST0011,,Partner-23,Jeweler,Call,Inbound,,,,18,Closed-Won,Requested stone in similar category.
+MSG00174,2026-04-16T20:51:00Z,THRD00102,CUST0015,LGSTK00664,Partner-24,Broker,Call,Outbound,Emerald | 1.00-1.49 | GH | VVS+,296.75,295.42,16,Closed-Won,Requested certificate details.
+MSG00175,2026-04-26T16:17:00Z,THRD00052,CUST0034,LGSTK00611,Partner-25,Jeweler,Email,Inbound,Round | 3.00+ | GH | VS,,,19,Stale,Requested certificate details.
+MSG00176,2026-04-06T18:57:00Z,THRD00063,,,Partner-26,Dealer,Call,Outbound,,1667.27,1509.29,5,Closed-Won,Buyer requested better discount.
+MSG00177,2026-02-16T14:41:00Z,THRD00141,CUST0075,LGSTK00654,Partner-27,Dealer,Platform Chat,Inbound,Emerald | 3.00+ | IJK | SI,,,,Closed-Won,Negotiation paused pending approval.
+MSG00178,2026-04-14T18:03:00Z,THRD00083,CUST0054,,Partner-28,Broker,In-App,Inbound,,,,2,Closed-Won,Interested in matching pair availability.
+MSG00179,2026-03-14T08:53:00Z,THRD00107,CUST0061,LGSTK00453,Partner-29,Jeweler,WhatsApp,Inbound,Emerald | 0.50-0.99 | IJK | SI,1339.38,1330.89,20,Open,Asked for repeat order pricing.
+MSG00180,2026-03-13T15:41:00Z,THRD00086,CUST0073,LGSTK00389,Partner-0,Dealer,Call,Inbound,Round | 3.00+ | DEF | SI,1336.0,1327.79,,Open,Buyer asked for video and image.
+MSG00181,2026-04-30T15:41:00Z,THRD00042,,LGSTK00258,Partner-1,Jeweler,In-App,Inbound,Round | 3.00+ | DEF | VVS+,628.26,611.71,13,Closed-Won,Requested stone in similar category.
+MSG00182,2026-02-06T09:25:00Z,THRD00132,CUST0090,LGSTK00850,Partner-2,Jeweler,Email,Inbound,Round | 3.00+ | GH | SI,625.0,571.29,8,Open,Counterparty asked for bulk deal terms.
+MSG00183,2026-03-01T12:37:00Z,THRD00069,CUST0091,LGSTK00425,Partner-3,Broker,Call,Outbound,Round | 1.50-1.99 | DEF | VS,,,2,Open,Asked for repeat order pricing.
+MSG00184,2026-02-03T10:25:00Z,THRD00120,,LGSTK00680,Partner-4,Jeweler,WhatsApp,Outbound,Oval | 1.00-1.49 | DEF | VS,2323.14,2297.07,8,Open,Requested certificate details.
+MSG00185,2026-04-09T10:29:00Z,THRD00035,,LGSTK00965,Partner-5,Jeweler,Platform Chat,Outbound,Oval | 3.00+ | IJK | SI,,,,Open,Requested certificate details.
+MSG00186,2026-04-06T16:28:00Z,THRD00064,CUST0007,LGSTK00940,Partner-6,Broker,WhatsApp,Inbound,Round | 1.00-1.49 | GH | VVS+,1032.11,1023.57,5,Stale,Interested in matching pair availability.
+MSG00187,2026-03-30T15:07:00Z,THRD00084,CUST0056,LGSTK00535,Partner-7,Dealer,WhatsApp,Outbound,Emerald | 3.00+ | GH | VS,1848.91,1754.4,14,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00188,2026-01-22T16:29:00Z,THRD00145,,LGSTK00554,Partner-8,Jeweler,WhatsApp,Inbound,Round | 1.50-1.99 | GH | VVS+,908.79,819.89,2,Open,Requested stone in similar category.
+MSG00189,2026-04-18T09:34:00Z,THRD00089,CUST0003,LGSTK00227,Partner-9,Broker,Platform Chat,Inbound,Round | 2.00-2.99 | DEF | VVS+,,,6,Closed-Won,Interested in matching pair availability.
+MSG00190,2026-03-25T14:28:00Z,THRD00108,,LGSTK00419,Partner-10,Dealer,Platform Chat,Inbound,Princess | 2.00-2.99 | IJK | VS,,,18,Closed-Won,Interested in matching pair availability.
+MSG00191,2026-01-12T10:34:00Z,THRD00090,CUST0071,LGSTK00436,Partner-11,Broker,WhatsApp,Outbound,Round | 1.50-1.99 | GH | SI,492.9,491.85,18,Closed-Won,Requested stone in similar category.
+MSG00192,2026-03-18T11:15:00Z,THRD00137,CUST0070,,Partner-12,Broker,WhatsApp,Outbound,,556.78,511.6,1,Open,Requested certificate details.
+MSG00193,2026-03-19T09:38:00Z,THRD00053,CUST0050,,Partner-13,Broker,Email,Inbound,,1574.91,1528.18,8,Closed-Won,Discussion on repeat order potential.
+MSG00194,2026-05-01T20:03:00Z,THRD00056,CUST0090,LGSTK00131,Partner-14,Jeweler,In-App,Outbound,Round | 2.00-2.99 | DEF | VS,2485.01,2294.7,5,Closed-Won,Discussion on repeat order potential.
+MSG00195,2026-05-02T12:17:00Z,THRD00057,CUST0073,LGSTK00562,Partner-15,Wholesaler,Platform Chat,Outbound,Radiant | 1.50-1.99 | IJK | VS,2381.6,2352.95,12,Closed-Won,Requested stone in similar category.
+MSG00196,2026-04-17T19:26:00Z,THRD00135,CUST0099,LGSTK00859,Partner-16,Dealer,Email,Inbound,Round | 1.50-1.99 | DEF | VS,889.74,817.13,5,Open,Counterparty asked for bulk deal terms.
+MSG00197,2026-03-27T14:35:00Z,THRD00015,,LGSTK00995,Partner-17,Jeweler,WhatsApp,Outbound,Round | 3.00+ | IJK | SI,1093.36,1011.9,,Open,Asked for repeat order pricing.
+MSG00198,2026-03-12T08:17:00Z,THRD00138,,,Partner-18,Broker,Email,Inbound,,1591.43,1438.58,11,Open,Negotiation paused pending approval.
+MSG00199,2026-02-21T11:47:00Z,THRD00004,CUST0098,LGSTK00095,Partner-19,Wholesaler,In-App,Inbound,Round | 2.00-2.99 | GH | VS,2499.02,2368.8,8,Open,Discussion on repeat order potential.
+MSG00200,2026-04-29T12:24:00Z,THRD00083,CUST0054,,Partner-20,Jeweler,In-App,Outbound,,1692.06,1575.04,16,Closed-Won,Buyer asked for video and image.
+MSG00201,2026-04-07T13:26:00Z,THRD00053,CUST0050,,Partner-21,Broker,Call,Outbound,,2187.4,2130.8,7,Closed-Won,Buyer asked for video and image.
+MSG00202,2026-04-13T17:53:00Z,THRD00059,,,Partner-22,Jeweler,Call,Outbound,,1466.48,1458.19,,Open,Counterparty asked for bulk deal terms.
+MSG00203,2026-01-26T19:50:00Z,THRD00118,CUST0045,LGSTK00782,Partner-23,Wholesaler,In-App,Inbound,Round | 3.00+ | GH | SI,521.9,498.23,3,Open,Buyer requested better discount.
+MSG00204,2026-03-14T10:53:00Z,THRD00002,CUST0012,LGSTK00518,Partner-24,Wholesaler,In-App,Outbound,Round | 3.00+ | DEF | VS,356.33,326.08,20,Open,Buyer comparing with another supplier.
+MSG00205,2026-04-30T08:00:00Z,THRD00124,,LGSTK00555,Partner-25,Jeweler,In-App,Outbound,Princess | 2.00-2.99 | DEF | VVS+,1146.08,1033.39,14,Closed-Won,Interested in matching pair availability.
+MSG00206,2026-01-09T16:09:00Z,THRD00028,CUST0014,LGSTK00195,Partner-26,Jeweler,Call,Outbound,Pear | 3.00+ | GH | VS,1625.5,1503.98,13,Open,Counterparty asked for bulk deal terms.
+MSG00207,2026-02-15T19:14:00Z,THRD00145,,LGSTK00554,Partner-27,Broker,WhatsApp,Outbound,Round | 1.50-1.99 | GH | VVS+,2104.54,1911.05,18,Open,Counterparty asked for bulk deal terms.
+MSG00208,2025-12-14T19:10:00Z,THRD00015,,LGSTK00995,Partner-28,Jeweler,In-App,Inbound,Round | 3.00+ | IJK | SI,2144.26,2068.12,,Open,Buyer requested better discount.
+MSG00209,2026-04-02T19:56:00Z,THRD00059,,,Partner-29,Jeweler,In-App,Inbound,,823.52,817.27,11,Open,Buyer requested better discount.
+MSG00210,2026-04-11T10:48:00Z,THRD00054,CUST0069,LGSTK00963,Partner-0,Dealer,WhatsApp,Outbound,Princess | 2.00-2.99 | IJK | VVS+,,,8,Open,Buyer comparing with another supplier.
+MSG00211,2026-04-29T16:21:00Z,THRD00100,CUST0021,LGSTK00462,Partner-1,Broker,In-App,Outbound,Round | 1.50-1.99 | IJK | SI,1901.41,1861.58,14,Open,Requested certificate details.
+MSG00212,2026-04-22T17:49:00Z,THRD00020,CUST0008,LGSTK00581,Partner-2,Jeweler,WhatsApp,Outbound,Round | 3.00+ | DEF | VVS+,1569.9,1565.02,,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00213,2026-04-28T13:35:00Z,THRD00126,CUST0022,LGSTK00926,Partner-3,Dealer,Email,Outbound,Round | 3.00+ | DEF | VVS+,,,20,Closed-Won,Negotiation paused pending approval.
+MSG00214,2026-04-05T09:17:00Z,THRD00064,CUST0007,LGSTK00940,Partner-4,Dealer,Call,Outbound,Round | 1.00-1.49 | GH | VVS+,1836.86,1769.61,1,Stale,Negotiation paused pending approval.
+MSG00215,2026-03-28T20:17:00Z,THRD00114,CUST0016,LGSTK00158,Partner-5,Dealer,WhatsApp,Inbound,Round | 3.00+ | GH | VVS+,400.78,377.97,18,Closed-Won,Asked for repeat order pricing.
+MSG00216,2026-02-23T08:18:00Z,THRD00084,CUST0056,LGSTK00535,Partner-6,Wholesaler,In-App,Inbound,Emerald | 3.00+ | GH | VS,1992.09,1937.28,6,Closed-Won,Interested in matching pair availability.
+MSG00217,2026-02-25T12:31:00Z,THRD00069,CUST0091,LGSTK00425,Partner-7,Jeweler,Platform Chat,Inbound,Round | 1.50-1.99 | DEF | VS,584.58,542.25,8,Open,Counterparty asked for bulk deal terms.
+MSG00218,2026-04-12T09:08:00Z,THRD00051,CUST0052,LGSTK00864,Partner-8,Dealer,Call,Outbound,Radiant | 3.00+ | DEF | VVS+,2382.29,2223.2,20,Open,Interested in matching pair availability.
+MSG00219,2026-04-10T17:44:00Z,THRD00077,CUST0084,LGSTK00032,Partner-9,Jeweler,Call,Outbound,Round | 3.00+ | GH | SI,922.62,919.35,,Closed-Won,Requested certificate details.
+MSG00220,2026-02-21T12:52:00Z,THRD00084,CUST0056,LGSTK00535,Partner-10,Jeweler,WhatsApp,Inbound,Emerald | 3.00+ | GH | VS,,,18,Closed-Won,Interested in matching pair availability.
+MSG00221,2026-01-30T19:29:00Z,THRD00141,CUST0075,LGSTK00654,Partner-11,Wholesaler,Platform Chat,Outbound,Emerald | 3.00+ | IJK | SI,,,,Closed-Won,Asked for repeat order pricing.
+MSG00222,2026-04-30T15:08:00Z,THRD00105,CUST0042,LGSTK00027,Partner-12,Dealer,Platform Chat,Inbound,Round | 3.00+ | DEF | VVS+,756.65,730.82,20,Open,Counterparty asked for bulk deal terms.
+MSG00223,2026-03-29T16:32:00Z,THRD00150,CUST0028,,Partner-13,Dealer,In-App,Inbound,,,,,Closed-Won,Buyer asked for video and image.
+MSG00224,2026-02-26T09:49:00Z,THRD00138,,,Partner-14,Broker,In-App,Outbound,,1728.8,1584.68,,Open,Buyer asked for video and image.
+MSG00225,2025-12-20T08:06:00Z,THRD00111,CUST0080,,Partner-15,Wholesaler,Platform Chat,Outbound,,1374.56,1308.42,19,Open,Discussion on repeat order potential.
+MSG00226,2026-01-30T08:30:00Z,THRD00039,CUST0057,,Partner-16,Broker,Email,Outbound,,1156.74,1152.31,15,Open,Requested certificate details.
+MSG00227,2026-04-06T13:30:00Z,THRD00134,CUST0078,,Partner-17,Broker,Call,Inbound,,1860.59,1758.71,,Open,Asked for repeat order pricing.
+MSG00228,2026-03-14T18:06:00Z,THRD00006,CUST0080,,Partner-18,Wholesaler,In-App,Inbound,,578.01,577.08,11,Open,Discussion on repeat order potential.
+MSG00229,2026-05-02T11:51:00Z,THRD00110,,LGSTK00527,Partner-19,Dealer,Platform Chat,Inbound,Round | 3.00+ | DEF | VVS+,624.24,601.8,,Open,Requested certificate details.
+MSG00230,2026-04-16T14:00:00Z,THRD00116,CUST0018,,Partner-20,Wholesaler,Call,Inbound,,,,18,Open,Interested in matching pair availability.
+MSG00231,2026-02-11T11:29:00Z,THRD00094,CUST0090,,Partner-21,Jeweler,In-App,Outbound,,1742.61,1653.65,19,Stale,Asked for repeat order pricing.
+MSG00232,2026-03-13T15:39:00Z,THRD00090,CUST0071,LGSTK00436,Partner-22,Broker,Email,Outbound,Round | 1.50-1.99 | GH | SI,1749.25,1714.37,10,Closed-Won,Asked for repeat order pricing.
+MSG00233,2026-04-28T19:09:00Z,THRD00047,CUST0023,,Partner-23,Dealer,Platform Chat,Inbound,,1161.95,1061.77,18,Open,Interested in matching pair availability.
+MSG00234,2026-04-08T15:18:00Z,THRD00143,,LGSTK00419,Partner-24,Broker,Call,Inbound,Princess | 2.00-2.99 | IJK | VS,923.53,872.83,7,Closed-Won,Requested stone in similar category.
+MSG00235,2026-04-24T18:31:00Z,THRD00144,,LGSTK00241,Partner-25,Dealer,Platform Chat,Inbound,Round | 1.50-1.99 | DEF | VS,1330.97,1292.39,1,Open,Requested certificate details.
+MSG00236,2026-01-29T12:14:00Z,THRD00075,CUST0042,LGSTK00901,Partner-26,Dealer,In-App,Inbound,Round | 2.00-2.99 | GH | VVS+,586.88,555.03,9,Open,Discussion on repeat order potential.
+MSG00237,2026-04-07T20:02:00Z,THRD00094,CUST0090,,Partner-27,Dealer,In-App,Inbound,,,,,Stale,Asked for repeat order pricing.
+MSG00238,2026-04-20T08:28:00Z,THRD00064,CUST0007,LGSTK00940,Partner-28,Broker,Email,Inbound,Round | 1.00-1.49 | GH | VVS+,2183.06,1983.74,,Stale,Buyer comparing with another supplier.
+MSG00239,2026-04-01T10:39:00Z,THRD00090,CUST0071,LGSTK00436,Partner-29,Broker,In-App,Outbound,Round | 1.50-1.99 | GH | SI,675.23,621.68,20,Closed-Won,Discussion on repeat order potential.
+MSG00240,2026-03-06T19:18:00Z,THRD00044,CUST0089,,Partner-0,Broker,Email,Outbound,,814.89,803.32,,Open,Negotiation paused pending approval.
+MSG00241,2026-04-21T11:09:00Z,THRD00033,,LGSTK00556,Partner-1,Wholesaler,Platform Chat,Outbound,Round | 3.00+ | DEF | VVS+,,,9,Open,Requested stone in similar category.
+MSG00242,2026-03-14T09:40:00Z,THRD00097,CUST0032,LGSTK00783,Partner-2,Broker,Platform Chat,Outbound,Radiant | 0.25-0.49 | DEF | VVS+,,,12,Open,Counterparty asked for bulk deal terms.
+MSG00243,2026-04-19T17:00:00Z,THRD00125,,,Partner-3,Broker,Platform Chat,Outbound,,,,,Closed-Won,Discussion on repeat order potential.
+MSG00244,2026-04-07T14:52:00Z,THRD00102,CUST0015,LGSTK00664,Partner-4,Jeweler,In-App,Inbound,Emerald | 1.00-1.49 | GH | VVS+,817.63,803.59,16,Closed-Won,Buyer asked for video and image.
+MSG00245,2026-03-30T09:40:00Z,THRD00013,,LGSTK00225,Partner-5,Dealer,WhatsApp,Inbound,Radiant | 3.00+ | GH | VVS+,,,,Open,Interested in matching pair availability.
+MSG00246,2026-05-02T08:27:00Z,THRD00113,CUST0091,LGSTK00565,Partner-6,Jeweler,Email,Outbound,Princess | 3.00+ | DEF | VVS+,1783.76,1628.91,12,Closed-Won,Negotiation paused pending approval.
+MSG00247,2026-02-10T18:57:00Z,THRD00022,CUST0028,,Partner-7,Wholesaler,Platform Chat,Inbound,,319.11,307.16,,Closed-Won,Buyer requested better discount.
+MSG00248,2026-05-01T09:08:00Z,THRD00055,CUST0043,LGSTK00680,Partner-8,Broker,Call,Inbound,Oval | 1.00-1.49 | DEF | VS,1394.72,1317.32,,Open,Requested stone in similar category.
+MSG00249,2026-04-24T09:14:00Z,THRD00034,CUST0068,LGSTK00984,Partner-9,Jeweler,Call,Outbound,Round | 3.00+ | GH | SI,1880.76,1711.95,5,Open,Interested in matching pair availability.
+MSG00250,2026-04-26T17:00:00Z,THRD00018,CUST0082,LGSTK00204,Partner-10,Wholesaler,Email,Outbound,Round | 3.00+ | IJK | VS,577.47,540.0,15,Open,Requested certificate details.
+MSG00251,2026-05-02T09:08:00Z,THRD00023,CUST0067,LGSTK00254,Partner-11,Dealer,Call,Outbound,Oval | 1.00-1.49 | IJK | VVS+,,,5,Closed-Won,Requested certificate details.
+MSG00252,2026-04-07T09:15:00Z,THRD00071,,LGSTK00400,Partner-12,Broker,Call,Inbound,Radiant | 2.00-2.99 | IJK | VS,1580.02,1518.02,17,Open,Requested certificate details.
+MSG00253,2026-04-02T18:03:00Z,THRD00101,CUST0059,LGSTK00240,Partner-13,Wholesaler,Platform Chat,Outbound,Round | 0.50-0.99 | IJK | VVS+,,,16,Open,Buyer comparing with another supplier.
+MSG00254,2026-05-02T08:23:00Z,THRD00019,CUST0001,LGSTK00501,Partner-14,Wholesaler,Platform Chat,Outbound,Radiant | 0.25-0.49 | DEF | SI,,,6,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00255,2026-04-28T17:04:00Z,THRD00019,CUST0001,LGSTK00501,Partner-15,Dealer,In-App,Outbound,Radiant | 0.25-0.49 | DEF | SI,696.21,690.82,17,Closed-Won,Requested stone in similar category.
+MSG00256,2026-03-25T09:40:00Z,THRD00109,CUST0037,LGSTK00411,Partner-16,Jeweler,WhatsApp,Inbound,Radiant | 3.00+ | DEF | VS,1616.91,1500.08,,Open,Interested in matching pair availability.
+MSG00257,2026-03-29T14:37:00Z,THRD00138,,,Partner-17,Broker,Call,Outbound,,2119.41,2051.81,,Open,Requested certificate details.
+MSG00258,2026-02-12T09:59:00Z,THRD00015,,LGSTK00995,Partner-18,Jeweler,Email,Inbound,Round | 3.00+ | IJK | SI,1242.76,1194.15,5,Open,Buyer requested better discount.
+MSG00259,2026-04-26T13:33:00Z,THRD00042,,LGSTK00258,Partner-19,Jeweler,Email,Outbound,Round | 3.00+ | DEF | VVS+,2091.77,1936.82,,Closed-Won,Asked for repeat order pricing.
+MSG00260,2026-03-31T20:27:00Z,THRD00008,CUST0047,LGSTK00364,Partner-20,Broker,Platform Chat,Outbound,Round | 3.00+ | DEF | VVS+,346.91,336.93,2,Open,Counterparty asked for bulk deal terms.
+MSG00261,2026-03-13T13:10:00Z,THRD00146,CUST0063,LGSTK00962,Partner-21,Broker,Email,Inbound,Princess | 2.00-2.99 | DEF | VVS+,436.68,418.07,1,Open,Requested certificate details.
+MSG00262,2026-04-09T13:24:00Z,THRD00012,CUST0034,LGSTK00763,Partner-22,Wholesaler,WhatsApp,Outbound,Radiant | 3.00+ | IJK | VS,,,8,Closed-Lost,Requested stone in similar category.
+MSG00263,2026-01-22T09:36:00Z,THRD00082,CUST0006,LGSTK00439,Partner-23,Wholesaler,Email,Inbound,Round | 1.50-1.99 | DEF | SI,1354.69,1341.41,,Closed-Won,Asked for repeat order pricing.
+MSG00264,2026-01-28T20:54:00Z,THRD00120,,LGSTK00680,Partner-24,Jeweler,Email,Outbound,Oval | 1.00-1.49 | DEF | VS,398.69,377.03,10,Open,Buyer comparing with another supplier.
+MSG00265,2026-04-19T13:37:00Z,THRD00063,,,Partner-25,Wholesaler,In-App,Inbound,,,,14,Closed-Won,Buyer requested better discount.
+MSG00266,2026-04-06T13:40:00Z,THRD00060,CUST0043,LGSTK00975,Partner-26,Broker,Call,Inbound,Oval | 3.00+ | IJK | SI,,,,Open,Requested stone in similar category.
+MSG00267,2026-03-28T11:33:00Z,THRD00079,CUST0096,,Partner-27,Dealer,Platform Chat,Inbound,,,,,Open,Interested in matching pair availability.
+MSG00268,2026-04-26T08:58:00Z,THRD00072,CUST0029,LGSTK00498,Partner-28,Jeweler,Platform Chat,Inbound,Round | 2.00-2.99 | DEF | VVS+,2144.66,2018.78,17,Closed-Won,Interested in matching pair availability.
+MSG00269,2026-03-05T17:36:00Z,THRD00101,CUST0059,LGSTK00240,Partner-29,Jeweler,Call,Outbound,Round | 0.50-0.99 | IJK | VVS+,1723.62,1573.79,,Open,Requested stone in similar category.
+MSG00270,2026-02-06T15:17:00Z,THRD00084,CUST0056,LGSTK00535,Partner-0,Broker,Email,Inbound,Emerald | 3.00+ | GH | VS,2370.18,2165.42,15,Closed-Won,Buyer asked for video and image.
+MSG00271,2026-04-12T16:22:00Z,THRD00105,CUST0042,LGSTK00027,Partner-1,Wholesaler,Platform Chat,Outbound,Round | 3.00+ | DEF | VVS+,,,4,Open,Asked for repeat order pricing.
+MSG00272,2026-04-30T18:19:00Z,THRD00041,CUST0020,LGSTK00620,Partner-2,Broker,Email,Outbound,Oval | 2.00-2.99 | IJK | VVS+,,,8,Closed-Won,Buyer asked for video and image.
+MSG00273,2026-04-26T08:43:00Z,THRD00102,CUST0015,LGSTK00664,Partner-3,Dealer,Platform Chat,Inbound,Emerald | 1.00-1.49 | GH | VVS+,2086.21,1913.86,4,Closed-Won,Interested in matching pair availability.
+MSG00274,2025-12-14T08:53:00Z,THRD00032,CUST0094,,Partner-4,Wholesaler,Email,Inbound,,,,,Open,Buyer asked for video and image.
+MSG00275,2026-04-05T17:16:00Z,THRD00022,CUST0028,,Partner-5,Broker,WhatsApp,Inbound,,,,15,Closed-Won,Interested in matching pair availability.
+MSG00276,2026-02-14T09:02:00Z,THRD00024,CUST0029,LGSTK00725,Partner-6,Broker,Email,Outbound,Round | 1.00-1.49 | DEF | VS,,,,Open,Requested stone in similar category.
+MSG00277,2026-01-02T14:43:00Z,THRD00128,CUST0049,LGSTK00247,Partner-7,Jeweler,Call,Outbound,Round | 3.00+ | GH | VVS+,1014.07,1004.77,,Open,Buyer requested better discount.
+MSG00278,2026-04-25T12:31:00Z,THRD00063,,,Partner-8,Jeweler,Platform Chat,Inbound,,1466.58,1328.87,17,Closed-Won,Requested certificate details.
+MSG00279,2026-04-29T14:50:00Z,THRD00140,CUST0012,,Partner-9,Dealer,In-App,Outbound,,,,19,Closed-Won,Discussion on repeat order potential.
+MSG00280,2026-04-17T12:11:00Z,THRD00083,CUST0054,,Partner-10,Jeweler,WhatsApp,Outbound,,1573.37,1420.64,19,Closed-Won,Requested certificate details.
+MSG00281,2026-03-16T11:42:00Z,THRD00041,CUST0020,LGSTK00620,Partner-11,Broker,Email,Outbound,Oval | 2.00-2.99 | IJK | VVS+,1427.49,1397.69,6,Closed-Won,Interested in matching pair availability.
+MSG00282,2026-04-27T13:51:00Z,THRD00061,CUST0006,LGSTK00487,Partner-12,Jeweler,In-App,Inbound,Pear | 3.00+ | DEF | VVS+,,,,Closed-Won,Buyer asked for video and image.
+MSG00283,2026-03-10T17:12:00Z,THRD00146,CUST0063,LGSTK00962,Partner-13,Dealer,In-App,Outbound,Princess | 2.00-2.99 | DEF | VVS+,,,2,Open,Asked for repeat order pricing.
+MSG00284,2026-02-09T17:14:00Z,THRD00015,,LGSTK00995,Partner-14,Wholesaler,Email,Outbound,Round | 3.00+ | IJK | SI,1299.37,1212.54,,Open,Buyer asked for video and image.
+MSG00285,2025-11-24T10:37:00Z,THRD00016,,,Partner-15,Wholesaler,WhatsApp,Outbound,,,,,Open,Buyer asked for video and image.
+MSG00286,2026-05-01T09:21:00Z,THRD00102,CUST0015,LGSTK00664,Partner-16,Dealer,Platform Chat,Outbound,Emerald | 1.00-1.49 | GH | VVS+,513.84,470.55,18,Closed-Won,Buyer comparing with another supplier.
+MSG00287,2026-01-29T18:37:00Z,THRD00092,CUST0095,LGSTK00742,Partner-17,Dealer,Call,Outbound,Oval | 0.50-0.99 | DEF | SI,,,1,Closed-Won,Buyer comparing with another supplier.
+MSG00288,2026-02-28T10:38:00Z,THRD00101,CUST0059,LGSTK00240,Partner-18,Broker,Platform Chat,Inbound,Round | 0.50-0.99 | IJK | VVS+,2060.26,1980.19,3,Open,Requested certificate details.
+MSG00289,2026-02-28T10:40:00Z,THRD00089,CUST0003,LGSTK00227,Partner-19,Broker,Call,Outbound,Round | 2.00-2.99 | DEF | VVS+,,,7,Closed-Won,Requested certificate details.
+MSG00290,2026-04-15T12:50:00Z,THRD00018,CUST0082,LGSTK00204,Partner-20,Dealer,Email,Outbound,Round | 3.00+ | IJK | VS,202.95,190.49,13,Open,Buyer asked for video and image.
+MSG00291,2026-05-02T09:53:00Z,THRD00140,CUST0012,,Partner-21,Wholesaler,Email,Outbound,,2187.32,2110.98,2,Closed-Won,Negotiation paused pending approval.
+MSG00292,2026-03-11T12:06:00Z,THRD00006,CUST0080,,Partner-22,Broker,In-App,Inbound,,591.24,554.31,20,Open,Counterparty asked for bulk deal terms.
+MSG00293,2026-04-06T18:10:00Z,THRD00008,CUST0047,LGSTK00364,Partner-23,Jeweler,Email,Inbound,Round | 3.00+ | DEF | VVS+,1198.66,1085.21,18,Open,Discussion on repeat order potential.
+MSG00294,2026-02-25T12:15:00Z,THRD00068,CUST0031,LGSTK00328,Partner-24,Dealer,Email,Inbound,Round | 3.00+ | GH | VS,1103.68,1053.98,14,Open,Asked for repeat order pricing.
+MSG00295,2026-05-02T18:40:00Z,THRD00076,CUST0003,,Partner-25,Wholesaler,Call,Inbound,,659.25,595.02,4,Open,Negotiation paused pending approval.
+MSG00296,2026-04-24T15:57:00Z,THRD00102,CUST0015,LGSTK00664,Partner-26,Wholesaler,Call,Outbound,Emerald | 1.00-1.49 | GH | VVS+,409.61,390.94,15,Closed-Won,Buyer requested better discount.
+MSG00297,2026-04-06T15:16:00Z,THRD00068,CUST0031,LGSTK00328,Partner-27,Broker,WhatsApp,Outbound,Round | 3.00+ | GH | VS,817.69,740.96,,Open,Requested stone in similar category.
+MSG00298,2026-04-24T08:53:00Z,THRD00059,,,Partner-28,Dealer,In-App,Inbound,,1401.94,1397.12,3,Open,Requested stone in similar category.
+MSG00299,2026-04-02T17:57:00Z,THRD00009,CUST0078,LGSTK00547,Partner-29,Wholesaler,WhatsApp,Outbound,Round | 3.00+ | IJK | VVS+,1514.42,1511.81,6,Closed-Lost,Requested certificate details.
+MSG00300,2026-02-23T08:27:00Z,THRD00050,CUST0004,LGSTK00409,Partner-0,Wholesaler,In-App,Outbound,Round | 1.00-1.49 | DEF | VS,1771.19,1629.83,3,Closed-Won,Asked for repeat order pricing.
+MSG00301,2026-03-29T14:35:00Z,THRD00100,CUST0021,LGSTK00462,Partner-1,Broker,In-App,Outbound,Round | 1.50-1.99 | IJK | SI,835.26,790.0,5,Open,Interested in matching pair availability.
+MSG00302,2026-03-04T09:36:00Z,THRD00146,CUST0063,LGSTK00962,Partner-2,Jeweler,In-App,Outbound,Princess | 2.00-2.99 | DEF | VVS+,,,,Open,Negotiation paused pending approval.
+MSG00303,2026-04-27T17:38:00Z,THRD00099,CUST0098,LGSTK00217,Partner-3,Dealer,WhatsApp,Outbound,Round | 3.00+ | DEF | VVS+,596.06,560.47,,Stale,Buyer asked for video and image.
+MSG00304,2025-12-09T19:30:00Z,THRD00061,CUST0006,LGSTK00487,Partner-4,Jeweler,WhatsApp,Outbound,Pear | 3.00+ | DEF | VVS+,,,,Closed-Won,Negotiation paused pending approval.
+MSG00305,2026-03-02T15:54:00Z,THRD00080,,LGSTK00930,Partner-5,Wholesaler,Call,Outbound,Princess | 3.00+ | GH | VVS+,425.9,420.32,,Open,Buyer asked for video and image.
+MSG00306,2026-04-21T14:38:00Z,THRD00069,CUST0091,LGSTK00425,Partner-6,Dealer,Platform Chat,Outbound,Round | 1.50-1.99 | DEF | VS,632.25,582.39,,Open,Discussion on repeat order potential.
+MSG00307,2026-03-14T12:45:00Z,THRD00041,CUST0020,LGSTK00620,Partner-7,Broker,Email,Inbound,Oval | 2.00-2.99 | IJK | VVS+,511.99,504.38,,Closed-Won,Requested certificate details.
+MSG00308,2026-02-13T08:29:00Z,THRD00015,,LGSTK00995,Partner-8,Jeweler,Platform Chat,Outbound,Round | 3.00+ | IJK | SI,1028.86,946.46,4,Open,Buyer requested better discount.
+MSG00309,2026-03-08T15:38:00Z,THRD00062,CUST0092,LGSTK00507,Partner-9,Jeweler,Call,Inbound,Oval | 2.00-2.99 | DEF | VS,2409.2,2282.62,,Closed-Won,Negotiation paused pending approval.
+MSG00310,2026-02-02T08:24:00Z,THRD00024,CUST0029,LGSTK00725,Partner-10,Wholesaler,Email,Inbound,Round | 1.00-1.49 | DEF | VS,2163.79,2116.15,9,Open,Requested stone in similar category.
+MSG00311,2025-11-20T20:49:00Z,THRD00132,CUST0090,LGSTK00850,Partner-11,Wholesaler,In-App,Inbound,Round | 3.00+ | GH | SI,1290.42,1178.45,20,Open,Negotiation paused pending approval.
+MSG00312,2026-03-10T14:54:00Z,THRD00071,,LGSTK00400,Partner-12,Dealer,In-App,Inbound,Radiant | 2.00-2.99 | IJK | VS,779.6,738.02,12,Open,Discussion on repeat order potential.
+MSG00313,2026-04-19T18:06:00Z,THRD00073,CUST0022,,Partner-13,Jeweler,Call,Outbound,,973.45,903.02,10,Closed-Won,Requested certificate details.
+MSG00314,2026-03-15T20:15:00Z,THRD00039,CUST0057,,Partner-14,Dealer,Call,Inbound,,,,,Open,Counterparty asked for bulk deal terms.
+MSG00315,2026-04-23T14:25:00Z,THRD00076,CUST0003,,Partner-15,Wholesaler,Call,Inbound,,281.23,273.02,16,Open,Buyer asked for video and image.
+MSG00316,2026-03-25T10:53:00Z,THRD00130,CUST0045,,Partner-16,Dealer,Email,Outbound,,1483.97,1379.17,,Open,Discussion on repeat order potential.
+MSG00317,2026-05-01T13:41:00Z,THRD00047,CUST0023,,Partner-17,Jeweler,Platform Chat,Outbound,,1017.15,991.13,19,Open,Negotiation paused pending approval.
+MSG00318,2026-02-01T15:03:00Z,THRD00119,CUST0074,LGSTK00877,Partner-18,Broker,Platform Chat,Inbound,Round | 1.00-1.49 | GH | VS,,,13,Open,Discussion on repeat order potential.
+MSG00319,2026-04-21T08:55:00Z,THRD00077,CUST0084,LGSTK00032,Partner-19,Wholesaler,Email,Outbound,Round | 3.00+ | GH | SI,,,19,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00320,2026-04-24T19:11:00Z,THRD00037,CUST0083,LGSTK00324,Partner-20,Dealer,Call,Inbound,Oval | 0.25-0.49 | DEF | VS,,,2,Open,Buyer requested better discount.
+MSG00321,2026-03-28T11:48:00Z,THRD00116,CUST0018,,Partner-21,Wholesaler,Platform Chat,Inbound,,,,14,Open,Requested stone in similar category.
+MSG00322,2026-04-13T15:24:00Z,THRD00104,CUST0090,LGSTK00279,Partner-22,Broker,Call,Inbound,Round | 1.50-1.99 | DEF | VVS+,1427.7,1389.25,1,Open,Requested certificate details.
+MSG00323,2026-04-07T13:19:00Z,THRD00058,CUST0084,LGSTK00453,Partner-23,Wholesaler,WhatsApp,Inbound,Emerald | 0.50-0.99 | IJK | SI,1082.17,1037.66,10,Open,Counterparty asked for bulk deal terms.
+MSG00324,2026-04-14T16:21:00Z,THRD00134,CUST0078,,Partner-24,Dealer,Call,Inbound,,1779.59,1625.44,13,Open,Buyer requested better discount.
+MSG00325,2026-04-03T19:08:00Z,THRD00059,,,Partner-25,Broker,Call,Inbound,,250.4,238.0,9,Open,Discussion on repeat order potential.
+MSG00326,2026-03-31T18:06:00Z,THRD00013,,LGSTK00225,Partner-26,Dealer,Platform Chat,Outbound,Radiant | 3.00+ | GH | VVS+,245.41,237.8,9,Open,Counterparty asked for bulk deal terms.
+MSG00327,2026-04-12T19:43:00Z,THRD00040,CUST0071,LGSTK00680,Partner-27,Jeweler,In-App,Inbound,Oval | 1.00-1.49 | DEF | VS,892.57,862.37,4,Closed-Won,Discussion on repeat order potential.
+MSG00328,2026-02-28T09:50:00Z,THRD00031,,LGSTK00003,Partner-28,Jeweler,In-App,Inbound,Round | 3.00+ | DEF | VVS+,656.89,604.32,14,Closed-Won,Negotiation paused pending approval.
+MSG00329,2026-04-19T16:31:00Z,THRD00042,,LGSTK00258,Partner-29,Dealer,Call,Inbound,Round | 3.00+ | DEF | VVS+,,,3,Closed-Won,Asked for repeat order pricing.
+MSG00330,2026-04-23T15:09:00Z,THRD00147,CUST0047,LGSTK00703,Partner-0,Broker,WhatsApp,Outbound,Round | 2.00-2.99 | IJK | VVS+,,,15,Open,Negotiation paused pending approval.
+MSG00331,2026-04-12T08:06:00Z,THRD00068,CUST0031,LGSTK00328,Partner-1,Broker,Call,Outbound,Round | 3.00+ | GH | VS,,,,Open,Buyer asked for video and image.
+MSG00332,2026-05-02T09:54:00Z,THRD00110,,LGSTK00527,Partner-2,Broker,WhatsApp,Inbound,Round | 3.00+ | DEF | VVS+,,,6,Open,Buyer asked for video and image.
+MSG00333,2026-03-25T17:17:00Z,THRD00092,CUST0095,LGSTK00742,Partner-3,Broker,Call,Outbound,Oval | 0.50-0.99 | DEF | SI,,,13,Closed-Won,Requested stone in similar category.
+MSG00334,2026-02-10T14:44:00Z,THRD00117,CUST0001,LGSTK00306,Partner-4,Dealer,Email,Inbound,Round | 2.00-2.99 | DEF | SI,,,2,Closed-Lost,Interested in matching pair availability.
+MSG00335,2026-04-25T17:30:00Z,THRD00027,CUST0053,LGSTK00747,Partner-5,Dealer,Email,Outbound,Pear | 3.00+ | IJK | VS,,,,Closed-Won,Buyer comparing with another supplier.
+MSG00336,2026-04-22T19:57:00Z,THRD00008,CUST0047,LGSTK00364,Partner-6,Dealer,Platform Chat,Inbound,Round | 3.00+ | DEF | VVS+,2316.92,2111.39,11,Open,Buyer requested better discount.
+MSG00337,2026-04-11T18:55:00Z,THRD00135,CUST0099,LGSTK00859,Partner-7,Broker,Platform Chat,Inbound,Round | 1.50-1.99 | DEF | VS,1403.14,1361.13,13,Open,Interested in matching pair availability.
+MSG00338,2026-05-01T17:03:00Z,THRD00143,,LGSTK00419,Partner-8,Dealer,Platform Chat,Inbound,Princess | 2.00-2.99 | IJK | VS,2349.05,2232.91,16,Closed-Won,Buyer asked for video and image.
+MSG00339,2026-03-03T12:03:00Z,THRD00062,CUST0092,LGSTK00507,Partner-9,Wholesaler,WhatsApp,Outbound,Oval | 2.00-2.99 | DEF | VS,1466.14,1375.04,19,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00340,2026-04-29T15:28:00Z,THRD00023,CUST0067,LGSTK00254,Partner-10,Broker,WhatsApp,Outbound,Oval | 1.00-1.49 | IJK | VVS+,2455.54,2392.98,18,Closed-Won,Discussion on repeat order potential.
+MSG00341,2026-05-02T09:50:00Z,THRD00001,CUST0036,LGSTK00143,Partner-11,Wholesaler,Platform Chat,Outbound,Round | 2.00-2.99 | IJK | VVS+,1623.85,1510.93,2,Closed-Won,Requested certificate details.
+MSG00342,2026-02-25T16:49:00Z,THRD00117,CUST0001,LGSTK00306,Partner-12,Dealer,WhatsApp,Inbound,Round | 2.00-2.99 | DEF | SI,1288.21,1244.05,,Closed-Lost,Requested certificate details.
+MSG00343,2026-04-16T13:53:00Z,THRD00001,CUST0036,LGSTK00143,Partner-13,Jeweler,WhatsApp,Inbound,Round | 2.00-2.99 | IJK | VVS+,2039.8,1947.54,,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00344,2026-04-18T09:16:00Z,THRD00036,CUST0073,LGSTK00958,Partner-14,Dealer,Email,Outbound,Round | 3.00+ | DEF | VVS+,631.35,626.94,,Open,Requested certificate details.
+MSG00345,2025-12-28T20:26:00Z,THRD00087,CUST0034,LGSTK00902,Partner-15,Broker,Platform Chat,Outbound,Radiant | 3.00+ | IJK | VS,1656.45,1602.14,17,Open,Interested in matching pair availability.
+MSG00346,2025-12-27T16:47:00Z,THRD00128,CUST0049,LGSTK00247,Partner-16,Dealer,In-App,Inbound,Round | 3.00+ | GH | VVS+,2351.21,2313.31,6,Open,Interested in matching pair availability.
+MSG00347,2026-04-25T18:38:00Z,THRD00027,CUST0053,LGSTK00747,Partner-17,Dealer,In-App,Inbound,Pear | 3.00+ | IJK | VS,940.24,929.09,11,Closed-Won,Negotiation paused pending approval.
+MSG00348,2026-03-10T10:26:00Z,THRD00116,CUST0018,,Partner-18,Jeweler,In-App,Inbound,,2238.8,2129.61,20,Open,Negotiation paused pending approval.
+MSG00349,2026-04-15T10:45:00Z,THRD00089,CUST0003,LGSTK00227,Partner-19,Jeweler,WhatsApp,Outbound,Round | 2.00-2.99 | DEF | VVS+,2404.15,2284.88,19,Closed-Won,Buyer comparing with another supplier.
+MSG00350,2026-04-29T12:56:00Z,THRD00107,CUST0061,LGSTK00453,Partner-20,Broker,In-App,Inbound,Emerald | 0.50-0.99 | IJK | SI,,,5,Open,Buyer requested better discount.
+MSG00351,2026-02-01T12:48:00Z,THRD00015,,LGSTK00995,Partner-21,Jeweler,Call,Inbound,Round | 3.00+ | IJK | SI,,,,Open,Negotiation paused pending approval.
+MSG00352,2026-05-02T16:02:00Z,THRD00053,CUST0050,,Partner-22,Wholesaler,In-App,Outbound,,1240.97,1193.33,10,Closed-Won,Buyer requested better discount.
+MSG00353,2026-03-03T14:50:00Z,THRD00098,CUST0057,LGSTK00603,Partner-23,Jeweler,In-App,Inbound,Radiant | 3.00+ | IJK | SI,,,9,Closed-Won,Requested certificate details.
+MSG00354,2026-02-21T18:45:00Z,THRD00114,CUST0016,LGSTK00158,Partner-24,Jeweler,In-App,Inbound,Round | 3.00+ | GH | VVS+,,,,Closed-Won,Requested certificate details.
+MSG00355,2026-04-26T10:43:00Z,THRD00076,CUST0003,,Partner-25,Broker,Platform Chat,Inbound,,2413.69,2349.75,18,Open,Negotiation paused pending approval.
+MSG00356,2026-02-02T17:54:00Z,THRD00034,CUST0068,LGSTK00984,Partner-26,Wholesaler,WhatsApp,Inbound,Round | 3.00+ | GH | SI,960.29,932.41,,Open,Buyer comparing with another supplier.
+MSG00357,2026-04-23T18:39:00Z,THRD00014,CUST0021,,Partner-27,Jeweler,Platform Chat,Outbound,,,,11,Closed-Won,Discussion on repeat order potential.
+MSG00358,2026-05-02T16:04:00Z,THRD00057,CUST0073,LGSTK00562,Partner-28,Wholesaler,Platform Chat,Outbound,Radiant | 1.50-1.99 | IJK | VS,,,8,Closed-Won,Requested certificate details.
+MSG00359,2026-03-22T13:18:00Z,THRD00085,CUST0094,LGSTK00331,Partner-29,Broker,WhatsApp,Outbound,Round | 1.50-1.99 | IJK | SI,1931.11,1840.44,20,Closed-Won,Buyer comparing with another supplier.
+MSG00360,2026-04-06T18:56:00Z,THRD00063,,,Partner-0,Dealer,Call,Outbound,,2306.64,2293.95,17,Closed-Won,Buyer asked for video and image.
+MSG00361,2026-03-25T15:31:00Z,THRD00132,CUST0090,LGSTK00850,Partner-1,Broker,WhatsApp,Inbound,Round | 3.00+ | GH | SI,2266.05,2083.07,,Open,Discussion on repeat order potential.
+MSG00362,2026-01-29T18:04:00Z,THRD00137,CUST0070,,Partner-2,Dealer,WhatsApp,Inbound,,1647.88,1518.22,14,Open,Asked for repeat order pricing.
+MSG00363,2026-04-06T15:45:00Z,THRD00040,CUST0071,LGSTK00680,Partner-3,Jeweler,In-App,Inbound,Oval | 1.00-1.49 | DEF | VS,401.3,363.35,8,Closed-Won,Negotiation paused pending approval.
+MSG00364,2026-04-21T15:40:00Z,THRD00105,CUST0042,LGSTK00027,Partner-4,Broker,In-App,Inbound,Round | 3.00+ | DEF | VVS+,927.73,871.09,20,Open,Asked for repeat order pricing.
+MSG00365,2026-03-06T19:54:00Z,THRD00150,CUST0028,,Partner-5,Jeweler,In-App,Inbound,,2334.51,2125.84,15,Closed-Won,Requested stone in similar category.
+MSG00366,2026-03-26T15:10:00Z,THRD00102,CUST0015,LGSTK00664,Partner-6,Jeweler,Email,Outbound,Emerald | 1.00-1.49 | GH | VVS+,513.68,482.4,12,Closed-Won,Buyer requested better discount.
+MSG00367,2026-05-01T16:09:00Z,THRD00142,,LGSTK00625,Partner-7,Broker,Call,Inbound,Round | 1.50-1.99 | GH | VVS+,211.57,203.04,,Closed-Won,Buyer asked for video and image.
+MSG00368,2026-04-27T18:54:00Z,THRD00055,CUST0043,LGSTK00680,Partner-8,Jeweler,Email,Inbound,Oval | 1.00-1.49 | DEF | VS,570.2,525.77,19,Open,Buyer requested better discount.
+MSG00369,2026-03-27T18:35:00Z,THRD00141,CUST0075,LGSTK00654,Partner-9,Wholesaler,In-App,Outbound,Emerald | 3.00+ | IJK | SI,1744.88,1614.13,,Closed-Won,Buyer asked for video and image.
+MSG00370,2026-04-24T09:18:00Z,THRD00033,,LGSTK00556,Partner-10,Dealer,Call,Outbound,Round | 3.00+ | DEF | VVS+,2270.27,2115.39,5,Open,Buyer comparing with another supplier.
+MSG00371,2026-04-07T20:20:00Z,THRD00146,CUST0063,LGSTK00962,Partner-11,Wholesaler,WhatsApp,Outbound,Princess | 2.00-2.99 | DEF | VVS+,,,8,Open,Requested stone in similar category.
+MSG00372,2026-05-02T13:08:00Z,THRD00071,,LGSTK00400,Partner-12,Dealer,Call,Outbound,Radiant | 2.00-2.99 | IJK | VS,962.59,912.53,4,Open,Interested in matching pair availability.
+MSG00373,2026-02-22T10:57:00Z,THRD00021,CUST0017,LGSTK00487,Partner-13,Broker,WhatsApp,Inbound,Pear | 3.00+ | DEF | VVS+,805.44,796.29,,Stale,Buyer requested better discount.
+MSG00374,2026-03-22T20:37:00Z,THRD00149,CUST0043,LGSTK00129,Partner-14,Dealer,Email,Outbound,Oval | 2.00-2.99 | IJK | VS,284.31,263.29,19,Open,Negotiation paused pending approval.
+MSG00375,2026-04-05T16:32:00Z,THRD00035,,LGSTK00965,Partner-15,Wholesaler,In-App,Inbound,Oval | 3.00+ | IJK | SI,1036.89,934.3,,Open,Interested in matching pair availability.
+MSG00376,2026-04-05T10:36:00Z,THRD00115,CUST0061,LGSTK00565,Partner-16,Wholesaler,Platform Chat,Outbound,Princess | 3.00+ | DEF | VVS+,,,16,Open,Requested certificate details.
+MSG00377,2026-03-29T13:14:00Z,THRD00017,CUST0093,,Partner-17,Jeweler,Platform Chat,Outbound,,675.58,669.35,,Open,Buyer requested better discount.
+MSG00378,2026-03-24T09:45:00Z,THRD00011,CUST0073,,Partner-18,Jeweler,Call,Inbound,,,,13,Open,Buyer asked for video and image.
+MSG00379,2026-04-28T12:24:00Z,THRD00020,CUST0008,LGSTK00581,Partner-19,Wholesaler,In-App,Outbound,Round | 3.00+ | DEF | VVS+,,,12,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00380,2026-05-02T08:32:00Z,THRD00124,,LGSTK00555,Partner-20,Dealer,Email,Inbound,Princess | 2.00-2.99 | DEF | VVS+,,,9,Closed-Won,Requested certificate details.
+MSG00381,2025-12-20T10:23:00Z,THRD00039,CUST0057,,Partner-21,Dealer,Call,Inbound,,2079.0,2008.54,16,Open,Counterparty asked for bulk deal terms.
+MSG00382,2026-04-12T10:41:00Z,THRD00054,CUST0069,LGSTK00963,Partner-22,Broker,Email,Inbound,Princess | 2.00-2.99 | IJK | VVS+,,,19,Open,Interested in matching pair availability.
+MSG00383,2026-04-18T08:57:00Z,THRD00035,,LGSTK00965,Partner-23,Wholesaler,In-App,Outbound,Oval | 3.00+ | IJK | SI,328.6,304.23,19,Open,Buyer requested better discount.
+MSG00384,2026-04-05T11:28:00Z,THRD00073,CUST0022,,Partner-24,Wholesaler,Platform Chat,Inbound,,1284.25,1217.68,,Closed-Won,Interested in matching pair availability.
+MSG00385,2026-04-13T10:46:00Z,THRD00131,CUST0050,,Partner-25,Broker,Email,Outbound,,2321.41,2227.75,4,Open,Buyer requested better discount.
+MSG00386,2026-03-18T16:43:00Z,THRD00052,CUST0034,LGSTK00611,Partner-26,Dealer,In-App,Inbound,Round | 3.00+ | GH | VS,543.99,494.83,,Stale,Discussion on repeat order potential.
+MSG00387,2026-04-09T09:05:00Z,THRD00129,CUST0086,LGSTK00824,Partner-27,Broker,Platform Chat,Outbound,Round | 3.00+ | DEF | VVS+,499.76,479.94,2,Closed-Won,Discussion on repeat order potential.
+MSG00388,2026-05-02T20:30:00Z,THRD00110,,LGSTK00527,Partner-28,Dealer,Call,Inbound,Round | 3.00+ | DEF | VVS+,,,9,Open,Counterparty asked for bulk deal terms.
+MSG00389,2026-04-30T09:18:00Z,THRD00060,CUST0043,LGSTK00975,Partner-29,Broker,WhatsApp,Inbound,Oval | 3.00+ | IJK | SI,1450.58,1342.92,13,Open,Requested certificate details.
+MSG00390,2026-04-07T13:06:00Z,THRD00081,CUST0032,LGSTK00792,Partner-0,Dealer,In-App,Outbound,Princess | 1.00-1.49 | DEF | VVS+,1698.62,1571.84,13,Open,Requested certificate details.
+MSG00391,2026-04-01T20:35:00Z,THRD00106,,,Partner-1,Jeweler,Call,Outbound,,1051.49,1004.69,,Open,Requested stone in similar category.
+MSG00392,2026-03-12T19:14:00Z,THRD00036,CUST0073,LGSTK00958,Partner-2,Wholesaler,In-App,Outbound,Round | 3.00+ | DEF | VVS+,1808.42,1656.84,,Open,Discussion on repeat order potential.
+MSG00393,2026-02-03T14:40:00Z,THRD00014,CUST0021,,Partner-3,Dealer,WhatsApp,Inbound,,409.5,374.5,12,Closed-Won,Asked for repeat order pricing.
+MSG00394,2026-04-29T14:59:00Z,THRD00010,CUST0029,LGSTK00864,Partner-4,Jeweler,In-App,Inbound,Radiant | 3.00+ | DEF | VVS+,,,,Closed-Lost,Interested in matching pair availability.
+MSG00395,2026-03-14T08:12:00Z,THRD00127,CUST0056,LGSTK00544,Partner-5,Jeweler,Email,Inbound,Round | 3.00+ | DEF | VS,,,,Open,Discussion on repeat order potential.
+MSG00396,2026-01-26T17:10:00Z,THRD00133,CUST0096,,Partner-6,Wholesaler,WhatsApp,Outbound,,1027.4,991.96,,Open,Buyer asked for video and image.
+MSG00397,2026-04-19T17:12:00Z,THRD00102,CUST0015,LGSTK00664,Partner-7,Broker,In-App,Outbound,Emerald | 1.00-1.49 | GH | VVS+,1894.93,1718.44,,Closed-Won,Discussion on repeat order potential.
+MSG00398,2026-03-26T13:52:00Z,THRD00150,CUST0028,,Partner-8,Dealer,In-App,Inbound,,1594.64,1466.2,14,Closed-Won,Discussion on repeat order potential.
+MSG00399,2026-01-03T16:18:00Z,THRD00028,CUST0014,LGSTK00195,Partner-9,Jeweler,In-App,Outbound,Pear | 3.00+ | GH | VS,469.12,446.29,13,Open,Buyer comparing with another supplier.
+MSG00400,2026-04-26T20:21:00Z,THRD00124,,LGSTK00555,Partner-10,Dealer,Platform Chat,Inbound,Princess | 2.00-2.99 | DEF | VVS+,,,9,Closed-Won,Asked for repeat order pricing.
+MSG00401,2026-04-04T20:14:00Z,THRD00098,CUST0057,LGSTK00603,Partner-11,Jeweler,In-App,Inbound,Radiant | 3.00+ | IJK | SI,728.84,678.97,,Closed-Won,Negotiation paused pending approval.
+MSG00402,2026-04-19T09:25:00Z,THRD00064,CUST0007,LGSTK00940,Partner-12,Wholesaler,Platform Chat,Outbound,Round | 1.00-1.49 | GH | VVS+,2088.47,1895.5,19,Stale,Negotiation paused pending approval.
+MSG00403,2026-05-01T18:59:00Z,THRD00047,CUST0023,,Partner-13,Dealer,Email,Inbound,,,,,Open,Negotiation paused pending approval.
+MSG00404,2026-03-29T11:53:00Z,THRD00053,CUST0050,,Partner-14,Broker,WhatsApp,Inbound,,1622.77,1485.81,16,Closed-Won,Buyer comparing with another supplier.
+MSG00405,2026-04-16T08:54:00Z,THRD00002,CUST0012,LGSTK00518,Partner-15,Jeweler,Platform Chat,Inbound,Round | 3.00+ | DEF | VS,1627.54,1544.92,,Open,Discussion on repeat order potential.
+MSG00406,2026-05-01T11:48:00Z,THRD00072,CUST0029,LGSTK00498,Partner-16,Dealer,In-App,Inbound,Round | 2.00-2.99 | DEF | VVS+,324.54,318.03,13,Closed-Won,Interested in matching pair availability.
+MSG00407,2026-01-13T19:33:00Z,THRD00118,CUST0045,LGSTK00782,Partner-17,Wholesaler,Platform Chat,Inbound,Round | 3.00+ | GH | SI,1785.18,1608.77,20,Open,Negotiation paused pending approval.
+MSG00408,2026-03-28T11:17:00Z,THRD00048,CUST0095,,Partner-18,Dealer,Platform Chat,Inbound,,1610.09,1508.0,12,Closed-Lost,Buyer asked for video and image.
+MSG00409,2026-02-17T15:11:00Z,THRD00103,CUST0040,LGSTK00845,Partner-19,Broker,Call,Inbound,Oval | 2.00-2.99 | GH | VVS+,2452.33,2375.33,13,Open,Requested certificate details.
+MSG00410,2026-02-21T15:51:00Z,THRD00038,CUST0028,LGSTK00136,Partner-20,Jeweler,Platform Chat,Outbound,Emerald | 1.50-1.99 | DEF | VS,1169.5,1068.28,19,Stale,Buyer requested better discount.
+MSG00411,2026-03-31T19:10:00Z,THRD00102,CUST0015,LGSTK00664,Partner-21,Broker,Platform Chat,Outbound,Emerald | 1.00-1.49 | GH | VVS+,2071.78,1963.33,12,Closed-Won,Discussion on repeat order potential.
+MSG00412,2026-05-02T20:16:00Z,THRD00143,,LGSTK00419,Partner-22,Wholesaler,In-App,Inbound,Princess | 2.00-2.99 | IJK | VS,1147.05,1072.62,,Closed-Won,Negotiation paused pending approval.
+MSG00413,2026-03-24T18:32:00Z,THRD00091,CUST0030,LGSTK00198,Partner-23,Dealer,In-App,Outbound,Oval | 0.50-0.99 | IJK | VS,1894.01,1873.11,5,Open,Interested in matching pair availability.
+MSG00414,2026-03-18T18:39:00Z,THRD00087,CUST0034,LGSTK00902,Partner-24,Wholesaler,Call,Inbound,Radiant | 3.00+ | IJK | VS,2152.47,1952.58,10,Open,Negotiation paused pending approval.
+MSG00415,2026-04-11T15:49:00Z,THRD00102,CUST0015,LGSTK00664,Partner-25,Jeweler,In-App,Outbound,Emerald | 1.00-1.49 | GH | VVS+,,,6,Closed-Won,Buyer requested better discount.
+MSG00416,2026-04-24T18:16:00Z,THRD00033,,LGSTK00556,Partner-26,Broker,Email,Inbound,Round | 3.00+ | DEF | VVS+,,,4,Open,Asked for repeat order pricing.
+MSG00417,2026-04-30T08:01:00Z,THRD00122,CUST0084,,Partner-27,Broker,WhatsApp,Outbound,,,,3,Closed-Won,Requested stone in similar category.
+MSG00418,2026-02-24T11:47:00Z,THRD00080,,LGSTK00930,Partner-28,Wholesaler,WhatsApp,Inbound,Princess | 3.00+ | GH | VVS+,1640.91,1498.36,11,Open,Counterparty asked for bulk deal terms.
+MSG00419,2026-04-04T12:35:00Z,THRD00120,,LGSTK00680,Partner-29,Wholesaler,In-App,Outbound,Oval | 1.00-1.49 | DEF | VS,2429.95,2356.47,19,Open,Requested stone in similar category.
+MSG00420,2026-05-01T12:58:00Z,THRD00135,CUST0099,LGSTK00859,Partner-0,Dealer,Call,Outbound,Round | 1.50-1.99 | DEF | VS,1441.24,1413.09,5,Open,Negotiation paused pending approval.
+MSG00421,2026-05-01T16:52:00Z,THRD00003,CUST0058,LGSTK00829,Partner-1,Wholesaler,Call,Outbound,Round | 3.00+ | GH | VVS+,,,1,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00422,2026-01-26T08:49:00Z,THRD00123,CUST0011,,Partner-2,Broker,In-App,Outbound,,873.72,806.55,18,Closed-Won,Requested stone in similar category.
+MSG00423,2026-04-09T10:45:00Z,THRD00102,CUST0015,LGSTK00664,Partner-3,Dealer,Platform Chat,Inbound,Emerald | 1.00-1.49 | GH | VVS+,,,14,Closed-Won,Requested certificate details.
+MSG00424,2026-02-05T12:41:00Z,THRD00133,CUST0096,,Partner-4,Jeweler,Platform Chat,Inbound,,,,,Open,Interested in matching pair availability.
+MSG00425,2026-02-20T09:40:00Z,THRD00035,,LGSTK00965,Partner-5,Dealer,Email,Outbound,Oval | 3.00+ | IJK | SI,1241.36,1204.18,2,Open,Discussion on repeat order potential.
+MSG00426,2026-02-22T09:18:00Z,THRD00006,CUST0080,,Partner-6,Wholesaler,WhatsApp,Inbound,,1844.95,1794.6,7,Open,Buyer asked for video and image.
+MSG00427,2026-03-17T20:51:00Z,THRD00108,,LGSTK00419,Partner-7,Broker,Call,Inbound,Princess | 2.00-2.99 | IJK | VS,1054.21,1022.26,,Closed-Won,Interested in matching pair availability.
+MSG00428,2026-02-18T20:25:00Z,THRD00015,,LGSTK00995,Partner-8,Jeweler,Platform Chat,Inbound,Round | 3.00+ | IJK | SI,1281.34,1177.83,8,Open,Requested stone in similar category.
+MSG00429,2026-02-27T19:02:00Z,THRD00114,CUST0016,LGSTK00158,Partner-9,Wholesaler,Platform Chat,Outbound,Round | 3.00+ | GH | VVS+,1891.24,1719.89,10,Closed-Won,Buyer asked for video and image.
+MSG00430,2026-04-19T19:02:00Z,THRD00041,CUST0020,LGSTK00620,Partner-10,Broker,Call,Outbound,Oval | 2.00-2.99 | IJK | VVS+,,,7,Closed-Won,Buyer asked for video and image.
+MSG00431,2026-04-09T11:07:00Z,THRD00014,CUST0021,,Partner-11,Jeweler,In-App,Inbound,,1198.57,1080.52,8,Closed-Won,Buyer requested better discount.
+MSG00432,2026-04-26T20:44:00Z,THRD00011,CUST0073,,Partner-12,Broker,Email,Inbound,,1571.29,1472.52,20,Open,Buyer asked for video and image.
+MSG00433,2025-12-04T13:41:00Z,THRD00016,,,Partner-13,Dealer,Email,Outbound,,1433.61,1305.64,,Open,Buyer asked for video and image.
+MSG00434,2026-04-30T08:44:00Z,THRD00113,CUST0091,LGSTK00565,Partner-14,Broker,Platform Chat,Outbound,Princess | 3.00+ | DEF | VVS+,1866.12,1726.29,18,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00435,2026-03-18T10:34:00Z,THRD00049,,LGSTK00837,Partner-15,Wholesaler,WhatsApp,Inbound,Princess | 2.00-2.99 | IJK | VS,1884.53,1747.96,9,Closed-Won,Discussion on repeat order potential.
+MSG00436,2026-03-16T08:49:00Z,THRD00094,CUST0090,,Partner-16,Broker,In-App,Outbound,,1071.8,984.51,,Stale,Requested certificate details.
+MSG00437,2026-04-28T09:42:00Z,THRD00083,CUST0054,,Partner-17,Dealer,Email,Outbound,,,,,Closed-Won,Interested in matching pair availability.
+MSG00438,2026-04-20T14:41:00Z,THRD00073,CUST0022,,Partner-18,Broker,Email,Inbound,,421.39,407.02,,Closed-Won,Requested certificate details.
+MSG00439,2026-04-19T11:06:00Z,THRD00028,CUST0014,LGSTK00195,Partner-19,Dealer,In-App,Outbound,Pear | 3.00+ | GH | VS,1676.03,1573.56,8,Open,Buyer comparing with another supplier.
+MSG00440,2026-04-28T11:41:00Z,THRD00019,CUST0001,LGSTK00501,Partner-20,Broker,Call,Outbound,Radiant | 0.25-0.49 | DEF | SI,2246.46,2039.78,,Closed-Won,Buyer requested better discount.
+MSG00441,2026-03-26T08:46:00Z,THRD00069,CUST0091,LGSTK00425,Partner-21,Broker,WhatsApp,Inbound,Round | 1.50-1.99 | DEF | VS,898.98,894.0,7,Open,Requested certificate details.
+MSG00442,2026-04-12T17:40:00Z,THRD00135,CUST0099,LGSTK00859,Partner-22,Dealer,WhatsApp,Outbound,Round | 1.50-1.99 | DEF | VS,,,14,Open,Asked for repeat order pricing.
+MSG00443,2026-04-02T16:25:00Z,THRD00043,CUST0017,LGSTK00269,Partner-23,Dealer,Call,Outbound,Princess | 2.00-2.99 | GH | VVS+,1712.32,1632.51,11,Open,Buyer asked for video and image.
+MSG00444,2026-04-22T14:52:00Z,THRD00106,,,Partner-24,Wholesaler,In-App,Inbound,,,,18,Open,Negotiation paused pending approval.
+MSG00445,2026-05-02T15:25:00Z,THRD00093,CUST0030,LGSTK00310,Partner-25,Broker,In-App,Inbound,Princess | 1.00-1.49 | IJK | VS,279.72,259.71,,Open,Negotiation paused pending approval.
+MSG00446,2026-02-13T11:13:00Z,THRD00002,CUST0012,LGSTK00518,Partner-26,Broker,Call,Inbound,Round | 3.00+ | DEF | VS,,,15,Open,Buyer asked for video and image.
+MSG00447,2026-04-10T12:23:00Z,THRD00040,CUST0071,LGSTK00680,Partner-27,Wholesaler,Email,Outbound,Oval | 1.00-1.49 | DEF | VS,,,,Closed-Won,Asked for repeat order pricing.
+MSG00448,2026-03-20T17:58:00Z,THRD00147,CUST0047,LGSTK00703,Partner-28,Dealer,Email,Outbound,Round | 2.00-2.99 | IJK | VVS+,377.56,352.06,,Open,Buyer comparing with another supplier.
+MSG00449,2026-03-30T08:46:00Z,THRD00025,,LGSTK00244,Partner-29,Dealer,WhatsApp,Inbound,Emerald | 0.50-0.99 | DEF | VVS+,,,,Closed-Lost,Buyer asked for video and image.
+MSG00450,2026-04-03T14:59:00Z,THRD00090,CUST0071,LGSTK00436,Partner-0,Wholesaler,In-App,Inbound,Round | 1.50-1.99 | GH | SI,,,13,Closed-Won,Buyer requested better discount.
+MSG00451,2026-04-24T08:20:00Z,THRD00079,CUST0096,,Partner-1,Wholesaler,Email,Inbound,,544.03,516.96,13,Open,Counterparty asked for bulk deal terms.
+MSG00452,2026-03-11T09:14:00Z,THRD00148,CUST0016,,Partner-2,Jeweler,WhatsApp,Outbound,,2008.65,1837.52,2,Open,Discussion on repeat order potential.
+MSG00453,2026-02-13T09:25:00Z,THRD00103,CUST0040,LGSTK00845,Partner-3,Wholesaler,Platform Chat,Inbound,Oval | 2.00-2.99 | GH | VVS+,1979.8,1807.63,19,Open,Requested certificate details.
+MSG00454,2026-04-29T11:15:00Z,THRD00144,,LGSTK00241,Partner-4,Broker,WhatsApp,Outbound,Round | 1.50-1.99 | DEF | VS,1986.58,1852.17,12,Open,Requested certificate details.
+MSG00455,2026-04-16T17:41:00Z,THRD00083,CUST0054,,Partner-5,Dealer,In-App,Inbound,,901.08,899.97,8,Closed-Won,Requested certificate details.
+MSG00456,2026-04-21T20:46:00Z,THRD00096,CUST0010,LGSTK00703,Partner-6,Broker,WhatsApp,Inbound,Round | 2.00-2.99 | IJK | VVS+,,,,Closed-Won,Interested in matching pair availability.
+MSG00457,2026-01-05T13:44:00Z,THRD00074,CUST0011,LGSTK00139,Partner-7,Jeweler,Platform Chat,Outbound,Pear | 0.50-0.99 | IJK | VVS+,,,7,Open,Discussion on repeat order potential.
+MSG00458,2026-04-14T16:33:00Z,THRD00055,CUST0043,LGSTK00680,Partner-8,Dealer,In-App,Inbound,Oval | 1.00-1.49 | DEF | VS,,,1,Open,Requested stone in similar category.
+MSG00459,2026-04-30T18:33:00Z,THRD00150,CUST0028,,Partner-9,Jeweler,WhatsApp,Outbound,,591.74,549.37,1,Closed-Won,Asked for repeat order pricing.
+MSG00460,2026-04-25T12:42:00Z,THRD00100,CUST0021,LGSTK00462,Partner-10,Jeweler,WhatsApp,Inbound,Round | 1.50-1.99 | IJK | SI,,,13,Open,Requested certificate details.
+MSG00461,2026-03-19T19:06:00Z,THRD00098,CUST0057,LGSTK00603,Partner-11,Dealer,In-App,Inbound,Radiant | 3.00+ | IJK | SI,,,17,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00462,2025-12-21T08:15:00Z,THRD00144,,LGSTK00241,Partner-12,Jeweler,Call,Outbound,Round | 1.50-1.99 | DEF | VS,,,6,Open,Buyer requested better discount.
+MSG00463,2026-04-16T13:22:00Z,THRD00089,CUST0003,LGSTK00227,Partner-13,Jeweler,WhatsApp,Outbound,Round | 2.00-2.99 | DEF | VVS+,743.27,741.65,,Closed-Won,Buyer requested better discount.
+MSG00464,2026-04-11T11:09:00Z,THRD00143,,LGSTK00419,Partner-14,Dealer,In-App,Inbound,Princess | 2.00-2.99 | IJK | VS,1103.55,1008.34,19,Closed-Won,Interested in matching pair availability.
+MSG00465,2026-05-02T17:21:00Z,THRD00110,,LGSTK00527,Partner-15,Wholesaler,Email,Outbound,Round | 3.00+ | DEF | VVS+,503.08,485.6,17,Open,Interested in matching pair availability.
+MSG00466,2025-12-30T18:59:00Z,THRD00111,CUST0080,,Partner-16,Broker,Email,Outbound,,563.51,510.98,,Open,Interested in matching pair availability.
+MSG00467,2026-04-27T13:56:00Z,THRD00008,CUST0047,LGSTK00364,Partner-17,Dealer,Call,Outbound,Round | 3.00+ | DEF | VVS+,,,,Open,Negotiation paused pending approval.
+MSG00468,2025-12-21T09:08:00Z,THRD00039,CUST0057,,Partner-18,Jeweler,In-App,Inbound,,1953.63,1877.83,8,Open,Buyer requested better discount.
+MSG00469,2025-12-23T19:49:00Z,THRD00092,CUST0095,LGSTK00742,Partner-19,Jeweler,Email,Outbound,Oval | 0.50-0.99 | DEF | SI,1355.35,1301.77,5,Closed-Won,Interested in matching pair availability.
+MSG00470,2026-03-07T08:26:00Z,THRD00050,CUST0004,LGSTK00409,Partner-20,Broker,Call,Outbound,Round | 1.00-1.49 | DEF | VS,,,7,Closed-Won,Requested certificate details.
+MSG00471,2026-03-18T15:55:00Z,THRD00017,CUST0093,,Partner-21,Wholesaler,Platform Chat,Outbound,,1782.08,1758.34,,Open,Buyer comparing with another supplier.
+MSG00472,2026-04-15T13:25:00Z,THRD00098,CUST0057,LGSTK00603,Partner-22,Broker,In-App,Inbound,Radiant | 3.00+ | IJK | SI,1907.68,1830.19,2,Closed-Won,Requested certificate details.
+MSG00473,2026-04-14T14:47:00Z,THRD00133,CUST0096,,Partner-23,Broker,Email,Outbound,,1091.02,1065.4,10,Open,Negotiation paused pending approval.
+MSG00474,2026-02-07T14:18:00Z,THRD00119,CUST0074,LGSTK00877,Partner-24,Wholesaler,Platform Chat,Outbound,Round | 1.00-1.49 | GH | VS,325.46,309.74,17,Open,Asked for repeat order pricing.
+MSG00475,2026-05-02T17:57:00Z,THRD00047,CUST0023,,Partner-25,Dealer,WhatsApp,Inbound,,511.21,481.23,7,Open,Counterparty asked for bulk deal terms.
+MSG00476,2026-01-25T13:44:00Z,THRD00024,CUST0029,LGSTK00725,Partner-26,Broker,WhatsApp,Inbound,Round | 1.00-1.49 | DEF | VS,1836.38,1682.86,,Open,Buyer asked for video and image.
+MSG00477,2026-03-21T19:24:00Z,THRD00022,CUST0028,,Partner-27,Wholesaler,Platform Chat,Outbound,,,,6,Closed-Won,Buyer asked for video and image.
+MSG00478,2026-04-09T10:10:00Z,THRD00145,,LGSTK00554,Partner-28,Wholesaler,WhatsApp,Outbound,Round | 1.50-1.99 | GH | VVS+,,,15,Open,Negotiation paused pending approval.
+MSG00479,2026-04-26T10:12:00Z,THRD00047,CUST0023,,Partner-29,Dealer,Platform Chat,Inbound,,1960.41,1766.76,16,Open,Requested certificate details.
+MSG00480,2026-04-20T18:30:00Z,THRD00056,CUST0090,LGSTK00131,Partner-0,Broker,Email,Outbound,Round | 2.00-2.99 | DEF | VS,1216.31,1167.81,18,Closed-Won,Requested certificate details.
+MSG00481,2026-04-08T10:03:00Z,THRD00013,,LGSTK00225,Partner-1,Jeweler,Call,Inbound,Radiant | 3.00+ | GH | VVS+,284.46,280.3,14,Open,Interested in matching pair availability.
+MSG00482,2026-04-29T12:39:00Z,THRD00042,,LGSTK00258,Partner-2,Wholesaler,Platform Chat,Outbound,Round | 3.00+ | DEF | VVS+,1809.65,1732.25,,Closed-Won,Asked for repeat order pricing.
+MSG00483,2026-04-10T13:57:00Z,THRD00077,CUST0084,LGSTK00032,Partner-3,Broker,Call,Outbound,Round | 3.00+ | GH | SI,355.63,335.26,9,Closed-Won,Buyer asked for video and image.
+MSG00484,2026-04-23T16:13:00Z,THRD00135,CUST0099,LGSTK00859,Partner-4,Broker,Platform Chat,Outbound,Round | 1.50-1.99 | DEF | VS,1607.72,1464.52,11,Open,Negotiation paused pending approval.
+MSG00485,2026-04-19T10:39:00Z,THRD00135,CUST0099,LGSTK00859,Partner-5,Dealer,Email,Inbound,Round | 1.50-1.99 | DEF | VS,1395.32,1343.95,,Open,Requested certificate details.
+MSG00486,2026-04-09T08:29:00Z,THRD00001,CUST0036,LGSTK00143,Partner-6,Dealer,Platform Chat,Inbound,Round | 2.00-2.99 | IJK | VVS+,471.23,464.07,18,Closed-Won,Requested certificate details.
+MSG00487,2026-05-01T19:18:00Z,THRD00003,CUST0058,LGSTK00829,Partner-7,Jeweler,WhatsApp,Inbound,Round | 3.00+ | GH | VVS+,356.02,331.11,11,Closed-Won,Requested stone in similar category.
+MSG00488,2026-02-23T10:12:00Z,THRD00146,CUST0063,LGSTK00962,Partner-8,Dealer,WhatsApp,Inbound,Princess | 2.00-2.99 | DEF | VVS+,977.25,945.24,15,Open,Discussion on repeat order potential.
+MSG00489,2026-04-05T20:52:00Z,THRD00086,CUST0073,LGSTK00389,Partner-9,Jeweler,In-App,Outbound,Round | 3.00+ | DEF | SI,1907.94,1876.48,1,Open,Requested certificate details.
+MSG00490,2026-04-03T13:51:00Z,THRD00148,CUST0016,,Partner-10,Jeweler,WhatsApp,Inbound,,,,1,Open,Buyer asked for video and image.
+MSG00491,2026-04-06T16:53:00Z,THRD00097,CUST0032,LGSTK00783,Partner-11,Broker,Call,Outbound,Radiant | 0.25-0.49 | DEF | VVS+,1593.08,1463.62,,Open,Negotiation paused pending approval.
+MSG00492,2025-12-03T15:56:00Z,THRD00106,,,Partner-12,Wholesaler,In-App,Outbound,,1239.38,1233.27,12,Open,Buyer requested better discount.
+MSG00493,2026-01-22T15:32:00Z,THRD00052,CUST0034,LGSTK00611,Partner-13,Wholesaler,Call,Outbound,Round | 3.00+ | GH | VS,1310.13,1244.63,,Stale,Discussion on repeat order potential.
+MSG00494,2026-03-08T10:49:00Z,THRD00080,,LGSTK00930,Partner-14,Wholesaler,Email,Inbound,Princess | 3.00+ | GH | VVS+,,,17,Open,Asked for repeat order pricing.
+MSG00495,2026-02-16T08:43:00Z,THRD00002,CUST0012,LGSTK00518,Partner-15,Broker,Call,Outbound,Round | 3.00+ | DEF | VS,,,,Open,Asked for repeat order pricing.
+MSG00496,2026-04-25T18:47:00Z,THRD00134,CUST0078,,Partner-16,Wholesaler,Call,Inbound,,1528.39,1423.26,9,Open,Discussion on repeat order potential.
+MSG00497,2026-03-06T18:07:00Z,THRD00082,CUST0006,LGSTK00439,Partner-17,Broker,Email,Outbound,Round | 1.50-1.99 | DEF | SI,562.24,512.45,9,Closed-Won,Interested in matching pair availability.
+MSG00498,2026-04-15T10:04:00Z,THRD00073,CUST0022,,Partner-18,Broker,Email,Inbound,,2252.16,2148.69,2,Closed-Won,Asked for repeat order pricing.
+MSG00499,2026-03-02T09:27:00Z,THRD00099,CUST0098,LGSTK00217,Partner-19,Dealer,In-App,Outbound,Round | 3.00+ | DEF | VVS+,1820.76,1800.96,7,Stale,Discussion on repeat order potential.
+MSG00500,2026-04-11T17:08:00Z,THRD00021,CUST0017,LGSTK00487,Partner-20,Broker,Platform Chat,Outbound,Pear | 3.00+ | DEF | VVS+,2045.41,1983.76,15,Stale,Counterparty asked for bulk deal terms.
+MSG00501,2026-05-02T11:09:00Z,THRD00060,CUST0043,LGSTK00975,Partner-21,Jeweler,Call,Outbound,Oval | 3.00+ | IJK | SI,,,11,Open,Buyer asked for video and image.
+MSG00502,2026-04-06T08:04:00Z,THRD00117,CUST0001,LGSTK00306,Partner-22,Wholesaler,Call,Outbound,Round | 2.00-2.99 | DEF | SI,1008.31,953.99,5,Closed-Lost,Discussion on repeat order potential.
+MSG00503,2026-04-25T19:50:00Z,THRD00027,CUST0053,LGSTK00747,Partner-23,Jeweler,In-App,Outbound,Pear | 3.00+ | IJK | VS,1479.14,1341.72,14,Closed-Won,Requested certificate details.
+MSG00504,2026-04-22T10:30:00Z,THRD00063,,,Partner-24,Dealer,Platform Chat,Outbound,,983.64,965.34,8,Closed-Won,Interested in matching pair availability.
+MSG00505,2026-04-30T15:07:00Z,THRD00020,CUST0008,LGSTK00581,Partner-25,Dealer,Email,Outbound,Round | 3.00+ | DEF | VVS+,1264.69,1208.42,,Closed-Won,Asked for repeat order pricing.
+MSG00506,2026-03-23T13:31:00Z,THRD00028,CUST0014,LGSTK00195,Partner-26,Wholesaler,In-App,Inbound,Pear | 3.00+ | GH | VS,341.41,314.7,,Open,Interested in matching pair availability.
+MSG00507,2026-04-30T12:24:00Z,THRD00116,CUST0018,,Partner-27,Jeweler,Call,Outbound,,1228.47,1130.89,,Open,Requested stone in similar category.
+MSG00508,2026-01-30T17:00:00Z,THRD00089,CUST0003,LGSTK00227,Partner-28,Jeweler,WhatsApp,Outbound,Round | 2.00-2.99 | DEF | VVS+,1373.97,1353.04,,Closed-Won,Buyer requested better discount.
+MSG00509,2026-04-28T16:52:00Z,THRD00001,CUST0036,LGSTK00143,Partner-29,Broker,Call,Inbound,Round | 2.00-2.99 | IJK | VVS+,,,19,Closed-Won,Requested stone in similar category.
+MSG00510,2026-02-19T14:24:00Z,THRD00082,CUST0006,LGSTK00439,Partner-0,Wholesaler,Email,Outbound,Round | 1.50-1.99 | DEF | SI,685.8,629.11,,Closed-Won,Buyer asked for video and image.
+MSG00511,2026-03-11T12:55:00Z,THRD00107,CUST0061,LGSTK00453,Partner-1,Broker,Email,Outbound,Emerald | 0.50-0.99 | IJK | SI,508.84,461.61,5,Open,Asked for repeat order pricing.
+MSG00512,2026-04-19T15:57:00Z,THRD00036,CUST0073,LGSTK00958,Partner-2,Dealer,In-App,Inbound,Round | 3.00+ | DEF | VVS+,,,14,Open,Discussion on repeat order potential.
+MSG00513,2026-04-11T13:14:00Z,THRD00116,CUST0018,,Partner-3,Wholesaler,In-App,Outbound,,1590.52,1523.39,18,Open,Buyer comparing with another supplier.
+MSG00514,2025-11-28T08:36:00Z,THRD00094,CUST0090,,Partner-4,Broker,Email,Outbound,,1047.73,1003.75,3,Stale,Discussion on repeat order potential.
+MSG00515,2026-03-21T15:40:00Z,THRD00023,CUST0067,LGSTK00254,Partner-5,Broker,In-App,Outbound,Oval | 1.00-1.49 | IJK | VVS+,,,11,Closed-Won,Discussion on repeat order potential.
+MSG00516,2026-05-02T15:32:00Z,THRD00003,CUST0058,LGSTK00829,Partner-6,Jeweler,Platform Chat,Outbound,Round | 3.00+ | GH | VVS+,,,,Closed-Won,Negotiation paused pending approval.
+MSG00517,2026-02-15T08:44:00Z,THRD00075,CUST0042,LGSTK00901,Partner-7,Jeweler,In-App,Outbound,Round | 2.00-2.99 | GH | VVS+,,,16,Open,Buyer comparing with another supplier.
+MSG00518,2025-12-27T18:18:00Z,THRD00044,CUST0089,,Partner-8,Broker,Call,Outbound,,,,17,Open,Asked for repeat order pricing.
+MSG00519,2026-04-29T10:39:00Z,THRD00072,CUST0029,LGSTK00498,Partner-9,Broker,In-App,Inbound,Round | 2.00-2.99 | DEF | VVS+,2173.07,1958.85,,Closed-Won,Interested in matching pair availability.
+MSG00520,2026-04-18T20:11:00Z,THRD00115,CUST0061,LGSTK00565,Partner-10,Broker,Call,Inbound,Princess | 3.00+ | DEF | VVS+,1811.78,1718.46,,Open,Buyer comparing with another supplier.
+MSG00521,2026-05-02T15:48:00Z,THRD00040,CUST0071,LGSTK00680,Partner-11,Dealer,Email,Outbound,Oval | 1.00-1.49 | DEF | VS,,,,Closed-Won,Interested in matching pair availability.
+MSG00522,2026-04-08T19:53:00Z,THRD00054,CUST0069,LGSTK00963,Partner-12,Broker,WhatsApp,Inbound,Princess | 2.00-2.99 | IJK | VVS+,1677.2,1636.19,16,Open,Negotiation paused pending approval.
+MSG00523,2026-04-30T11:24:00Z,THRD00122,CUST0084,,Partner-13,Dealer,WhatsApp,Outbound,,1097.16,1016.26,,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00524,2026-04-09T13:33:00Z,THRD00098,CUST0057,LGSTK00603,Partner-14,Jeweler,Platform Chat,Outbound,Radiant | 3.00+ | IJK | SI,294.34,291.92,9,Closed-Won,Asked for repeat order pricing.
+MSG00525,2026-03-25T17:25:00Z,THRD00066,,LGSTK00163,Partner-15,Wholesaler,In-App,Outbound,Round | 3.00+ | IJK | VVS+,1753.17,1620.24,6,Open,Buyer asked for video and image.
+MSG00526,2026-01-28T18:00:00Z,THRD00141,CUST0075,LGSTK00654,Partner-16,Broker,Platform Chat,Inbound,Emerald | 3.00+ | IJK | SI,,,15,Closed-Won,Buyer asked for video and image.
+MSG00527,2026-05-02T12:12:00Z,THRD00057,CUST0073,LGSTK00562,Partner-17,Wholesaler,In-App,Inbound,Radiant | 1.50-1.99 | IJK | VS,1624.61,1471.39,,Closed-Won,Asked for repeat order pricing.
+MSG00528,2026-04-29T17:08:00Z,THRD00023,CUST0067,LGSTK00254,Partner-18,Wholesaler,WhatsApp,Inbound,Oval | 1.00-1.49 | IJK | VVS+,1956.87,1887.97,15,Closed-Won,Asked for repeat order pricing.
+MSG00529,2026-02-11T20:27:00Z,THRD00117,CUST0001,LGSTK00306,Partner-19,Jeweler,Email,Inbound,Round | 2.00-2.99 | DEF | SI,1735.43,1695.54,2,Closed-Lost,Requested stone in similar category.
+MSG00530,2026-01-31T08:16:00Z,THRD00100,CUST0021,LGSTK00462,Partner-20,Jeweler,Email,Outbound,Round | 1.50-1.99 | IJK | SI,,,7,Open,Buyer comparing with another supplier.
+MSG00531,2026-03-18T18:31:00Z,THRD00101,CUST0059,LGSTK00240,Partner-21,Broker,Platform Chat,Outbound,Round | 0.50-0.99 | IJK | VVS+,1443.45,1361.35,3,Open,Asked for repeat order pricing.
+MSG00532,2026-05-01T12:49:00Z,THRD00147,CUST0047,LGSTK00703,Partner-22,Broker,WhatsApp,Outbound,Round | 2.00-2.99 | IJK | VVS+,2261.98,2069.45,11,Open,Requested stone in similar category.
+MSG00533,2026-01-06T16:45:00Z,THRD00148,CUST0016,,Partner-23,Dealer,Platform Chat,Outbound,,,,3,Open,Discussion on repeat order potential.
+MSG00534,2026-01-09T14:44:00Z,THRD00058,CUST0084,LGSTK00453,Partner-24,Dealer,WhatsApp,Outbound,Emerald | 0.50-0.99 | IJK | SI,,,10,Open,Requested stone in similar category.
+MSG00535,2026-01-04T13:34:00Z,THRD00015,,LGSTK00995,Partner-25,Jeweler,WhatsApp,Outbound,Round | 3.00+ | IJK | SI,,,,Open,Negotiation paused pending approval.
+MSG00536,2026-02-02T16:02:00Z,THRD00052,CUST0034,LGSTK00611,Partner-26,Wholesaler,Call,Outbound,Round | 3.00+ | GH | VS,,,,Stale,Buyer asked for video and image.
+MSG00537,2026-04-11T18:28:00Z,THRD00125,,,Partner-27,Wholesaler,WhatsApp,Inbound,,,,19,Closed-Won,Requested certificate details.
+MSG00538,2026-05-01T09:50:00Z,THRD00126,CUST0022,LGSTK00926,Partner-28,Dealer,WhatsApp,Inbound,Round | 3.00+ | DEF | VVS+,907.78,865.47,11,Closed-Won,Buyer requested better discount.
+MSG00539,2026-01-24T11:51:00Z,THRD00104,CUST0090,LGSTK00279,Partner-29,Wholesaler,In-App,Inbound,Round | 1.50-1.99 | DEF | VVS+,1403.18,1394.77,,Open,Buyer requested better discount.
+MSG00540,2026-04-29T18:01:00Z,THRD00037,CUST0083,LGSTK00324,Partner-0,Wholesaler,WhatsApp,Inbound,Oval | 0.25-0.49 | DEF | VS,2311.44,2090.88,10,Open,Asked for repeat order pricing.
+MSG00541,2026-01-15T17:04:00Z,THRD00117,CUST0001,LGSTK00306,Partner-1,Broker,WhatsApp,Outbound,Round | 2.00-2.99 | DEF | SI,,,20,Closed-Lost,Requested certificate details.
+MSG00542,2026-03-21T14:21:00Z,THRD00017,CUST0093,,Partner-2,Dealer,Call,Inbound,,,,,Open,Buyer comparing with another supplier.
+MSG00543,2026-04-30T13:53:00Z,THRD00140,CUST0012,,Partner-3,Wholesaler,WhatsApp,Inbound,,,,4,Closed-Won,Negotiation paused pending approval.
+MSG00544,2026-04-27T10:44:00Z,THRD00037,CUST0083,LGSTK00324,Partner-4,Broker,Email,Inbound,Oval | 0.25-0.49 | DEF | VS,579.51,535.68,,Open,Buyer comparing with another supplier.
+MSG00545,2026-04-25T10:01:00Z,THRD00097,CUST0032,LGSTK00783,Partner-5,Broker,WhatsApp,Inbound,Radiant | 0.25-0.49 | DEF | VVS+,,,3,Open,Buyer comparing with another supplier.
+MSG00546,2026-04-26T19:51:00Z,THRD00073,CUST0022,,Partner-6,Dealer,Email,Inbound,,,,9,Closed-Won,Discussion on repeat order potential.
+MSG00547,2026-04-14T11:11:00Z,THRD00116,CUST0018,,Partner-7,Dealer,In-App,Inbound,,286.53,263.03,10,Open,Buyer asked for video and image.
+MSG00548,2026-02-06T16:15:00Z,THRD00108,,LGSTK00419,Partner-8,Jeweler,In-App,Inbound,Princess | 2.00-2.99 | IJK | VS,2469.19,2463.46,7,Closed-Won,Negotiation paused pending approval.
+MSG00549,2026-02-07T09:50:00Z,THRD00014,CUST0021,,Partner-9,Dealer,Email,Inbound,,2140.7,2121.75,2,Closed-Won,Buyer requested better discount.
+MSG00550,2026-01-31T11:27:00Z,THRD00094,CUST0090,,Partner-10,Dealer,WhatsApp,Inbound,,1618.68,1600.89,,Stale,Discussion on repeat order potential.
+MSG00551,2026-02-07T20:01:00Z,THRD00046,CUST0046,,Partner-11,Dealer,In-App,Outbound,,466.95,462.05,11,Closed-Won,Requested certificate details.
+MSG00552,2026-03-06T11:06:00Z,THRD00029,CUST0010,LGSTK00883,Partner-12,Wholesaler,WhatsApp,Outbound,Round | 2.00-2.99 | DEF | VS,1148.97,1057.05,2,Open,Requested stone in similar category.
+MSG00553,2026-03-01T17:29:00Z,THRD00038,CUST0028,LGSTK00136,Partner-13,Wholesaler,Call,Outbound,Emerald | 1.50-1.99 | DEF | VS,1059.02,1001.59,5,Stale,Buyer requested better discount.
+MSG00554,2026-02-27T12:08:00Z,THRD00146,CUST0063,LGSTK00962,Partner-14,Jeweler,Email,Outbound,Princess | 2.00-2.99 | DEF | VVS+,1270.73,1196.8,20,Open,Interested in matching pair availability.
+MSG00555,2026-03-17T11:05:00Z,THRD00148,CUST0016,,Partner-15,Wholesaler,In-App,Outbound,,1400.07,1380.78,,Open,Negotiation paused pending approval.
+MSG00556,2026-04-28T14:47:00Z,THRD00004,CUST0098,LGSTK00095,Partner-16,Wholesaler,Call,Outbound,Round | 2.00-2.99 | GH | VS,,,19,Open,Interested in matching pair availability.
+MSG00557,2026-01-28T14:02:00Z,THRD00147,CUST0047,LGSTK00703,Partner-17,Broker,Platform Chat,Outbound,Round | 2.00-2.99 | IJK | VVS+,1282.5,1252.82,4,Open,Counterparty asked for bulk deal terms.
+MSG00558,2026-02-16T09:35:00Z,THRD00127,CUST0056,LGSTK00544,Partner-18,Dealer,Email,Inbound,Round | 3.00+ | DEF | VS,,,8,Open,Asked for repeat order pricing.
+MSG00559,2026-04-17T18:19:00Z,THRD00005,CUST0006,,Partner-19,Broker,Platform Chat,Outbound,,1256.35,1202.37,,Open,Requested stone in similar category.
+MSG00560,2026-04-11T18:29:00Z,THRD00048,CUST0095,,Partner-20,Broker,WhatsApp,Outbound,,,,,Closed-Lost,Buyer asked for video and image.
+MSG00561,2026-04-01T12:27:00Z,THRD00136,CUST0057,LGSTK00374,Partner-21,Wholesaler,WhatsApp,Outbound,Emerald | 3.00+ | DEF | VS,,,,Closed-Won,Buyer requested better discount.
+MSG00562,2026-02-16T08:07:00Z,THRD00132,CUST0090,LGSTK00850,Partner-22,Jeweler,Email,Inbound,Round | 3.00+ | GH | SI,1270.31,1148.47,7,Open,Interested in matching pair availability.
+MSG00563,2026-03-07T16:07:00Z,THRD00086,CUST0073,LGSTK00389,Partner-23,Wholesaler,Email,Outbound,Round | 3.00+ | DEF | SI,1895.97,1849.0,9,Open,Discussion on repeat order potential.
+MSG00564,2026-02-21T08:04:00Z,THRD00109,CUST0037,LGSTK00411,Partner-24,Broker,Platform Chat,Outbound,Radiant | 3.00+ | DEF | VS,1240.54,1178.69,12,Open,Asked for repeat order pricing.
+MSG00565,2026-04-29T15:05:00Z,THRD00049,,LGSTK00837,Partner-25,Broker,WhatsApp,Inbound,Princess | 2.00-2.99 | IJK | VS,2265.28,2104.08,5,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00566,2025-12-25T16:40:00Z,THRD00039,CUST0057,,Partner-26,Wholesaler,Platform Chat,Outbound,,1158.03,1121.25,1,Open,Negotiation paused pending approval.
+MSG00567,2026-01-13T08:55:00Z,THRD00049,,LGSTK00837,Partner-27,Jeweler,Platform Chat,Outbound,Princess | 2.00-2.99 | IJK | VS,,,11,Closed-Won,Counterparty asked for bulk deal terms.
+MSG00568,2026-04-27T15:19:00Z,THRD00136,CUST0057,LGSTK00374,Partner-28,Jeweler,Email,Outbound,Emerald | 3.00+ | DEF | VS,2266.05,2108.9,10,Closed-Won,Buyer requested better discount.
+MSG00569,2026-03-19T12:29:00Z,THRD00038,CUST0028,LGSTK00136,Partner-29,Wholesaler,In-App,Outbound,Emerald | 1.50-1.99 | DEF | VS,,,6,Stale,Interested in matching pair availability.
+MSG00570,2026-04-22T09:02:00Z,THRD00042,,LGSTK00258,Partner-0,Wholesaler,Platform Chat,Outbound,Round | 3.00+ | DEF | VVS+,,,7,Closed-Won,Discussion on repeat order potential.
+MSG00571,2026-04-12T13:22:00Z,THRD00009,CUST0078,LGSTK00547,Partner-1,Jeweler,WhatsApp,Inbound,Round | 3.00+ | IJK | VVS+,1231.39,1228.37,16,Closed-Lost,Interested in matching pair availability.
+MSG00572,2026-03-05T10:00:00Z,THRD00118,CUST0045,LGSTK00782,Partner-2,Jeweler,Call,Outbound,Round | 3.00+ | GH | SI,,,,Open,Buyer comparing with another supplier.
+MSG00573,2026-04-15T19:58:00Z,THRD00038,CUST0028,LGSTK00136,Partner-3,Jeweler,WhatsApp,Outbound,Emerald | 1.50-1.99 | DEF | VS,,,,Stale,Interested in matching pair availability.
+MSG00574,2026-03-14T12:01:00Z,THRD00142,,LGSTK00625,Partner-4,Broker,Call,Inbound,Round | 1.50-1.99 | GH | VVS+,2134.02,2015.79,7,Closed-Won,Buyer comparing with another supplier.
+MSG00575,2026-04-11T20:59:00Z,THRD00135,CUST0099,LGSTK00859,Partner-5,Wholesaler,WhatsApp,Inbound,Round | 1.50-1.99 | DEF | VS,,,15,Open,Asked for repeat order pricing.
+MSG00576,2026-02-23T11:31:00Z,THRD00132,CUST0090,LGSTK00850,Partner-6,Jeweler,Platform Chat,Inbound,Round | 3.00+ | GH | SI,1591.68,1582.67,,Open,Requested stone in similar category.
+MSG00577,2026-04-25T13:00:00Z,THRD00095,CUST0062,LGSTK00189,Partner-7,Broker,Email,Outbound,Round | 3.00+ | GH | VS,1008.12,1005.85,,Open,Requested stone in similar category.
+MSG00578,2026-03-09T10:51:00Z,THRD00114,CUST0016,LGSTK00158,Partner-8,Dealer,Platform Chat,Inbound,Round | 3.00+ | GH | VVS+,,,,Closed-Won,Buyer comparing with another supplier.
+MSG00579,2026-03-15T11:19:00Z,THRD00023,CUST0067,LGSTK00254,Partner-9,Broker,In-App,Outbound,Oval | 1.00-1.49 | IJK | VVS+,2195.31,2192.38,14,Closed-Won,Negotiation paused pending approval.
+MSG00580,2026-03-14T16:29:00Z,THRD00107,CUST0061,LGSTK00453,Partner-10,Wholesaler,Email,Inbound,Emerald | 0.50-0.99 | IJK | SI,,,,Open,Negotiation paused pending approval.
+MSG00581,2026-04-07T08:52:00Z,THRD00142,,LGSTK00625,Partner-11,Jeweler,Platform Chat,Outbound,Round | 1.50-1.99 | GH | VVS+,,,1,Closed-Won,Interested in matching pair availability.
+MSG00582,2026-03-01T18:53:00Z,THRD00068,CUST0031,LGSTK00328,Partner-12,Jeweler,Platform Chat,Inbound,Round | 3.00+ | GH | VS,485.61,469.39,8,Open,Buyer requested better discount.
+MSG00583,2026-04-30T12:31:00Z,THRD00031,,LGSTK00003,Partner-13,Broker,In-App,Outbound,Round | 3.00+ | DEF | VVS+,,,19,Closed-Won,Requested stone in similar category.
+MSG00584,2026-03-19T18:30:00Z,THRD00067,CUST0099,,Partner-14,Broker,Call,Inbound,,,,,Open,Interested in matching pair availability.
+MSG00585,2025-12-23T10:20:00Z,THRD00149,CUST0043,LGSTK00129,Partner-15,Broker,Call,Outbound,Oval | 2.00-2.99 | IJK | VS,1794.55,1679.23,12,Open,Buyer requested better discount.
+MSG00586,2026-03-03T16:40:00Z,THRD00075,CUST0042,LGSTK00901,Partner-16,Wholesaler,Email,Inbound,Round | 2.00-2.99 | GH | VVS+,,,6,Open,Discussion on repeat order potential.
+MSG00587,2026-05-02T13:52:00Z,THRD00083,CUST0054,,Partner-17,Jeweler,Call,Outbound,,,,19,Closed-Won,Buyer asked for video and image.
+MSG00588,2026-04-14T10:33:00Z,THRD00037,CUST0083,LGSTK00324,Partner-18,Wholesaler,WhatsApp,Inbound,Oval | 0.25-0.49 | DEF | VS,1991.26,1874.17,8,Open,Requested certificate details.
+MSG00589,2026-04-29T16:45:00Z,THRD00144,,LGSTK00241,Partner-19,Dealer,WhatsApp,Inbound,Round | 1.50-1.99 | DEF | VS,1939.51,1767.66,,Open,Buyer requested better discount.
+MSG00590,2026-02-08T12:44:00Z,THRD00123,CUST0011,,Partner-20,Jeweler,Email,Outbound,,2079.19,2056.26,4,Closed-Won,Requested certificate details.
+MSG00591,2026-04-21T19:14:00Z,THRD00033,,LGSTK00556,Partner-21,Dealer,WhatsApp,Inbound,Round | 3.00+ | DEF | VVS+,682.63,681.34,16,Open,Requested stone in similar category.
+MSG00592,2026-03-08T09:02:00Z,THRD00011,CUST0073,,Partner-22,Broker,Platform Chat,Inbound,,,,,Open,Buyer requested better discount.
+MSG00593,2026-04-03T18:00:00Z,THRD00017,CUST0093,,Partner-23,Broker,In-App,Inbound,,,,7,Open,Interested in matching pair availability.
+MSG00594,2025-12-20T09:09:00Z,THRD00090,CUST0071,LGSTK00436,Partner-24,Jeweler,In-App,Outbound,Round | 1.50-1.99 | GH | SI,,,17,Closed-Won,Buyer comparing with another supplier.
+MSG00595,2026-03-25T17:04:00Z,THRD00062,CUST0092,LGSTK00507,Partner-25,Wholesaler,Email,Outbound,Oval | 2.00-2.99 | DEF | VS,1529.71,1378.88,18,Closed-Won,Buyer requested better discount.
+MSG00596,2026-04-29T11:58:00Z,THRD00026,,LGSTK00249,Partner-26,Wholesaler,Platform Chat,Inbound,Pear | 1.50-1.99 | GH | VVS+,1827.84,1712.04,12,Closed-Won,Requested stone in similar category.
+MSG00597,2026-02-05T16:14:00Z,THRD00109,CUST0037,LGSTK00411,Partner-27,Dealer,WhatsApp,Inbound,Radiant | 3.00+ | DEF | VS,1951.24,1817.44,12,Open,Negotiation paused pending approval.
+MSG00598,2026-04-26T08:05:00Z,THRD00143,,LGSTK00419,Partner-28,Jeweler,Platform Chat,Inbound,Princess | 2.00-2.99 | IJK | VS,466.16,432.76,10,Closed-Won,Requested stone in similar category.
+MSG00599,2026-04-24T09:57:00Z,THRD00049,,LGSTK00837,Partner-29,Dealer,Call,Inbound,Princess | 2.00-2.99 | IJK | VS,,,16,Closed-Won,Asked for repeat order pricing.
+MSG00600,2026-04-22T16:42:00Z,THRD00102,CUST0015,LGSTK00664,Partner-0,Broker,Email,Inbound,Emerald | 1.00-1.49 | GH | VVS+,474.2,445.5,7,Closed-Won,Buyer asked for video and image.

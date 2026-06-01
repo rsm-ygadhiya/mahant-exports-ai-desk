@@ -1,0 +1,70 @@
+# Skill 1 — Memo Approval Assistant
+
+A Claude Code **skill**. When a broker or buyer requests a memo hold on a diamond, the HITL gate auto-decides AUTO_APPROVE / NEEDS_REVIEW / AUTO_REJECT using first-come (FIFO) allocation plus two guardrails — so the desk no longer hand-picks who receives a stone.
+
+## Layout
+
+```
+skills/memo-approval/
+├── SKILL.md                  # skill — frontmatter + instructions Claude reads
+├── scripts/
+│   └── memo_approval.py      # decision engine + CLI
+├── install.sh                # copies skill into .claude/skills/ to activate
+└── README.qmd                # this file
+```
+
+## Activate it
+
+```bash
+bash skills/memo-approval/install.sh
+```
+
+Restart Claude Code (or open a new session) to activate.
+
+## Using it through Claude
+
+> "Review all pending memo requests."
+> "Who gets stone LGSTK00279?"
+> "What memos still need my manual review?"
+> "Which memos auto-rejected today?"
+
+## Running the script directly
+
+```bash
+source .venv/bin/activate
+
+# Single memo decision
+uv run python skills/memo-approval/scripts/memo_approval.py --memo MEMO00001
+
+# All pending memos (FIFO auto-decision)
+uv run python skills/memo-approval/scripts/memo_approval.py --all-pending
+
+# With LLM narration for the review/reject cases
+uv run python skills/memo-approval/scripts/memo_approval.py \
+    --all-pending --model api-llama-4-scout
+
+# JSON output
+uv run python skills/memo-approval/scripts/memo_approval.py --all-pending --json
+```
+
+## Decision rules (precedence order)
+
+| # | Condition | Decision |
+|---|---|---|
+| 1 | Requester already received this stone on a prior memo | **AUTO_REJECT** |
+| 2 | Mid-CLV customer (`Gold` tier) requesting >1 stone at once | **NEEDS_REVIEW** |
+| 3 | Earliest pending request for the stone (FIFO winner) | **AUTO_APPROVE** |
+| 4 | Stone already allocated to an earlier request (FIFO loser) | **AUTO_REJECT** |
+
+- **FIFO order** is keyed on the (now timestamped) `request_date`, simulating
+  requests arriving over time.
+- **Mid CLV** = the `Gold` `clv_tier` (configurable via `MID_CLV_TIERS`).
+  `NEEDS_REVIEW` is the only case left for a human.
+
+## Tests
+
+```bash
+uv run pytest tests/skills/test_memo_approval.py -v
+```
+
+21 tests covering `build_received_pairs`, `multi_request_customers`, `decide_memo`, `review_pending`, the three decision paths (FIFO / review / already-received), formatting, and CLI.

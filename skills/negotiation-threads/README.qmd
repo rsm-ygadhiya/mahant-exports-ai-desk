@@ -1,0 +1,101 @@
+# Negotiation Thread Summarizer
+
+This skill reads the free-text `notes` field from `communication_logs_seed.csv` — something no rule-based system can parse — and uses an LLM to summarize the current state of a negotiation and recommend the next action.
+
+## What it does
+
+Sales reps write free-text notes after every customer interaction: "customer mentioned a competitor at $270", "seemed hesitant, wants to confirm with buyer", "promised to follow up after trade show." Those notes hold the real story of a negotiation. This skill:
+
+1. Loads every message in a thread, sorted chronologically.
+2. Joins thread metadata (status, last offer, days open) and customer profile (name, CLV tier, churn risk).
+3. Optionally calls an LLM that reads the raw notes and writes:
+   - **Current status** (1 sentence)
+   - **Key points** from the conversation (2–3 bullets)
+   - **Recommended next action** (1 sentence starting with a verb)
+
+In batch mode (`--all-open`) it surfaces all open threads sorted by days since last activity — showing which deals are going stale before they are lost.
+
+## Folder layout
+
+```
+skills/negotiation-threads/
+├── SKILL.md                  # Claude Code skill descriptor
+├── install.sh                # copies files into .claude/skills/
+├── README.qmd                # this file
+└── scripts/
+    └── negotiation_threads.py
+tests/skills/
+    └── test_negotiation_threads.py
+```
+
+## Activate the skill
+
+```bash
+bash skills/negotiation-threads/install.sh
+```
+
+Then restart Claude Code (or start a new session). The skill will appear in the available skills list and Claude will trigger it automatically when you ask about specific negotiations.
+
+## Run examples
+
+### Single thread by ID
+
+```bash
+uv run python skills/negotiation-threads/scripts/negotiation_threads.py \
+    --thread THRD00042
+```
+
+### All threads for a customer
+
+```bash
+uv run python skills/negotiation-threads/scripts/negotiation_threads.py \
+    --customer CUST0013
+```
+
+### Thread for a specific stone
+
+```bash
+uv run python skills/negotiation-threads/scripts/negotiation_threads.py \
+    --stock LGSTK00115
+```
+
+### All open threads (most neglected first, top 20)
+
+```bash
+uv run python skills/negotiation-threads/scripts/negotiation_threads.py \
+    --all-open --top 20
+```
+
+### Single thread with LLM summary
+
+```bash
+uv run python skills/negotiation-threads/scripts/negotiation_threads.py \
+    --thread THRD00042 --model api-llama-4-scout
+```
+
+### All open threads with LLM summary for each
+
+```bash
+uv run python skills/negotiation-threads/scripts/negotiation_threads.py \
+    --all-open --model api-llama-4-scout --top 5
+```
+
+### JSON output (for downstream processing)
+
+```bash
+uv run python skills/negotiation-threads/scripts/negotiation_threads.py \
+    --all-open --json
+```
+
+### Reproducible date (for testing)
+
+```bash
+uv run python skills/negotiation-threads/scripts/negotiation_threads.py \
+    --all-open --today 2026-05-02 --top 5
+```
+
+## Run tests
+
+```bash
+uv run pytest tests/skills/test_negotiation_threads.py -v
+```

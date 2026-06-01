@@ -1,0 +1,72 @@
+# Skill 3 — CLV Broker & Company
+
+A Claude Code **skill**. Computes Customer Lifetime Value for every broker and company in the Pramukh Gems customer base. Claude runs the CLV calculator and returns a ranked table of lifetime values with profit, churn, and tier signals.
+
+## Layout
+
+```
+skills/clv-broker-company/
+├── SKILL.md                      # skill — frontmatter + instructions Claude reads
+├── scripts/
+│   └── clv_broker_company.py     # CLV engine + CLI
+├── install.sh                    # copies skill into .claude/skills/ to activate
+└── README.qmd                    # this file
+```
+
+## Activate it
+
+```bash
+bash skills/clv-broker-company/install.sh
+```
+
+Restart Claude Code (or open a new session) to activate.
+
+## Using it through Claude
+
+> "What's the CLV of broker CUST0013?"
+> "Rank all brokers by lifetime value."
+> "Show me the CLV breakdown for company CUST0082."
+> "Who are our top 10 customers by CLV?"
+
+## Running the script directly
+
+```bash
+source .venv/bin/activate
+
+# All brokers ranked by CLV
+uv run python skills/clv-broker-company/scripts/clv_broker_company.py --brokers
+
+# All companies ranked by CLV
+uv run python skills/clv-broker-company/scripts/clv_broker_company.py --companies
+
+# Single broker + breakdown of their companies
+uv run python skills/clv-broker-company/scripts/clv_broker_company.py --broker CUST0013
+
+# JSON output
+uv run python skills/clv-broker-company/scripts/clv_broker_company.py --brokers --json
+
+# With LLM narrative
+uv run python skills/clv-broker-company/scripts/clv_broker_company.py --brokers --model api-llama-4-scout
+```
+
+## CLV model
+
+Uses the standard discounted CLV formula from `skills/example/scripts/clv_skill.py`:
+
+```
+CLV = (avg_monthly_profit / monthly_churn_rate) × [1 − 1/(1+discount_rate)^T]
+```
+
+Inputs derived from seed data:
+- **avg_monthly_profit** = total gross profit from sales / months active
+- **churn_rate** = `churn_risk_pct` from customers table
+- **discount_rate** = 0.8% / month (≈ 10% annual)
+- **time_horizon** = 36 months
+
+## Tests
+
+```bash
+uv run pytest tests/skills/test_clv_broker_company.py -v
+```
+
+25 tests covering `clv_inputs_for_entity`, `compute_entity_clv`, `broker_breakdown`, `compute_all_clv`, and CLI.

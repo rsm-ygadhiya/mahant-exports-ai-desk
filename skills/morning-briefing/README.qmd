@@ -1,0 +1,102 @@
+# Morning Desk Briefing
+
+A Claude Code **skill**. Chains four data pulls — inventory aging, overdue collections, open negotiations, and quotes awaiting response — into a single "what needs my attention today?" report for the lab-grown diamond wholesale desk.
+
+## Layout
+
+```
+skills/morning-briefing/
+├── SKILL.md                       # skill frontmatter + instructions Claude reads
+├── scripts/
+│   └── morning_briefing.py        # data pipeline + CLI
+├── install.sh                     # copies skill into .claude/skills/ to activate
+└── README.qmd                     # this file
+```
+
+## What it does
+
+The script runs four independent data pulls every morning:
+
+1. **Inventory aging actions** — Finds all available stones aged ≥ 90 days. Tags each as CLEAR (≥ 180d) or DISCOUNT (90–179d), weighted against recent demand. Returns the stones needing the most urgent action first.
+
+2. **Collection alerts** — From all open and partial invoices, surfaces every invoice more than 30 days past due. Sorted by `days_past_due` descending so the most critical debts appear first.
+
+3. **Open negotiations** — Lists every negotiation thread still in `Open` status, sorted by `last_message_date` ascending (oldest = most neglected = top priority).
+
+4. **Quotes awaiting response** — Finds Pending quotes where the customer has already countered (i.e. `customer_offer` is not null). These are deals the desk has left on the table.
+
+## Activate it
+
+```bash
+bash skills/morning-briefing/install.sh
+```
+
+Restart Claude Code (or open a new session) to activate. After that, saying **"what needs my attention today?"** triggers this skill automatically.
+
+## Running directly
+
+```bash
+# Default briefing (top 5 per section)
+uv run python skills/morning-briefing/scripts/morning_briefing.py
+
+# Show top 10 rows in each section
+uv run python skills/morning-briefing/scripts/morning_briefing.py --top 10
+
+# Add LLM-synthesized 3-5 bullet action summary
+uv run python skills/morning-briefing/scripts/morning_briefing.py --model api-llama-4-scout
+
+# JSON output (for piping into other tools)
+uv run python skills/morning-briefing/scripts/morning_briefing.py --json
+
+# Save inventory + invoice charts as PNGs
+uv run python skills/morning-briefing/scripts/morning_briefing.py \
+    --chart-out morning_briefing_chart.png
+
+# Reproducible run pinned to a past date
+uv run python skills/morning-briefing/scripts/morning_briefing.py \
+    --today 2026-04-25
+
+# Custom data directory
+uv run python skills/morning-briefing/scripts/morning_briefing.py \
+    --data-dir /path/to/custom/data
+```
+
+## Output format
+
+```
+=== Morning Desk Briefing — 2026-05-04 ===
+
+INVENTORY (84 CLEAR | 293 DISCOUNT of 654 available)
+  LGSTK00350 — Radiant 3.00+ DEF SI — 364d — CLEAR (−22% suggested)
+  LGSTK00043 — Oval 2.00-2.99 GH VVS+ — 364d — CLEAR
+  ... (top 5 shown)
+
+COLLECTIONS (132 critical | $756,919 total outstanding)
+  INV00323 — CUST0078 — $1,462 — 151 days overdue
+  ... (top 5 shown)
+
+NEGOTIATIONS (14 open threads)
+  Thread THRD00002 — CUST0012 / LGSTK00518 — last activity 156 days ago
+  ... (top 5 shown)
+
+QUOTES AWAITING RESPONSE (7 quotes)
+  QTE00045 — CUST0031 — offered $48 (our price $51)
+  ... (top 5 shown)
+
+--- LLM Summary (api-llama-4-scout) ---
+• Clear LGSTK00350 immediately — 364 days on hand with weak demand.
+• ...
+```
+
+## Charts
+
+When `--chart-out` is passed, two PNG files are saved:
+
+- `morning_briefing_chart_inventory.png` — Horizontal bar chart of stone counts by triage tag (CLEAR / DISCOUNT / WATCH / HOLD).
+- `morning_briefing_chart_invoices.png` — Horizontal bar chart of invoice counts by aging bucket (Critical 60+d / Overdue 31–60d / Aging 8–30d).
+
+## Running tests
+
+```bash
+uv run pytest tests/skills/test_morning_briefing.py -v
+```

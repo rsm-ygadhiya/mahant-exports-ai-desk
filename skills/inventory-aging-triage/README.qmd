@@ -1,0 +1,104 @@
+# Inventory Aging & Clearance Triage
+
+A Claude Code **skill**. Ask Claude "what should I clear this week?" or "show me my slow movers" and Claude runs the triage script, which tags every available stone HOLD / WATCH / DISCOUNT / CLEAR with a suggested price move and a one-line reason.
+
+## Layout
+
+```
+skills/inventory-aging-triage/
+├── SKILL.md                              # the skill — frontmatter + instructions Claude reads
+├── scripts/
+│   └── inventory_aging_skill.py          # polars triage logic + CLI
+├── install.sh                            # copies this skill into .claude/skills/
+└── README.qmd                            # this file
+```
+
+`SKILL.md` is what makes this a skill — its YAML frontmatter (`name`, `description`) tells Claude *when* to use it; the body tells Claude *how*. The Python module is pure polars + standard library; the LLM narration is optional and gated behind `--model`.
+
+## Activate it
+
+```bash
+bash skills/inventory-aging-triage/install.sh
+```
+
+That copies `SKILL.md` and `scripts/` into `.claude/skills/inventory-aging-triage/`. Restart Claude Code (or open a new session) for it to pick up the skill.
+
+To uninstall: `rm -rf .claude/skills/inventory-aging-triage`.
+
+## Using it through Claude
+
+Just ask the kinds of questions you'd ask a desk manager:
+
+> "Run the weekly aging review."
+> "What should I clear this week?"
+> "Show me everything older than 90 days in the round category."
+> "Just the DISCOUNT bucket, top 50."
+
+Claude maps the phrasing to flags and runs the script.
+
+## Running the script directly
+
+```bash
+source .venv/bin/activate && uv run python skills/inventory-aging-triage/scripts/inventory_aging_skill.py
+```
+
+Common flags:
+
+| Flag | Meaning |
+| --- | --- |
+| `--top N` | Rows to print (default 20). |
+| `--age-min N` | Filter to stones older than N days. |
+| `--filter-tag TAG` | One of HOLD / WATCH / DISCOUNT / CLEAR. |
+| `--category-contains STR` | Substring filter on `category_simple` (case-insensitive). |
+| `--today YYYY-MM-DD` | Override "today" for reproducible runs. |
+| `--model M` | Add a 2–3 sentence executive summary via TritonAI. |
+| `--json` | Emit the triaged frame as JSON (for piping into Skill 6). |
+| `--data-dir PATH` | Where the seed CSVs live (default `data/Milestone_2/`). |
+
+## How the tags are assigned
+
+The exact rules are in `classify_stone()` in `scripts/inventory_aging_skill.py`. In short:
+
+- **HOLD** — stone is younger than 30 days, OR mid-age (30–89) in an active category.
+- **WATCH** — mid-age with soft signals, or aging (90–179) in a still-hot category.
+- **DISCOUNT** — aging or older with mid/low demand, in proportion to how cool the category is.
+- **CLEAR** — very old (≥180 days) with weak demand and no recent inquiries.
+
+Suggested price moves: 0% (HOLD/WATCH), 7–15% (DISCOUNT), 22–28% (CLEAR).
+
+## Inputs
+
+The script reads four CSVs from `data/Milestone_2/`:
+
+- `inventory_seed.csv` — the available stones.
+- `sales_transactions_seed.csv` — for category velocity (sales per category, last 60 days by default).
+- `demand_signals_seed.csv` — for the demand score per category, last 60 days.
+- `communication_logs_seed.csv` — for active inquiries per category, last 30 days.
+
+These are the locked-schema CSVs from the Milestone 02 generator pipeline. See `data/Milestone_2/SCHEMA.md` for the full column contract.
+
+## Using the math from Python
+
+```python
+import polars as pl
+from skills.inventory_aging_triage.scripts.inventory_aging_skill import (
+    triage_inventory, header_line, format_table,
+)
+
+inventory = pl.read_csv("data/Milestone_2/inventory_seed.csv")
+sales = pl.read_csv("data/Milestone_2/sales_transactions_seed.csv")
+demand = pl.read_csv("data/Milestone_2/demand_signals_seed.csv")
+comms = pl.read_csv("data/Milestone_2/communication_logs_seed.csv")
+
+triaged = triage_inventory(inventory, sales, demand, comms)
+print(header_line(triaged))
+print(format_table(triaged, top=20))
+```
+
+## Running the tests
+
+```bash
+uv run pytest tests/skills/test_inventory_aging_skill.py -v
+```
+
+Tests cover `classify_stone()` across every age × demand × inquiry branch, the aggregate counts, the CLI output format, and a handful of edge cases (empty inventory, no available stones, no recent demand data).
