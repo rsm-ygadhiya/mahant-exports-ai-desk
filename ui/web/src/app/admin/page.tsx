@@ -2,6 +2,14 @@ import Link from 'next/link';
 import { prisma } from '@/lib/db';
 import { fmtUsd } from '@/lib/format';
 import { Card, StatusBar, Donut, TrendLine, COLORS } from '@/components/admin/Charts';
+import { getAllCustomers, type CanonicalTier } from '@/lib/csvCustomers';
+
+const TIER_STYLE: Record<CanonicalTier, string> = {
+  Top:  'bg-emerald-100 text-emerald-900',
+  High: 'bg-sky-100      text-sky-900',
+  Mid:  'bg-amber-100    text-amber-900',
+  Low:  'bg-rose-100     text-rose-900',
+};
 
 export const dynamic = 'force-dynamic';
 
@@ -87,6 +95,25 @@ export default async function AdminDashboard() {
   }
   const enquiryTrend = Array.from(dayMap.entries()).map(([label, value]) => ({ label, value }));
 
+  // ── CLV portfolio (from analytics CSVs) ──
+  const clvCustomers = await getAllCustomers();
+  const clvTotalCount = clvCustomers.length;
+  const clvTotalValue = clvCustomers.reduce((s, c) => s + c.risk_adjusted_clv, 0);
+  const clvTierCount: Record<CanonicalTier, number> = { Top: 0, High: 0, Mid: 0, Low: 0 };
+  const clvTierValue: Record<CanonicalTier, number> = { Top: 0, High: 0, Mid: 0, Low: 0 };
+  for (const c of clvCustomers) {
+    clvTierCount[c.tier]++;
+    clvTierValue[c.tier] += c.risk_adjusted_clv;
+  }
+  const topByClv = [...clvCustomers]
+    .sort((a, b) => b.risk_adjusted_clv - a.risk_adjusted_clv)
+    .slice(0, 5);
+  const churnRisk = clvCustomers.filter(c => c.churn_risk_pct >= 30).length;
+  const tierShareData = (['Top', 'High', 'Mid', 'Low'] as CanonicalTier[]).map(t => ({
+    name: `${t} (${clvTierCount[t]})`,
+    value: clvTierValue[t],
+  }));
+
   // ── top stat tiles ──
   const tiles: Array<{ label: string; value: string; sub?: string; href?: string; tone?: 'green' | 'amber' | 'red' }> = [
     { label: 'Available', value: available.toLocaleString(), sub: fmtUsd(availValueAgg._sum.totalPrice as any), href: '/admin/diamonds?status=AVAILABLE', tone: 'green' },
@@ -95,6 +122,7 @@ export default async function AdminDashboard() {
     { label: 'Total stones', value: total.toLocaleString(), href: '/admin/diamonds' },
     { label: 'Customers', value: customers.toLocaleString(), sub: `${pending} pending approval`, href: '/admin/customers' },
     { label: 'New enquiries', value: enquiriesNew.toLocaleString(), sub: `${enquiriesAll} all-time`, href: '/admin/enquiries', tone: 'amber' },
+    { label: 'CLV portfolio', value: fmtUsd(clvTotalValue), sub: `${clvTotalCount} tracked · ${clvTierCount.Top} Top tier`, href: '/admin/customers', tone: 'green' },
   ];
 
   return (
@@ -139,6 +167,76 @@ export default async function AdminDashboard() {
         </Card>
         <Card title="Enquiries — last 30 days" subtitle={`${recentEnquiries.length} total`}>
           <TrendLine data={enquiryTrend} />
+        </Card>
+      </div>
+
+      {/* CLV portfolio section */}
+      <div className="grid lg:grid-cols-3 gap-4">
+        <Card
+          title="CLV by tier"
+          subtitle={`${fmtUsd(clvTotalValue)} risk-adjusted across ${clvTotalCount} accounts`}
+        >
+          <Donut data={tierShareData} />
+        </Card>
+
+        <Card
+          title="Top customers by CLV"
+          subtitle="Click any to see orders + payments"
+          action={
+            <Link href="/admin/customers" className="text-xs text-brand-700 hover:text-brand-900">
+              View all →
+            </Link>
+          }
+        >
+          <ul className="space-y-2 text-xs" style={{ maxHeight: 220, overflowY: 'auto' }}>
+            {topByClv.map(c => (
+              <li key={c.customer_id} className="flex items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <Link href={`/admin/customers/clv/${c.customer_id}`} className="text-brand-900 hover:underline truncate block">
+                    {c.customer_name}
+                  </Link>
+                  <div className="text-[10px] text-brand-700/70">
+                    {c.customer_id} · {c.market}
+                  </div>
+                </div>
+                <div className="text-right shrink-0">
+                  <div className="font-mono text-brand-900">{fmtUsd(c.risk_adjusted_clv)}</div>
+                  <span className={`text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded ${TIER_STYLE[c.tier]}`}>{c.tier}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        <Card
+          title="Churn watchlist"
+          subtitle={`${churnRisk} accounts at ≥30% churn risk`}
+        >
+          <ul className="space-y-2 text-xs" style={{ maxHeight: 220, overflowY: 'auto' }}>
+            {clvCustomers
+              .filter(c => c.churn_risk_pct >= 30)
+              .sort((a, b) => b.risk_adjusted_clv - a.risk_adjusted_clv)
+              .slice(0, 6)
+              .map(c => (
+                <li key={c.customer_id} className="flex items-center justify-between gap-2">
+                  <div className="min-w-0">
+                    <Link href={`/admin/customers/clv/${c.customer_id}`} className="text-brand-900 hover:underline truncate block">
+                      {c.customer_name}
+                    </Link>
+                    <div className="text-[10px] text-brand-700/70">
+                      {c.customer_id} · {fmtUsd(c.risk_adjusted_clv)}
+                    </div>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <div className="font-mono text-rose-700">{c.churn_risk_pct.toFixed(0)}%</div>
+                    <span className={`text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded ${TIER_STYLE[c.tier]}`}>{c.tier}</span>
+                  </div>
+                </li>
+              ))}
+            {churnRisk === 0 && (
+              <li className="text-brand-700/70 italic">No accounts above 30% churn risk.</li>
+            )}
+          </ul>
         </Card>
       </div>
 

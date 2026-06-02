@@ -27,6 +27,8 @@ export default function OpportunitiesPage() {
       case 'collected':     return { icon: '📦', text: `Collected ${e.totalHeadlines} headlines total` };
       case 'extract_begin': return { icon: '🤖', text: `Sending ${e.headlineCount} headlines to ${e.sentTo} for extraction…` };
       case 'extract_done':  return { icon: '✨', text: `Claude returned ${e.leadCount} lead${e.leadCount === 1 ? '' : 's'} (${e.ms} ms)` };
+      case 'verify_begin':  return { icon: '🔎', text: `Verifying ${e.leadCount} portal URLs…` };
+      case 'verify_done':   return { icon: '🔗', text: `${e.live} live, ${e.dead} replaced with Google search (${e.ms} ms)` };
       case 'done':          return { icon: '✅', text: `Done — ${e.leadCount} unique lead${e.leadCount === 1 ? '' : 's'}.` };
       default:              return null;
     }
@@ -423,6 +425,7 @@ function OpportunityCard({
             >
               {opp.contact_email}
             </a>
+            <span className="ml-1 text-[10px] text-amber-700">(guessed)</span>
           </div>
         )}
         {opp.portal_url && (
@@ -435,7 +438,26 @@ function OpportunityCard({
               className="text-brand-900 hover:text-gold-600 underline"
               onClick={(e) => e.stopPropagation()}
             >
-              {opp.portal_url.replace(/^https?:\/\//, '')}
+              {opp.portal_verified === false
+                ? `Search: ${opp.company} supplier portal`
+                : opp.portal_url.replace(/^https?:\/\//, '')}
+            </a>
+            {opp.portal_verified === true && (
+              <span className="ml-1 text-[10px] text-emerald-700">(verified)</span>
+            )}
+          </div>
+        )}
+        {opp.source_url && (
+          <div className="truncate">
+            📰{' '}
+            <a
+              href={opp.source_url}
+              target="_blank"
+              rel="noreferrer"
+              className="text-brand-700/70 hover:text-brand-900 underline"
+              onClick={(e) => e.stopPropagation()}
+            >
+              source article
             </a>
           </div>
         )}

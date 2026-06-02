@@ -196,7 +196,49 @@ export type ProgressEvent =
   | { type: 'collected'; totalHeadlines: number }
   | { type: 'extract_begin'; sentTo: string; headlineCount: number }
   | { type: 'extract_done'; leadCount: number; ms: number }
+  | { type: 'verify_begin'; leadCount: number }
+  | { type: 'verify_done'; live: number; dead: number; ms: number }
   | { type: 'done'; leadCount: number };
+
+/**
+ * HEAD-check a URL with a short timeout. Returns true if the server responds
+ * 2xx/3xx. We use this to drop Claude's hallucinated portal URLs before they
+ * reach the UI.
+ */
+async function urlIsLive(url: string): Promise<boolean> {
+  try {
+    const r = await fetch(url, {
+      method: 'HEAD',
+      redirect: 'follow',
+      signal: AbortSignal.timeout(4_000),
+      headers: { 'user-agent': 'Mozilla/5.0 (Mahant Opportunity Finder)' },
+    });
+    // Some sites block HEAD — retry with GET if we get 405/403 and a sensible
+    // status hint. Keep it cheap: still capped at 4s.
+    if (r.status === 405 || r.status === 403) {
+      try {
+        const g = await fetch(url, {
+          method: 'GET',
+          redirect: 'follow',
+          signal: AbortSignal.timeout(4_000),
+          headers: { 'user-agent': 'Mozilla/5.0 (Mahant Opportunity Finder)' },
+        });
+        return g.ok;
+      } catch {
+        return false;
+      }
+    }
+    return r.ok;
+  } catch {
+    return false;
+  }
+}
+
+/** Build a Google search URL as a fallback when the portal URL is dead. */
+function googleSupplierSearch(company: string): string {
+  const q = `${company} supplier portal OR vendor application OR become a supplier`;
+  return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+}
 
 /**
  * Live-scrape opportunities. Fetches Google News RSS for each region, hands
@@ -267,11 +309,28 @@ export async function scrapeOpportunities(
   // 3. Dedupe by id (Claude occasionally repeats).
   const byId = new Map<string, ParsedLead>();
   for (const l of leads) if (!byId.has(l.id)) byId.set(l.id, l);
+  const deduped = Array.from(byId.values());
 
-  const out = Array.from(byId.values()).map(l => ({
-    ...l,
-    status: 'new' as const,
+  // 4. Verify Claude's portal URLs are actually reachable. Dead ones get
+  //    replaced with a guaranteed-working Google search URL targeting the
+  //    company. This is the difference between "looks impressive" and
+  //    "actually clickable on demo day."
+  emit({ type: 'verify_begin', leadCount: deduped.length });
+  const t2 = Date.now();
+  let live = 0, dead = 0;
+  const verified = await Promise.all(deduped.map(async l => {
+    if (!l.portal_url) {
+      dead++;
+      return { ...l, portal_url: googleSupplierSearch(l.company), portal_verified: false };
+    }
+    const ok = await urlIsLive(l.portal_url);
+    if (ok) { live++; return { ...l, portal_verified: true }; }
+    dead++;
+    return { ...l, portal_url: googleSupplierSearch(l.company), portal_verified: false };
   }));
+  emit({ type: 'verify_done', live, dead, ms: Date.now() - t2 });
+
+  const out = verified.map(l => ({ ...l, status: 'new' as const }));
   emit({ type: 'done', leadCount: out.length });
   return out;
 }

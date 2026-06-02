@@ -21,6 +21,7 @@ export type EnrichedOpportunity = {
   fit_summary: string;
   contact_role: string;
   contact_email?: string;     // best-effort role-based address inferred by Claude
+  portal_verified?: boolean;  // true if the portal URL responded 2xx/3xx server-side
   confidence: number;        // 0-100
   // Workflow state
   status: 'new' | 'draft' | 'pursuing' | 'sent' | 'discarded';
