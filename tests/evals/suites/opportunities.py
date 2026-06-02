@@ -33,7 +33,31 @@ SUITE_NAME = "opportunity-finder"
 SUITE_DESC = "Validates the Opportunity Finder's persisted leads: schema, vocab, honest URLs/emails, and fit-summary quality."
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-ARTIFACT = REPO_ROOT / "ui" / "web" / ".opp-state.json"
+
+# Candidate locations for .opp-state.json:
+#  1) Dev tree: <repo>/ui/web/.opp-state.json
+#  2) Docker layout on Render: <repo>/web/.opp-state.json (Next.js runs from /app/web)
+#  3) Explicit env override for unusual deploys
+import os as _os
+_CANDIDATES = [
+    REPO_ROOT / "ui" / "web" / ".opp-state.json",
+    REPO_ROOT / "web" / ".opp-state.json",
+]
+if _os.environ.get("OPP_STATE_PATH"):
+    _CANDIDATES.insert(0, Path(_os.environ["OPP_STATE_PATH"]))
+
+
+def _resolve_artifact() -> Path:
+    """Return the first candidate path that exists, else the canonical dev path
+    so error messages remain stable."""
+    for p in _CANDIDATES:
+        if p.exists():
+            return p
+    return _CANDIDATES[0]
+
+
+# Resolved lazily so the test always picks the latest-written file.
+ARTIFACT = _resolve_artifact()
 
 VALID_REGIONS = {"North America", "Europe", "India", "Middle East", "Asia-Pacific"}
 VALID_SEGMENTS = {
@@ -57,10 +81,13 @@ EMAIL_RE = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]{2,}$")
 
 
 def _load() -> list[dict]:
-    if not ARTIFACT.exists():
+    # Re-resolve at call time so the test sees a file written *after* this
+    # module was imported (e.g. user clicks Find, then clicks Re-run).
+    artifact = _resolve_artifact()
+    if not artifact.exists():
         return []
     try:
-        data = json.loads(ARTIFACT.read_text())
+        data = json.loads(artifact.read_text())
     except Exception:
         return []
     bag = data.get("opportunities", {})
@@ -100,8 +127,17 @@ def evaluate(case: Case) -> list[MetricResult]:
     n = case.name
 
     if n == "artifact-exists":
-        return [metric("file-exists", ARTIFACT.exists(),
-                       reason=f"expected {ARTIFACT.relative_to(REPO_ROOT)}")]
+        artifact = _resolve_artifact()
+        ok = artifact.exists()
+        if ok:
+            try:
+                rel = artifact.relative_to(REPO_ROOT)
+            except ValueError:
+                rel = artifact
+            reason = f"found at {rel}"
+        else:
+            reason = "tried: " + ", ".join(str(c) for c in _CANDIDATES)
+        return [metric("file-exists", ok, reason=reason)]
 
     if n == "non-empty":
         return [metric("lead-count", len(rows) > 0, reason=f"got {len(rows)} leads")]
