@@ -16,7 +16,7 @@ import { hasPermission } from '@/lib/permissions';
 const DEFAULT_M3_REPO =
   '/Users/lucifer/Desktop/MSBA/Spring/Gen AI/mgt449-milestone03-Group-10';
 
-const VALID_SUITES = new Set(['triage', 'repricing', 'clv', 'memo']);
+const VALID_SUITES = new Set(['triage', 'repricing', 'clv', 'memo', 'opportunities']);
 
 export async function POST(req: Request) {
   const guard = await requireLoggedInAdmin(req);

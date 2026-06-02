@@ -43,6 +43,10 @@ const SUITES: Array<{ key: string; title: string; icon: string; blurb: string }>
     key: 'memo', icon: '📝', title: 'Memo Approval',
     blurb: 'FIFO uniqueness · queue↔decision consistency · rationale quality (+ optional LLM judge).',
   },
+  {
+    key: 'opportunities', icon: '🌐', title: 'Opportunity Finder',
+    blurb: 'Schema · vocab · no placeholder URLs/emails · URL/email shape · fit-summary groundedness (+ optional LLM judge).',
+  },
 ];
 
 export default function EvalsPage() {

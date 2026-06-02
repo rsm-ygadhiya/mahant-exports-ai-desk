@@ -19,10 +19,11 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 SUITES = {
-    "triage":    "tests.evals.suites.triage",
-    "repricing": "tests.evals.suites.repricing",
-    "clv":       "tests.evals.suites.clv",
-    "memo":      "tests.evals.suites.memo",
+    "triage":        "tests.evals.suites.triage",
+    "repricing":     "tests.evals.suites.repricing",
+    "clv":           "tests.evals.suites.clv",
+    "memo":          "tests.evals.suites.memo",
+    "opportunities": "tests.evals.suites.opportunities",
 }
 
 

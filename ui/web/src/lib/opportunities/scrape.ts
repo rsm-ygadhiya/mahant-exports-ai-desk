@@ -106,27 +106,21 @@ For each lead, return ONE JSON object on its own line with these fields:
   company         official company name
   region          one of: North America | Europe | India | Middle East | Asia-Pacific
   segment         one of: Big-box retail | Specialty jeweler | Online marketplace | Department store | Bridal chain | Luxury house
-  portal_url      REQUIRED. Best-effort public supplier/vendor/partner portal URL for the
-                  company. Use the company's primary domain. Examples of real patterns:
-                    https://corporate.walmart.com/suppliers
-                    https://www.signetjewelers.com/suppliers
-                    https://www.bluenile.com/diamond-suppliers
-                    https://www.titancompany.in/suppliers
-                  If no dedicated supplier page exists, fall back to the company's main
-                  corporate / "about" / "contact-us" URL on its primary domain.
-                  Never use placeholder text — always emit a real URL.
-  contact_email   REQUIRED. Best-effort role-based business email at the company's
-                  primary domain (NOT a personal address, NOT @example.com). Prefer
-                  patterns like:
-                    suppliers@<domain>
-                    sourcing@<domain>
-                    partnerships@<domain>
-                    vendors@<domain>
-                    procurement@<domain>
-                  Pick the pattern most likely to be monitored for B2B inbound at this
-                  company's segment (e.g. big-box retail tends to use "suppliers@",
-                  marketplaces use "partnerships@" or "merchant@"). Lowercase only.
-                  Never emit example.com, test addresses, or made-up TLDs.
+  portal_url      OPTIONAL. ONLY include if you have STRONG evidence that this exact URL
+                  exists — e.g. you have seen it cited in the headlines, you remember it
+                  from a verifiable public source, or it appears on the company's known
+                  primary domain in a way you are confident about. DO NOT GUESS. DO NOT
+                  fabricate plausible-looking URLs. If you are not confident the URL
+                  exists, OMIT the field entirely. A missing portal_url is correct and
+                  expected for most leads — the UI will show "No portal listed."
+                  Never use placeholders (example.com, your-domain.com, made-up TLDs).
+  contact_email   OPTIONAL. ONLY include if you can identify a specific, verifiable
+                  business email at the company's primary domain. DO NOT GUESS at a
+                  role-based address like "sourcing@<domain>" unless you have evidence
+                  that exact address is published or known. If you cannot find a
+                  verifiable email, OMIT the field entirely. The UI will show
+                  "No contact email found" — this is correct and preferable to a
+                  fabricated address.
   reported_demand 1 sentence quoting/paraphrasing what the headline says they are sourcing
   fit_summary     1-2 sentences on WHY they fit Mahant Exports
   contact_role    likely decision-maker title (e.g. "Director of Sourcing — Jewelry")
@@ -138,9 +132,9 @@ Rules:
   - Skip headlines that are pure consumer marketing or trend pieces with no named buyer.
   - One JSON object per line. No array brackets, no markdown fences, no commentary.
   - Up to 12 leads total. If fewer headlines are buyer-related, return fewer.
-  - portal_url and contact_email are REQUIRED and must be real-looking values at the
-    company's actual primary domain. If you genuinely cannot infer a domain, drop
-    that lead entirely rather than emitting a placeholder.`;
+  - For portal_url and contact_email: when unsure, OMIT. Never fabricate a URL or
+    email just to fill the field. The UI is designed to gracefully show "No info
+    found" when these are missing — that is the correct outcome, not a failure.`;
 
 type ParsedLead = {
   id: string;
@@ -234,11 +228,6 @@ async function urlIsLive(url: string): Promise<boolean> {
   }
 }
 
-/** Build a Google search URL as a fallback when the portal URL is dead. */
-function googleSupplierSearch(company: string): string {
-  const q = `${company} supplier portal OR vendor application OR become a supplier`;
-  return `https://www.google.com/search?q=${encodeURIComponent(q)}`;
-}
 
 /**
  * Live-scrape opportunities. Fetches Google News RSS for each region, hands
@@ -311,22 +300,22 @@ export async function scrapeOpportunities(
   for (const l of leads) if (!byId.has(l.id)) byId.set(l.id, l);
   const deduped = Array.from(byId.values());
 
-  // 4. Verify Claude's portal URLs are actually reachable. Dead ones get
-  //    replaced with a guaranteed-working Google search URL targeting the
-  //    company. This is the difference between "looks impressive" and
-  //    "actually clickable on demo day."
+  // 4. Verify Claude's portal URLs are actually reachable. Dead URLs and
+  //    URLs Claude couldn't infer get DROPPED — the UI shows "No portal
+  //    listed" rather than a fake or guessed link. Honesty > impressiveness.
   emit({ type: 'verify_begin', leadCount: deduped.length });
   const t2 = Date.now();
   let live = 0, dead = 0;
   const verified = await Promise.all(deduped.map(async l => {
     if (!l.portal_url) {
-      dead++;
-      return { ...l, portal_url: googleSupplierSearch(l.company), portal_verified: false };
+      // Claude didn't supply one — that's allowed, leave it null.
+      return { ...l, portal_url: undefined, portal_verified: false };
     }
     const ok = await urlIsLive(l.portal_url);
     if (ok) { live++; return { ...l, portal_verified: true }; }
+    // URL doesn't resolve — drop it rather than fabricate a replacement.
     dead++;
-    return { ...l, portal_url: googleSupplierSearch(l.company), portal_verified: false };
+    return { ...l, portal_url: undefined, portal_verified: false };
   }));
   emit({ type: 'verify_done', live, dead, ms: Date.now() - t2 });
 

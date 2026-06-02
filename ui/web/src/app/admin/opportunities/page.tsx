@@ -28,7 +28,7 @@ export default function OpportunitiesPage() {
       case 'extract_begin': return { icon: '🤖', text: `Sending ${e.headlineCount} headlines to ${e.sentTo} for extraction…` };
       case 'extract_done':  return { icon: '✨', text: `Claude returned ${e.leadCount} lead${e.leadCount === 1 ? '' : 's'} (${e.ms} ms)` };
       case 'verify_begin':  return { icon: '🔎', text: `Verifying ${e.leadCount} portal URLs…` };
-      case 'verify_done':   return { icon: '🔗', text: `${e.live} live, ${e.dead} replaced with Google search (${e.ms} ms)` };
+      case 'verify_done':   return { icon: '🔗', text: `${e.live} portal URLs verified, ${e.dead} dropped (no real link found) — ${e.ms} ms` };
       case 'done':          return { icon: '✅', text: `Done — ${e.leadCount} unique lead${e.leadCount === 1 ? '' : 's'}.` };
       default:              return null;
     }
@@ -415,7 +415,7 @@ function OpportunityCard({
       <p className="text-xs text-brand-700/90 line-clamp-3">{opp.fit_summary}</p>
       <div className="text-[11px] text-brand-700/70 space-y-0.5">
         <div>Contact: <span className="italic">{opp.contact_role}</span></div>
-        {opp.contact_email && (
+        {opp.contact_email ? (
           <div className="truncate">
             ✉{' '}
             <a
@@ -425,10 +425,11 @@ function OpportunityCard({
             >
               {opp.contact_email}
             </a>
-            <span className="ml-1 text-[10px] text-amber-700">(guessed)</span>
           </div>
+        ) : (
+          <div className="text-brand-500 italic">✉ No contact email found</div>
         )}
-        {opp.portal_url && (
+        {opp.portal_url ? (
           <div className="truncate">
             🔗{' '}
             <a
@@ -438,14 +439,14 @@ function OpportunityCard({
               className="text-brand-900 hover:text-gold-600 underline"
               onClick={(e) => e.stopPropagation()}
             >
-              {opp.portal_verified === false
-                ? `Search: ${opp.company} supplier portal`
-                : opp.portal_url.replace(/^https?:\/\//, '')}
+              {opp.portal_url.replace(/^https?:\/\//, '')}
             </a>
             {opp.portal_verified === true && (
               <span className="ml-1 text-[10px] text-emerald-700">(verified)</span>
             )}
           </div>
+        ) : (
+          <div className="text-brand-500 italic">🔗 No verified portal — use source article below</div>
         )}
         {opp.source_url && (
           <div className="truncate">
